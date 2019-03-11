@@ -11,7 +11,7 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 ## Contents
 
 * [Building the repo](#P-Building)
-* [Tutorial the repo](#P-Tutorial)
+* [Tutorial](#P-Tutorial)
 
 ## <a name="P-Building"></a> Building
 
