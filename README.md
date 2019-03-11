@@ -14,3 +14,112 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 
 ## <a name="P-Building"></a> Building
 
+## MAC
+
+Prerequiste you MUST have installed xcode and xcode command line tools, google this and follow the instructions from the Apple website.
+
+* Open a Terminal
+* Change Directory (CD) to your new local repo "src" directory (dir).
+
+```
+USER# cd /Users/You/rough_idea_project_cars_cpp/src
+```
+
+* Set up obj and lib dirs, this only needs to be done once.
+
+```
+USER# make install
+```
+
+* Make library
+
+```
+USER# make 
+```
+
+* To make and run the sample executable CD to the bin dir.
+
+```
+USER# cd ../bin
+```
+
+* Make exe
+
+```
+USER# make 
+```
+
+* Set up the DYLD_LIBRARY_PATH
+
+```
+USER# export DYLD_LIBRARY_PATH=/Users/You/rough_idea_project_cars_cpp/lib
+```
+
+* Depending on what Project Cars Format you are using (This can be found in the System settings I think)
+* Format 1
+```
+USER# ./pcars -v1
+```
+* Format 2
+```
+USER# ./pcars -v2
+```
+
+This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
+
+## Linux
+
+Prerequiste you MUST have installed g++, use apt-get or yum.
+
+* Open a Terminal
+* Change Directory (CD) to your new local repo "src" directory (dir).
+
+```
+USER# cd /Home/You/rough_idea_project_cars_cpp/src
+```
+
+* Set up obj and lib dirs, this only needs to be done once.
+
+```
+USER# make install
+```
+
+* Make library
+
+```
+USER# make 
+```
+
+* To make and run the sample executable CD to the bin dir.
+
+```
+USER# cd ../bin
+```
+
+* Make exe
+
+```
+USER# make 
+```
+
+* Set up the LD_LIBRARY_PATH
+
+```
+USER# export LD_LIBRARY_PATH=/Users/You/rough_idea_project_cars_cpp/lib
+```
+
+* Depending on what Project Cars Format you are using (This can be found in the System settings I think)
+* Format 1
+```
+USER# ./pcars -v1
+```
+* Format 2
+```
+USER# ./pcars -v2
+```
+
+This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
+
+
+
+
