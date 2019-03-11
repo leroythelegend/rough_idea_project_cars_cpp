@@ -1,5 +1,16 @@
-# rough_idea_project_cars_cpp
-Simpler CPP Objects for capturing and processing Project Cars UDP packets 
+# Rough Idea Project Cars C++
 
+## Description
 
-Working on a simpler API because my previous attempt is to heavy weight and complex.
+Simpler CPP Classes for capturing and processing Project Cars UDP packets.
+
+NOTE: I'm still updating the comments for the Packets.
+
+Also have done some classes in CSharp https://github.com/leroythelegend/rough_idea_project_cars_csharp
+
+## Contents
+
+* [Building the repo](#P-Building)
+
+## <a name="P-Building"></a> Building
+
