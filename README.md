@@ -11,10 +11,11 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 ## Contents
 
 * [Building the repo](#P-Building)
+* [Tutorial the repo](#P-Tutorial)
 
 ## <a name="P-Building"></a> Building
 
-## MAC
+### MAC
 
 Prerequiste you MUST have installed xcode and xcode command line tools, google this and follow the instructions from the Apple website.
 
@@ -67,7 +68,7 @@ USER# ./pcars -v2
 
 This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
 
-## Linux
+### Linux
 
 Prerequiste you MUST have installed g++, use apt-get or yum.
 
@@ -109,6 +110,7 @@ USER# export LD_LIBRARY_PATH=/Users/You/rough_idea_project_cars_cpp/lib
 ```
 
 * Depending on what Project Cars Format you are using (This can be found in the System settings I think)
+
 * Format 1
 ```
 USER# ./pcars -v1
@@ -120,6 +122,12 @@ USER# ./pcars -v2
 
 This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
 
+### Windows
 
+No idea, use visual studio, I'll have to get around to running this on windows I'm little worried about windows does not export symbols from a dll which would be problamatic I'm sure there must be a compiler flag that flips this behaviour and you can flip it back if need be. I have added some win socket code so I'm hoping if it compiles it will work. Never Tested on win :-(
 
+## <a name="P-Tutorial"></a> Tutorial
 
+Prerequiste need to know how to use a debugger, if you don't google it now.
+
+Use the example in bin I have left the debug flags on in the makefiles.
