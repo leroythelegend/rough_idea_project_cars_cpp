@@ -131,3 +131,5 @@ No idea, use visual studio, I'll have to get around to running this on windows I
 Prerequiste need to know how to use a debugger, if you don't google it now.
 
 Use the example in bin I have left the debug flags on in the makefiles.
+
+Sorry I'll have to finish this later
