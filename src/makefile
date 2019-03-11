@@ -57,6 +57,7 @@ $(OBJDIR)/%.o: %.cpp
 
 install:
 	mkdir -p ../obj
+	mkdir -p ../lib
 
 clean:
 	$(RM) $(OBJDIR)/*.o *~ $(MAIN)
