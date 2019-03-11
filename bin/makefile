@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -ggdb -m64 -std=c++11 -Wall -Wextra -g
-INCLUDES = -I./ -I../../src/
-LFLAGS   = -v -m64 -g -L../../lib -lrough_idea_pcars
+INCLUDES = -I./ -I./../src/
+LFLAGS   = -v -m64 -g -L./../lib -lrough_idea_pcars
 SRCS     = $(wildcard *.cpp)
 OBJS     = $(notdir $(SRCS:.cpp=.o))
 MAIN = pcars
