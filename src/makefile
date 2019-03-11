@@ -10,7 +10,7 @@ ifeq (${detected_OS}, Linux  )
   CFLAGS   = -ggdb -m64 -fPIC -I./ -std=c++14 -Wall -Wextra 
 else
   #CFLAGS   = -g -m64 -std=c++14 -Wall -Wextra 
-  CFLAGS   = -m64 -std=c++14 -Wall -Wextra 
+  CFLAGS   = -m64 -g -std=c++14 -Wall -Wextra 
 endif
 
 INCLUDES = -I./
