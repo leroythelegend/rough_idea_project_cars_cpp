@@ -26,6 +26,12 @@ namespace pcars
             cout << "Unfiltered Steering      : " << p->unfiltered_steering()           << endl;
             cout << "Unfiltered Clutch        : " << p->unfiltered_clutch()             << endl;
             cout << "Race State Flags         : " << p->race_state_flags()              << endl;
+            cout << "Laps in Event            : " << p->laps_in_event()                 << endl;
+            cout << "Best Lap Time            : " << p->best_lap_time()                 << endl;
+            cout << "last Lap Time            : " << p->last_lap_time()                 << endl;
+            cout << "Current Time             : " << p->current_time()                  << endl;
+            cout << "Split Time Ahead         : " << p->split_time_ahead()              << endl;
+            cout << "Split Time Behind        : " << p->split_time_behind()             << endl;
         }
 
         packets_.push_back(packet);

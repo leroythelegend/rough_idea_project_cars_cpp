@@ -1,6 +1,7 @@
 #include "telemetryv2.h"
 #include "telemetryv1.h"
 #include "myprocess.h"
+#include "exception.h"
 
 #include <iostream>
 #include <string>
@@ -19,14 +20,30 @@ int main(int argc, char *argv[]) {
 	}
 
 	if (arg == "-v1") {
-		TelemetryV1 telemetry;
-		
-		telemetry.start(make_shared<MyProcessV1>());
+		try {
+			TelemetryV1 telemetry;
+			telemetry.start(make_shared<MyProcessV1>());
+		}
+		catch (PCars_Exception & e) {
+			/// try and recover
+			e.what();
+		}
+		catch (...) {
+			return 1;
+		}
 	}
 	else if (arg == "-v2") {
-		TelemetryV2 telemetry;
-		
-		telemetry.start(make_shared<MyProcessV2>());
+		try {
+			TelemetryV2 telemetry;
+			telemetry.start(make_shared<MyProcessV2>());
+		}
+		catch (PCars_Exception & e) {
+			/// try and recover
+			e.what();
+		}
+		catch (...) {
+			return 1;
+		}
 	}
 	else {
 		cout << "pcars [-v1 or -v2]" << endl;
