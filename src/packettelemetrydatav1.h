@@ -172,12 +172,62 @@ namespace pcars {
 		/// \return race state
 
 		unsigned int race_state_flags() const;
-		
+
+		/// \brief Laps in event
+		///
+		///		Number of Laps in event
+		/// 	Have not tested if this is different
+		///     in timed events.     
+		///
+		/// \return clutch
+
 		unsigned int laps_in_event() const;
+
+		/// \brief Best Lap Time
+		///
+		/// 	Best Lap Time in
+		/// 		Seconds.000
+		///
+		/// \return clutch
+
 		float best_lap_time() const;
+	
+		/// \brief Last Lap Time
+		///
+		/// 	Last Lap Time in
+		/// 		Seconds.000
+		///
+		/// \return clutch
+
 		float last_lap_time() const;
+		
+		/// \brief Current Lap Time
+		///
+		/// 	Current Lap Time in
+		/// 		Seconds.000
+		///     Negative 1 on out lap
+		///         -1
+		///
+		/// \return clutch
+
 		float current_time() const;
+
+		/// \brief Split Time Ahead
+		///
+		/// 	Time in
+		/// 		Seconds.000
+		///
+		/// \return clutch
+
 		float split_time_ahead() const;
+
+		/// \brief Split Time behind
+		///
+		/// 	Time in
+		/// 		Seconds.000
+		///
+		/// \return clutch
+
 		float split_time_behind() const;
 		float split_time() const;
 		float event_time_remaining() const;
