@@ -115,8 +115,8 @@ unsigned int PacketTelemetryDataV1::sequence_number() const {
 	return sequencenum_packettype_.ms6bits();
 }
 
-Packet_Type PacketTelemetryDataV1::packet_type() const{
-	return static_cast<Packet_Type>(sequencenum_packettype_.ls2bits());
+unsigned int PacketTelemetryDataV1::packet_type() const{
+	return sequencenum_packettype_.ls2bits();
 }
 
 unsigned int PacketTelemetryDataV1::session_state() const {

@@ -60,7 +60,7 @@ namespace pcars {
 		///
 		/// \return Version
 		
-		Packet_Type packet_type() const;
+		unsigned int packet_type() const;
 
 		/// \brief Session State
 		///
