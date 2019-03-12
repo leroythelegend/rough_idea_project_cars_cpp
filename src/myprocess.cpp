@@ -32,6 +32,9 @@ namespace pcars
             cout << "Current Time             : " << p->current_time()                  << endl;
             cout << "Split Time Ahead         : " << p->split_time_ahead()              << endl;
             cout << "Split Time Behind        : " << p->split_time_behind()             << endl;
+            cout << "Split Time               : " << p->split_time()                    << endl;
+            cout << "Event Time Remaining     : " << p->event_time_remaining()          << endl;
+            cout << "Personal Fastest Lap Time: " << p->personal_fastest_lap_time()     << endl;
         }
 
         packets_.push_back(packet);

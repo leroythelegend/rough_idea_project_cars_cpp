@@ -176,8 +176,6 @@ namespace pcars {
 		/// \brief Laps in event
 		///
 		///		Number of Laps in event
-		/// 	Have not tested if this is different
-		///     in timed events.     
 		///
 		/// \return clutch
 
@@ -229,8 +227,27 @@ namespace pcars {
 		/// \return clutch
 
 		float split_time_behind() const;
+
+		/// \brief Split Time
+		///
+		///
+		/// \return clutch
+
 		float split_time() const;
+
+		/// \brief Event Time Remaining
+		///
+		///		Time Seconds.0
+		///
+		/// \return clutch
+
 		float event_time_remaining() const;
+
+		/// \brief Personal Fastest Lap Time
+		///
+		///
+		/// \return clutch
+
 		float personal_fastest_lap_time() const;
 		float world_fastest_lap_time() const;
 		float current_sector1_time() const;
