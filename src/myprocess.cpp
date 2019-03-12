@@ -16,7 +16,7 @@ namespace pcars
             PacketTelemetryDataV1 * p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
             cout << "Build Version            : " << p->build_version()                 << endl;
             cout << "Sequence Number          : " << p->sequence_number()               << endl;
-            cout << "Packet Type              : " << static_cast<int>(p->packet_type()) << endl;
+            cout << "Packet Type              : " << p->packet_type()                   << endl;
             cout << "Session State            : " << p->session_state()                 << endl;
             cout << "Game State               : " << p->game_state()                    << endl;
             cout << "Viewed Participant Index : " << p->viewed_participant_index()      << endl;
