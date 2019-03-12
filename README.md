@@ -128,8 +128,4 @@ No idea, use visual studio, I'll have to get around to running this on windows I
 
 ## <a name="P-Tutorial"></a> Tutorial
 
-Prerequiste need to know how to use a debugger, google c++ visual studio code for mac and linux I find this IDE really good. Obviously if you are on win visual studio which is different to visual studio code has a great debugger. Else gdb or lldb will do.
-
-Use the example in bin, I have left the debug flags on in the makefiles.
-
 Sorry I'll have to finish this later
