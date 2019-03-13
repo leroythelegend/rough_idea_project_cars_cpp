@@ -150,7 +150,7 @@ namespace pcars {
 		///     between this and clutch?
 		///     Value 0-255
 		///
-		/// \return clutch
+		/// \return value
 
 		float unfiltered_clutch() const;
 
@@ -177,7 +177,7 @@ namespace pcars {
 		///
 		///		Number of Laps in event
 		///
-		/// \return clutch
+		/// \return value
 
 		unsigned int laps_in_event() const;
 
@@ -186,7 +186,7 @@ namespace pcars {
 		/// 	Best Lap Time in
 		/// 		Seconds.000
 		///
-		/// \return clutch
+		/// \return value
 
 		float best_lap_time() const;
 	
@@ -195,43 +195,44 @@ namespace pcars {
 		/// 	Last Lap Time in
 		/// 		Seconds.000
 		///
-		/// \return clutch
+		/// \return value
 
 		float last_lap_time() const;
 		
 		/// \brief Current Lap Time
 		///
 		/// 	Current Lap Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///     Negative 1 on out lap
 		///         -1
 		///
-		/// \return clutch
+		/// \return value
 
 		float current_time() const;
 
 		/// \brief Split Time Ahead
 		///
 		/// 	Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///
-		/// \return clutch
+		/// \return value
 
 		float split_time_ahead() const;
 
 		/// \brief Split Time behind
 		///
 		/// 	Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///
-		/// \return clutch
+		/// \return value
 
 		float split_time_behind() const;
 
 		/// \brief Split Time
 		///
+		///     Seconds.00000
 		///
-		/// \return clutch
+		/// \return value
 
 		float split_time() const;
 
@@ -239,36 +240,116 @@ namespace pcars {
 		///
 		///		Time Seconds.0
 		///
-		/// \return clutch
+		/// \return value
 
 		float event_time_remaining() const;
 
 		/// \brief Personal Fastest Lap Time
 		///
 		///
-		/// \return clutch
+		/// \return value
 
 		float personal_fastest_lap_time() const;
+
+		/// \brief World Fastest Lap Time
+		///
+		///
+		/// \return value
+		
 		float world_fastest_lap_time() const;
+		
+		/// \brief Current Sector Times
+		///
+		///		Current time in that sector Seconds.00000
+		///
+		/// \return value
+		
 		float current_sector1_time() const;
 		float current_sector2_time() const;
 		float current_sector3_time() const;
+
+		/// \brief Fastest Sector Times
+		///
+		///		Fastest time in that sector Seconds.00000
+		///
+		/// \return value
+
 		float fastest_sector1_time() const;
 		float fastest_sector2_time() const;
 		float fastest_sector3_time() const;
+
+		/// \brief Personal Fastest Sector Times
+		///
+		///
+		/// \return value
+
 		float personal_fastest_sector1_time() const;
 		float personal_fastest_sector2_time() const;
 		float personal_fastest_sector3_time() const;
+
+		/// \brief World Fastest Sector Times
+		///
+		///
+		/// \return value
+
 		float world_fastest_sector1_time() const;
 		float world_fastest_sector2_time() const;
 		float world_fastest_sector3_time() const;
+
+		/// \brief Joy Pad
+		///
+		///
+		/// \return value
+
 		unsigned int joy_pad() const;
-		Flag_Reason flag_reason() const;
-		Flag_Colour flag_colour() const;
+
+		/// \brief Flag Reason
+		///
+		///
+		/// \return value
+
+		unsigned int flag_reason() const;
+
+		/// \brief Flag Colour
+		///
+		///
+		/// \return value	
+
+		unsigned int flag_colour() const;
+		
+		/// \brief Pit Mode
+		///
+		///
+		/// \return value
+
 		unsigned int pit_mode() const;
-		Pit_Schedule pit_schedule() const;
+
+		/// \brief Pit Schedule
+		///
+		///
+		/// \return value
+
+		unsigned int pit_schedule() const;
+		
+		/// \brief Oil Temp Celsius
+		///
+		///
+		/// \return value		
+		
 		float oil_temp_celsius() const;
+
+		/// \brief Oil Pressure KPA
+		///
+		///
+		/// \return value
+
 		float oil_pressure_kpa() const;
+
+		/// \brief Water Temp Celsius
+		///
+		///
+		/// \return value
+
 		float water_temp_celsius() const;
 		float water_pressure_kpa() const;
 		float fuel_pressure_kpa() const;
