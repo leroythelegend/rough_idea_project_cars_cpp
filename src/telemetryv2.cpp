@@ -31,7 +31,7 @@ namespace pcars
         capture.nextGameState(make_shared<GamePlayingStateV2>(process));
 
         while (true) {
-            const PCars_Data data = transport.read(2048);
+            const PCars_Data data = transport.read(30000);
             PacketBase packetBase;
             Position pos = 0;
             packetBase.decode(data, pos);
