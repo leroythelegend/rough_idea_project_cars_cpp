@@ -128,7 +128,7 @@ No idea, use visual studio, I'll have to get around to running this on windows I
 
 ## <a name="P-Tutorial"></a> Tutorial
 
-myprocess.cpp shows how to use the attributes, playing is during the game and session is when you go back to the pits the state of the game can be modified with the capturestate.cpp if required. i.e. more granulated state e.g. pit mode, race mode.
+myprocess.cpp shows how to use the attributes, playing is during the game and menu is when you go back to the pits the state of the game can be modified with the capturestate.cpp if required. i.e. more granulated state e.g. pit mode, race mode.
 
 Tutorial is Still WIP
 
