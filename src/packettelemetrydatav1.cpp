@@ -247,20 +247,20 @@ unsigned int PacketTelemetryDataV1::joy_pad() const {
 	return joypad_.u16();
 }
 
-Flag_Reason PacketTelemetryDataV1::flag_reason() const {
-	return static_cast<Flag_Reason>(highestflagreason_highestflagcolour_.ls3bits());
+unsigned int PacketTelemetryDataV1::flag_reason() const {
+	return highestflagreason_highestflagcolour_.ls3bits();
 }
 
-Flag_Colour PacketTelemetryDataV1::flag_colour() const {
-	return static_cast<Flag_Colour>(highestflagreason_highestflagcolour_.ms2bits());
+unsigned int PacketTelemetryDataV1::flag_colour() const {
+	return highestflagreason_highestflagcolour_.ms2bits();
 }
 
 unsigned int PacketTelemetryDataV1::pit_mode() const {
 	return pitschedule_pitmode_.ls3bits();
 }
 
-Pit_Schedule PacketTelemetryDataV1::pit_schedule() const {
-	return static_cast<Pit_Schedule>(pitschedule_pitmode_.ms2bits());
+unsigned int PacketTelemetryDataV1::pit_schedule() const {
+	return pitschedule_pitmode_.ms2bits();
 }
 
 float PacketTelemetryDataV1::oil_temp_celsius() const {

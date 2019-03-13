@@ -202,7 +202,7 @@ namespace pcars {
 		/// \brief Current Lap Time
 		///
 		/// 	Current Lap Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///     Negative 1 on out lap
 		///         -1
 		///
@@ -213,7 +213,7 @@ namespace pcars {
 		/// \brief Split Time Ahead
 		///
 		/// 	Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///
 		/// \return clutch
 
@@ -222,7 +222,7 @@ namespace pcars {
 		/// \brief Split Time behind
 		///
 		/// 	Time in
-		/// 		Seconds.000
+		/// 		Seconds.00000
 		///
 		/// \return clutch
 
@@ -230,6 +230,7 @@ namespace pcars {
 
 		/// \brief Split Time
 		///
+		///     Seconds.00000
 		///
 		/// \return clutch
 
@@ -263,10 +264,10 @@ namespace pcars {
 		float world_fastest_sector2_time() const;
 		float world_fastest_sector3_time() const;
 		unsigned int joy_pad() const;
-		Flag_Reason flag_reason() const;
-		Flag_Colour flag_colour() const;
+		unsigned int flag_reason() const;
+		unsigned int flag_colour() const;
 		unsigned int pit_mode() const;
-		Pit_Schedule pit_schedule() const;
+		unsigned int pit_schedule() const;
 		float oil_temp_celsius() const;
 		float oil_pressure_kpa() const;
 		float water_temp_celsius() const;
