@@ -14,6 +14,7 @@ namespace pcars
     {
         if (packet->type() == "PacketTelemetryDataV1") {
             PacketTelemetryDataV1 * p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
+            cout << endl << "Telemetry Data " << endl << endl;
             cout << "Build Version                 : " << p->build_version()                 << endl;
             cout << "Sequence Number               : " << p->sequence_number()               << endl;
             cout << "Packet Type                   : " << p->packet_type()                   << endl;
@@ -159,7 +160,34 @@ namespace pcars
             cout << "Tyre Carcass Temp 2           : " << p->tyre_carcass_temp().at(1)       << endl;
             cout << "Tyre Carcass Temp 3           : " << p->tyre_carcass_temp().at(2)       << endl;
             cout << "Tyre Carcass Temp 4           : " << p->tyre_carcass_temp().at(3)       << endl;
-
+            cout << "Tyre Rim Temp 1               : " << p->tyre_rim_temp().at(0)           << endl;
+            cout << "Tyre Rim Temp 2               : " << p->tyre_rim_temp().at(1)           << endl;
+            cout << "Tyre Rim Temp 3               : " << p->tyre_rim_temp().at(2)           << endl;
+            cout << "Tyre Rim Temp 4               : " << p->tyre_rim_temp().at(3)           << endl;
+            cout << "Tyre Internal Air Temp 1      : " << p->tyre_internal_air_temp().at(0)  << endl;
+            cout << "Tyre Internal Air Temp 2      : " << p->tyre_internal_air_temp().at(1)  << endl;
+            cout << "Tyre Internal Air Temp 3      : " << p->tyre_internal_air_temp().at(2)  << endl;
+            cout << "Tyre Internal Air Temp 4      : " << p->tyre_internal_air_temp().at(3)  << endl;
+            cout << "Wheel Local Position Y 1      : " << p->wheel_local_position_y().at(0)  << endl;
+            cout << "Wheel Local Position Y 2      : " << p->wheel_local_position_y().at(1)  << endl;
+            cout << "Wheel Local Position Y 3      : " << p->wheel_local_position_y().at(2)  << endl;
+            cout << "Wheel Local Position Y 4      : " << p->wheel_local_position_y().at(3)  << endl;
+            cout << "Ride Height 1                 : " << p->ride_height().at(0)             << endl;
+            cout << "Ride Height 2                 : " << p->ride_height().at(1)             << endl;
+            cout << "Ride Height 3                 : " << p->ride_height().at(2)             << endl;
+            cout << "Ride Height 4                 : " << p->ride_height().at(3)             << endl;
+            cout << "Suspension Travel 1           : " << p->suspension_travel().at(0)       << endl;
+            cout << "Suspension Travel 2           : " << p->suspension_travel().at(1)       << endl;
+            cout << "Suspension Travel 3           : " << p->suspension_travel().at(2)       << endl;
+            cout << "Suspension Travel 4           : " << p->suspension_travel().at(3)       << endl;
+            cout << "Suspension Velocity 1         : " << p->suspension_velocity().at(0)     << endl;
+            cout << "Suspension Velocity 2         : " << p->suspension_velocity().at(1)     << endl;
+            cout << "Suspension Velocity 3         : " << p->suspension_velocity().at(2)     << endl;
+            cout << "Suspension Velocity 4         : " << p->suspension_velocity().at(3)     << endl;
+            cout << "Air Pressure 1                : " << p->air_pressure().at(0)            << endl;
+            cout << "Air Pressure 2                : " << p->air_pressure().at(1)            << endl;
+            cout << "Air Pressure 3                : " << p->air_pressure().at(2)            << endl;
+            cout << "Air Pressure 4                : " << p->air_pressure().at(3)            << endl;
         }
 
         packets_.push_back(packet);
