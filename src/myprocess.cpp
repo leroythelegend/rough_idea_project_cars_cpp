@@ -147,7 +147,18 @@ namespace pcars
             cout << "Brake Temp Celsius 2          : " << p->brake_temp_celsius().at(1)      << endl;
             cout << "Brake Temp Celsius 3          : " << p->brake_temp_celsius().at(2)      << endl;
             cout << "Brake Temp Celsius 4          : " << p->brake_temp_celsius().at(3)      << endl;
-
+            cout << "Tyre Tread Temp 1             : " << p->tyre_tread_temp().at(0)         << endl;
+            cout << "Tyre Tread Temp 2             : " << p->tyre_tread_temp().at(1)         << endl;
+            cout << "Tyre Tread Temp 3             : " << p->tyre_tread_temp().at(2)         << endl;
+            cout << "Tyre Tread Temp 4             : " << p->tyre_tread_temp().at(3)         << endl;
+            cout << "Tyre Layer Temp 1             : " << p->tyre_layer_temp().at(0)         << endl;
+            cout << "Tyre Layer Temp 2             : " << p->tyre_layer_temp().at(1)         << endl;
+            cout << "Tyre Layer Temp 3             : " << p->tyre_layer_temp().at(2)         << endl;
+            cout << "Tyre Layer Temp 4             : " << p->tyre_layer_temp().at(3)         << endl;
+            cout << "Tyre Carcass Temp 1           : " << p->tyre_carcass_temp().at(0)       << endl;
+            cout << "Tyre Carcass Temp 2           : " << p->tyre_carcass_temp().at(1)       << endl;
+            cout << "Tyre Carcass Temp 3           : " << p->tyre_carcass_temp().at(2)       << endl;
+            cout << "Tyre Carcass Temp 4           : " << p->tyre_carcass_temp().at(3)       << endl;
 
         }
 
