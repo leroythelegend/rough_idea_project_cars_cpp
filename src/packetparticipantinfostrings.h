@@ -6,6 +6,7 @@
 #include "decoder6bit2bit.h"
 #include "decoder64char.h"
 #include "decoderstringvector.h"
+#include "decoder16timesfloat.h"
 
 #include <string>
 #include <vector>
@@ -17,12 +18,11 @@ namespace pcars {
 
 	class PacketParticipantInfoStrings : public Packet {
 	public:
-		using Num_Participants = int8_t;
 
 		/// Construtors
-		PacketParticipantInfoStrings(Num_Participants);
+		PacketParticipantInfoStrings();
 		/// Destructor
-		virtual ~PacketParticipantInfoStrings();
+		virtual ~PacketParticipantInfoStrings() {};
 
 		/// \brief Get build version
 		///
@@ -30,7 +30,7 @@ namespace pcars {
 		/// \return value
 		/// \throw nothing
 
-		uint16_t build_version() const;
+		unsigned int build_version() const;
 
 		/// \brief Get sequence number
 		///
@@ -39,6 +39,8 @@ namespace pcars {
 		/// \throw nothing
 
 		unsigned int sequence_number() const;
+
+		unsigned int packet_type() const;
 
 		/// \brief Get car name
 		///
@@ -80,6 +82,8 @@ namespace pcars {
 
 		Vector_String names() const;
 
+		Vector_Float fastest_lap_times() const;
+
 		/// \brief Get project cars format version
 		///
 		///
@@ -97,8 +101,6 @@ namespace pcars {
 		Type type() const override { return "PacketParticipantInfoStrings"; } 
 
 	private:
-		Num_Participants numparticipants_;
-
 		DecoderU16 buildversion_;
 		Decoder6bit2bit sequencenum_packettype_;
 		Decoder64Char carname_;
@@ -106,6 +108,7 @@ namespace pcars {
 		Decoder64Char tracklocation_;
 		Decoder64Char trackvariation_;
 		DecoderStringVector names_;
+		Decoder16TimesFloat fastest_lap_times_;
 	};
 
 }

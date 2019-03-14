@@ -2,10 +2,12 @@
 
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "transportudp.h"
 #include "capture.h"
 #include "packettelemetrydatav1.h"
+#include "packetparticipantinfostrings.h"
 #include "gamestate.h"
 
 #include "packetgeneric.h"
@@ -32,6 +34,13 @@ namespace pcars
 
             if (packetBase.packet_type() == Packet_Type::PACKET_TYPE_TELEMETRY && data.size() == 1367) {
                 shared_ptr<Packet> packet = make_shared<PacketTelemetryDataV1>();
+                pos = 0;
+                packet->decode(data, pos);
+                capture.capturePacket(packet);
+            }
+            if (packetBase.packet_type() == Packet_Type::PACKET_TYPE_PARTICIPANT_INFO_STRINGS &&
+                data.size() == 1347) {
+                shared_ptr<Packet> packet = make_shared<PacketParticipantInfoStrings>();
                 pos = 0;
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
