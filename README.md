@@ -166,4 +166,4 @@ So to roll your own derive your own class from process and pass it to telemetry 
 
 Brief Summary while I try and finish this
 
-myprocess.cpp shows how to use the attributes, playing is during the game and menu is when you go back to the pits the state of the game can be modified with the capturestate.cpp if required. i.e. more granulated state e.g. pit mode, race mode.
+myprocess.cpp shows how to use the attributes, playing is during the game and menu is when you go back to the pits the state of the game can be modified with the gamestate.cpp if required. i.e. more granulated state e.g. pit mode, race mode.
