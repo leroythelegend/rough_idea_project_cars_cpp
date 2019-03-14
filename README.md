@@ -4,7 +4,7 @@
 
 Simpler CPP Classes for capturing and processing Project Cars UDP packets.
 
-NOTE: I'm still updating the comments for the Packets.
+NOTE: I'm still updating the comments for the Packets and adding more telemetry to MyProcessV1.cpp and MyProcessV2.cpp.
 
 Also have done some classes in CSharp https://github.com/leroythelegend/rough_idea_project_cars_csharp
 
