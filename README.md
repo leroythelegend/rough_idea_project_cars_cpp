@@ -10,7 +10,7 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 
 ## Contents
 
-* [Building the repo](#P-Building)
+* [Building the repo](#P-Building MaC Linux and Windows)
 * [Tutorial](#P-Tutorial)
 
 ## <a name="P-Building"></a> Building
