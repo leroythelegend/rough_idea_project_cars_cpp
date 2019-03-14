@@ -188,6 +188,39 @@ namespace pcars
             cout << "Air Pressure 2                : " << p->air_pressure().at(1)            << endl;
             cout << "Air Pressure 3                : " << p->air_pressure().at(2)            << endl;
             cout << "Air Pressure 4                : " << p->air_pressure().at(3)            << endl;
+            cout << "Engine Speed                  : " << p->engine_speed()                  << endl;
+            cout << "Engine Torque                 : " << p->engine_torque()                 << endl;
+            cout << "Aero Damage                   : " << p->aero_damage()                   << endl;
+            cout << "Engine Damage                 : " << p->engine_damage()                 << endl;
+            cout << "Ambient Temperature           : " << p->ambient_temperature()           << endl;
+            cout << "Track Temperature             : " << p->track_temperature()             << endl;
+            cout << "Rain Density                  : " << p->rain_density()                  << endl;
+            cout << "Wind Speed                    : " << p->wind_speed()                    << endl;
+            cout << "Wind Direction X              : " << p->wind_direction_x()              << endl;
+            cout << "Wind Direction Y              : " << p->wind_direction_y()              << endl;
+            cout << "Track Length                  : " << p->track_length()                  << endl;
+            cout << "Wings 1                       : " << p->wings().at(0)                   << endl;
+            cout << "Wings 2                       : " << p->wings().at(1)                   << endl;
+            cout << "DPad                          : " << p->dpad()                          << endl;
+
+            for (int i = 0; i < p->num_participants(); ++i) {
+                cout << endl << "Participant " << (i + 1) << endl << endl;
+                cout << "   World Position 1           : " << p->participant_info().at(i).world_position().at(0) << endl;
+                cout << "   World Position 2           : " << p->participant_info().at(i).world_position().at(1) << endl;
+                cout << "   World Position 3           : " << p->participant_info().at(i).world_position().at(2) << endl;
+                cout << "   Current Lap Distance       : " << p->participant_info().at(i).current_lap_distance() << endl;
+                cout << "   Is Active                  : " << p->participant_info().at(i).is_active()            << endl;
+                cout << "   Race Postion               : " << p->participant_info().at(i).race_position()        << endl;
+                cout << "   Lap Invalid                : " << p->participant_info().at(i).lap_invalidated()      << endl;
+                cout << "   Laps Completed             : " << p->participant_info().at(i).laps_completed()       << endl;
+                cout << "   Same Class                 : " << p->participant_info().at(i).same_class()           << endl;
+                cout << "   World Position Z           : " << p->participant_info().at(i).world_positionZ()      << endl;
+                cout << "   World Position X           : " << p->participant_info().at(i).world_positionX()      << endl;
+                cout << "   Sector                     : " << p->participant_info().at(i).sector()               << endl;
+                cout << "   Last Sector Time           : " << p->participant_info().at(i).last_sector_time()     << endl;
+            }
+        
+        
         }
 
         packets_.push_back(packet);
