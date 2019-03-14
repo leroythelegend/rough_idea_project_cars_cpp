@@ -2,6 +2,7 @@
 
 #include "packettelemetrydatav1.h"
 #include "packettelemetrydata.h"
+#include "packetparticipantinfostrings.h"
 
 #include <iostream>
 
@@ -14,6 +15,9 @@ namespace pcars
     {
         if (packet->type() == "PacketTelemetryDataV1") {
             PacketTelemetryDataV1 * p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
+
+            participants_ = p->num_participants();
+
             cout << endl << "Telemetry Data " << endl << endl;
             cout << "Build Version                 : " << p->build_version()                 << endl;
             cout << "Sequence Number               : " << p->sequence_number()               << endl;
@@ -220,7 +224,25 @@ namespace pcars
                 cout << "   Last Sector Time           : " << p->participant_info().at(i).last_sector_time()     << endl;
             }
         
-        
+
+        }
+
+        if (packet->type() == "PacketParticipantInfoStrings") {
+            PacketParticipantInfoStrings * p = dynamic_cast<PacketParticipantInfoStrings *>(packet.get());
+            cout << endl << "Participant Info Strings " << endl << endl;
+ 
+            cout << "Build Version             : " << p->build_version()   << endl;
+            cout << "Sequence Number           : " << p->sequence_number() << endl;
+            cout << "Packet Type               : " << p->packet_type()     << endl;
+            cout << "Car Name                  : " << p->car_name()        << endl;
+            cout << "Car Class Name            : " << p->car_class_name()  << endl;
+            cout << "Track Location            : " << p->track_location()  << endl;
+            cout << "Track Variation           : " << p->track_variation() << endl;
+
+            for (int i = 0 ; i < participants_ && i < 16; ++i) {
+                cout << "Name " << i << " : " << p->names().at(i) << " " <<
+                        "Fastest Time : " << p->fastest_lap_times().at(i) << endl;
+            }
         }
 
         packets_.push_back(packet);

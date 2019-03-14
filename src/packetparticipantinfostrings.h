@@ -76,11 +76,23 @@ namespace pcars {
 
 		/// \brief Get vector names
 		///
+		///		This vector ONLY holds 16 names 
+	    ///     Need to use the extended info strings packet NOT
+		///     implemented yet (soon)
 		///
 		/// \return value
 		/// \throw nothing
 
 		Vector_String names() const;
+
+		/// \brief Fastest Lap Times
+		///
+		///		This vector ONLY holds 16 names 
+	    ///     Need to use the extended info strings packet NOT
+		///     implemented yet (soon)
+		///
+		/// \return value
+		/// \throw nothing
 
 		Vector_Float fastest_lap_times() const;
 

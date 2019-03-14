@@ -14,6 +14,8 @@ namespace pcars {
 	class MyProcessV1 : public Process {
 	public:
 
+		MyProcessV1() 
+			: participants_{0} {}
 		/// Destructor
 		virtual ~MyProcessV1() {}
 
@@ -35,6 +37,8 @@ namespace pcars {
 
 	private:
 		std::vector<PacketPtr> packets_;
+
+		int participants_;
 	};
 
 
