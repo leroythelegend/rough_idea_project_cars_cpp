@@ -10,7 +10,7 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 
 ## Contents
 
-* [Building the repo](#P-Building) MaC Linux and Windows
+* [Building the repo](#P-Building) Mac Linux and Windows
 * [Tutorial](#P-Tutorial)
 
 ## <a name="P-Building"></a> Building
@@ -128,8 +128,42 @@ No idea, use visual studio, I'll have to get around to running this on windows I
 
 ## <a name="P-Tutorial"></a> Tutorial
 
+The Classes are broken up into Process, Packet, Decode, Telemetry, GameState(Capture) and Transport
+
+### Process
+
+```
+    class Process {
+    public:
+
+        using PacketPtr = std::shared_ptr<Packet>;
+
+        /// \brief Process playing packets
+        ///
+        ///     Process packets when game is in state playing
+        ///
+        /// \param Packet
+        /// \return void
+        /// \throw nothing
+
+        virtual void playing(PacketPtr &) = 0;
+
+        /// \brief Process menu packets
+        ///
+        ///     Process menu when game is in state playing
+        ///
+        /// \param Packet
+        /// \return void
+        /// \throw nothing
+
+        virtual void menu(PacketPtr &) = 0;
+    };
+```
+
+The most important class is process, if you look at the ./bin/main.cpp you will see that telemetry v1 and v2 take a process e.g. MyProcessV1 and MyProcessV2. Take a look at the myprocess.cpp to see where I have been adding all the different telemetry outputs from pcars udp packets. This is still WIP but you can see that while in playing i.e. driving the playing method is printing to the console the implemented telemetry and in the menu it just prints the size of the packets captured when the game is in the menu time ticking state e.g. when in pits. 
+
+So to roll your own derive your own class from process and pass it to telemetry depending on which version of pcars you are interested in capturing. 
+
+Brief Summary while I try and finish this
+
 myprocess.cpp shows how to use the attributes, playing is during the game and menu is when you go back to the pits the state of the game can be modified with the capturestate.cpp if required. i.e. more granulated state e.g. pit mode, race mode.
-
-Tutorial is Still WIP
-
-Sorry I'll have to finish this later
