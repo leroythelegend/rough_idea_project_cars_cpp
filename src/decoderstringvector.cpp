@@ -19,9 +19,6 @@ void DecoderStringVector::decode(const PCars_Data & data, Position & position) {
 		cdecoder.decode(data, position);
 		stringvector_.push_back(cdecoder.char64());
 	}
-
-
-	position += (numparticipants_ * 64);
 }
 
 Vector_String DecoderStringVector::string_vector() const {
