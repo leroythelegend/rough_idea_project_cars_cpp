@@ -150,7 +150,7 @@ The Classes are broken up into Process, Packet, Decode, Telemetry, GameState(Cap
 
         /// \brief Process menu packets
         ///
-        ///     Process menu when game is in state playing
+        ///     Process menu when game is in state menu time ticking
         ///
         /// \param Packet
         /// \return void
