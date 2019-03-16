@@ -282,6 +282,48 @@ namespace pcars
             cout << "Unfiltered Brake         : " << p->unfiltered_brake()              << endl;
             cout << "Unfiltered Steering      : " << p->unfiltered_steering()           << endl;
             cout << "Unfiltered Clutch        : " << p->unfiltered_clutch()             << endl;
+            cout << "Car Flags                : " << p->car_flags()                     << endl;
+            cout << "Oil Temp Celsius         : " << p->oil_temp_celsius()              << endl;
+            cout << "Oil Pressure KPA         : " << p->oil_pressure_kpa()              << endl;
+            cout << "Water Temp Celsius       : " << p->water_temp_celsius()            << endl;
+            cout << "Water Pressure KPA       : " << p->water_pressure_kpa()            << endl;
+            cout << "Fuel Pressure KPA        : " << p->fuel_pressure_kpa()             << endl;
+            cout << "Fuel Capacity            : " << p->fuel_capacity()                 << endl;
+            cout << "Brake                    : " << p->brake()                         << endl;
+            cout << "Throttle                 : " << p->throttle()                      << endl;
+            cout << "Clutch                   : " << p->clutch()                        << endl;
+            cout << "Fuel Level               : " << p->fuel_level()                    << endl;
+            cout << "Speed                    : " << p->speed()                         << endl;
+            cout << "RPM                      : " << p->rpm()                           << endl;
+            cout << "Max RPM                  : " << p->max_rpm()                       << endl;
+            cout << "Steering                 : " << p->steering()                      << endl;
+            cout << "Gears                    : " << p->gears()                         << endl;
+            cout << "Gear                     : " << p->gear()                          << endl;
+            cout << "Boost Amount             : " << p->boost_amount()                  << endl;
+            cout << "Crash State              : " << p->crash_state()                   << endl;
+            cout << "Odometer KM              : " << p->odometer_km()                   << endl;
+            cout << "Orientation 1            : " << p->orientation().at(0)             << endl;
+            cout << "Orientation 2            : " << p->orientation().at(1)             << endl;
+            cout << "Orientation 3            : " << p->orientation().at(2)             << endl;
+            cout << "Local Velocity 1         : " << p->local_velocity().at(0)          << endl;
+            cout << "Local Velocity 2         : " << p->local_velocity().at(1)          << endl;
+            cout << "Local Velocity 3         : " << p->local_velocity().at(2)          << endl;
+            cout << "World Velocity 1         : " << p->world_velocity().at(0)          << endl;
+            cout << "World Velocity 2         : " << p->world_velocity().at(1)          << endl;
+            cout << "World Velocity 3         : " << p->world_velocity().at(2)          << endl;
+            cout << "Angular Velocity 1       : " << p->angular_velocity().at(0)        << endl;
+            cout << "Angular Velocity 2       : " << p->angular_velocity().at(1)        << endl;
+            cout << "Angular Velocity 3       : " << p->angular_velocity().at(2)        << endl;
+            cout << "Local Acceleration 1     : " << p->local_acceleration().at(0)      << endl;
+            cout << "Local Acceleration 2     : " << p->local_acceleration().at(1)      << endl;
+            cout << "Local Acceleration 3     : " << p->local_acceleration().at(2)      << endl;
+            cout << "World Acceleration 1     : " << p->world_acceleration().at(0)      << endl;
+            cout << "World Acceleration 2     : " << p->world_acceleration().at(1)      << endl;
+            cout << "World Acceleration 3     : " << p->world_acceleration().at(2)      << endl;
+            cout << "Extends Centre 1         : " << p->extents_centre().at(0)          << endl;
+            cout << "Extends Centre 2         : " << p->extents_centre().at(1)          << endl;
+            cout << "Extends Centre 3         : " << p->extents_centre().at(2)          << endl;
+
         }
 
         packets_.push_back(packet);
