@@ -3,6 +3,8 @@
 #include "packettelemetrydatav1.h"
 #include "packettelemetrydata.h"
 #include "packetparticipantinfostrings.h"
+#include "packetparticipantinfostringsadditional.h"
+
 
 #include <iostream>
 
@@ -242,6 +244,20 @@ namespace pcars
             for (int i = 0 ; i < participants_ && i < 16; ++i) {
                 cout << "Name " << i << " : " << p->names().at(i) << " " <<
                         "Fastest Time : " << p->fastest_lap_times().at(i) << endl;
+            }
+        }
+
+        if (packet->type() == "PacketParticipantInfoStringsAdditional") {
+            PacketParticipantInfoStringsAdditional * p = dynamic_cast<PacketParticipantInfoStringsAdditional *>(packet.get());
+            cout << endl << "Participant Info Strings Additional" << endl << endl;
+ 
+            cout << "Build Version             : " << p->build_version()   << endl;
+            cout << "Sequence Number           : " << p->sequence_number() << endl;
+            cout << "Packet Type               : " << p->packet_type()     << endl;
+            cout << "Offset                    : " << p->offset()          << endl;
+
+            for (size_t i = 0 ; i < p->names().size(); ++i) {
+                cout << "Name " << i << " : " << p->names().at(i) << endl;
             }
         }
 
