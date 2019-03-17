@@ -4,6 +4,8 @@
 #include "packettelemetrydata.h"
 #include "packetparticipantinfostrings.h"
 #include "packetparticipantinfostringsadditional.h"
+#include "packetracedata.h"
+#include "packetparticipantsdata.h"
 
 
 #include <iostream>
@@ -277,6 +279,7 @@ namespace pcars
         if (packet->type() == "PacketTelemetryData") {
             PacketTelemetryData * p = dynamic_cast<PacketTelemetryData *>(packet.get());
 
+            cout << endl << "Packet Telemetry Data" << endl << endl;
             cout << "Viewed Participant Index : " << p->viewed_participant_index()      << endl;
             cout << "Unfiltered Throttle      : " << p->unfiltered_throttle()           << endl;
             cout << "Unfiltered Brake         : " << p->unfiltered_brake()              << endl;
@@ -379,10 +382,103 @@ namespace pcars
             cout << "Tyre Rim Temp 2          : " << p->tyre_rim_temp().at(1)           << endl;
             cout << "Tyre Rim Temp 3          : " << p->tyre_rim_temp().at(2)           << endl;
             cout << "Tyre Rim Temp 4          : " << p->tyre_rim_temp().at(3)           << endl;
+            cout << "Tyre Internal Air Temp 1 : " << p->tyre_internal_air_temp().at(0)  << endl;
+            cout << "Tyre Internal Air Temp 2 : " << p->tyre_internal_air_temp().at(1)  << endl;
+            cout << "Tyre Internal Air Temp 3 : " << p->tyre_internal_air_temp().at(2)  << endl;
+            cout << "Tyre Internal Air Temp 4 : " << p->tyre_internal_air_temp().at(3)  << endl;
+            cout << "Tyre Temp Left 1         : " << p->tyre_temp_left().at(0)          << endl;
+            cout << "Tyre Temp Left 2         : " << p->tyre_temp_left().at(1)          << endl;
+            cout << "Tyre Temp Left 3         : " << p->tyre_temp_left().at(2)          << endl;
+            cout << "Tyre Temp Left 4         : " << p->tyre_temp_left().at(3)          << endl;
+            cout << "Tyre Temp center 1       : " << p->tyre_temp_center().at(0)        << endl;
+            cout << "Tyre Temp center 2       : " << p->tyre_temp_center().at(1)        << endl;
+            cout << "Tyre Temp center 3       : " << p->tyre_temp_center().at(2)        << endl;
+            cout << "Tyre Temp center 4       : " << p->tyre_temp_center().at(3)        << endl;
+            cout << "Tyre Temp Right 1        : " << p->tyre_temp_right().at(0)         << endl;
+            cout << "Tyre Temp Right 2        : " << p->tyre_temp_right().at(1)         << endl;
+            cout << "Tyre Temp Right 3        : " << p->tyre_temp_right().at(2)         << endl;
+            cout << "Tyre Temp Right 4        : " << p->tyre_temp_right().at(3)         << endl;
+            cout << "Wheel Local Position y 1 : " << p->wheel_local_position_y().at(0)  << endl;
+            cout << "Wheel Local Position y 2 : " << p->wheel_local_position_y().at(1)  << endl;
+            cout << "Wheel Local Position y 3 : " << p->wheel_local_position_y().at(2)  << endl;
+            cout << "Wheel Local Position y 4 : " << p->wheel_local_position_y().at(3)  << endl;
+            cout << "Ride Height 1            : " << p->ride_height().at(0)             << endl;
+            cout << "Ride Height 2            : " << p->ride_height().at(1)             << endl;
+            cout << "Ride Height 3            : " << p->ride_height().at(2)             << endl;
+            cout << "Ride Height 4            : " << p->ride_height().at(3)             << endl;
+            cout << "Suspension Travel 1      : " << p->suspension_travel().at(0)       << endl;
+            cout << "Suspension Travel 2      : " << p->suspension_travel().at(1)       << endl;
+            cout << "Suspension Travel 3      : " << p->suspension_travel().at(2)       << endl;
+            cout << "Suspension Travel 4      : " << p->suspension_travel().at(3)       << endl;
+            cout << "Suspension Velocity 1    : " << p->suspension_velocity().at(0)     << endl;
+            cout << "Suspension Velocity 2    : " << p->suspension_velocity().at(1)     << endl;
+            cout << "Suspension Velocity 3    : " << p->suspension_velocity().at(2)     << endl;
+            cout << "Suspension Velocity 4    : " << p->suspension_velocity().at(3)     << endl;
+            cout << "Suspension Ride Height 1 : " << p->suspension_ride_height().at(0)  << endl;
+            cout << "Suspension Ride Height 2 : " << p->suspension_ride_height().at(1)  << endl;
+            cout << "Suspension Ride Height 3 : " << p->suspension_ride_height().at(2)  << endl;
+            cout << "Suspension Ride Height 4 : " << p->suspension_ride_height().at(3)  << endl;
+            cout << "Air Pressure 1           : " << p->air_pressure().at(0)            << endl;
+            cout << "Air Pressure 2           : " << p->air_pressure().at(1)            << endl;
+            cout << "Air Pressure 3           : " << p->air_pressure().at(2)            << endl;
+            cout << "Air Pressure 4           : " << p->air_pressure().at(3)            << endl;
+            cout << "Engine Speed             : " << p->engine_speed()                  << endl;
+            cout << "Engine Torque            : " << p->engine_torque()                 << endl;
+            cout << "Wings 1                  : " << p->wings().at(0)                   << endl;
+            cout << "Wings 2                  : " << p->wings().at(1)                   << endl;
+            cout << "Handbrake                : " << p->handbrake()                     << endl;
+            cout << "Aero Damage              : " << p->aero_damage()                   << endl;
+            cout << "Engine Damage            : " << p->engine_damage()                 << endl;
+            cout << "Joy Pad                  : " << p->joy_pad_0()                     << endl;
+            cout << "D Pad                    : " << p->d_pad()                         << endl;
+            cout << "Tyre Compound 1          : " << p->tyre_compound().at(0)           << endl;
+            cout << "Tyre Compound 2          : " << p->tyre_compound().at(1)           << endl;
+            cout << "Tyre Compound 3          : " << p->tyre_compound().at(2)           << endl;
+            cout << "Tyre Compound 4          : " << p->tyre_compound().at(3)           << endl;
+            cout << "Turbo Boost Pressure 1   : " << p->turbo_boost_pressure()          << endl;
+            cout << "Full Position 1          : " << p->full_position().at(0)           << endl;
+            cout << "Full Position 2          : " << p->full_position().at(1)           << endl;
+            cout << "Full Position 3          : " << p->full_position().at(2)           << endl;
+            cout << "Brake Bias               : " << p->brake_bias()                    << endl;
+            cout << "Tick Count               : " << p->tick_count()                    << endl;
+        
+        }
+        if (packet->type() == "PacketRaceData") {
+            PacketRaceData * p = dynamic_cast<PacketRaceData *>(packet.get());
+ 
+            cout << endl << "Packet Race Data" << endl << endl;
+            cout << "World Fastest Lap Time          : " << p->world_fastest_lap_time()        << endl;
+            cout << "Personal Fastest Lap Time       : " << p->personal_fastest_lap_time()     << endl; 
+            cout << "Personal Fastest Sector 1 Time  : " << p->personal_fastest_sector1_time() << endl;
+            cout << "Personal Fastest Sector 2 Time  : " << p->personal_fastest_sector2_time() << endl;
+            cout << "Personal Fastest Sector 3 Time  : " << p->personal_fastest_sector3_time() << endl;
+            cout << "World Fastest Sector 1 Time     : " << p->world_fastest_sector1_time()    << endl;
+            cout << "World Fastest Sector 2 Time     : " << p->world_fastest_sector2_time()    << endl;
+            cout << "World Fastest Sector 3 Time     : " << p->world_fastest_sector3_time()    << endl;
+            cout << "Track Length                    : " << p->track_length()                  << endl;
+            cout << "Track Location                  : " << p->track_location()                << endl;
+            cout << "Track Variation                 : " << p->track_variation()               << endl;
+            cout << "Translated Track Location       : " << p->translated_track_location()     << endl;
+            cout << "Translated Track Variation      : " << p->translated_track_variation()    << endl;
+            cout << "Laps Tine in Event              : " << p->laps_time_in_event()            << endl;
+            cout << "Enforced Pit Stop Lap           : " << p->enforced_pitstop_lap()          << endl; 
+        }
+        if (packet->type() == "PacketParticipantsData") {
+            PacketParticipantsData * p = dynamic_cast<PacketParticipantsData *>(packet.get());
+
+            cout << endl << "Packet Participants Data" << endl << endl;
+
+            cout << "Participants Changed Timestamp      : " << p->participants_changed_timestamp() << endl;
+            
+            for (size_t i = 0; i < p->name().size(); ++i) {
+                cout << "Name " << " " << i << " " << p->name().at(i) << endl;
+                cout << "   Nationality : " << p->nationality().at(i) << endl;
+                cout << "   Index       : " << p->index().at(i)       << endl; 
+            }
 
         }
-
         packets_.push_back(packet);
+
     }
 
     void MyProcessV2::menu(PacketPtr &)
