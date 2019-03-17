@@ -6,7 +6,7 @@
 #include "packetparticipantinfostringsadditional.h"
 #include "packetracedata.h"
 #include "packetparticipantsdata.h"
-
+#include "packettimingdata.h"
 
 #include <iostream>
 
@@ -477,6 +477,25 @@ namespace pcars
             }
 
         }
+
+        if (packet->type() == "PacketTimingData") {
+            PacketTimingData * p = dynamic_cast<PacketTimingData *>(packet.get());
+
+            cout << endl << "Packet Timing Data" << endl << endl;
+
+            cout << "Number Participants                 : " << p->num_participants()               << endl;
+            cout << "Participants Changed Timestamp      : " << p->participants_changed_timestamp() << endl;
+            cout << "Event Time Remaining                : " << p->event_time_remaining()           << endl;
+            cout << "Split Time Ahead                    : " << p->split_time_ahead()               << endl;
+            cout << "Split Time Behind                   : " << p->split_time_behind()              << endl;
+            cout << "Split Time                          : " << p->split_time()                     << endl;
+            cout << "Local Participant Index             : " << p->local_participant_index()        << endl;
+            cout << "Tick Count                          : " << p->tick_count()                     << endl;
+
+		// Decoder32ParticipantInfo::Vector_Participant_Info partcipants() const;
+
+        }
+
         packets_.push_back(packet);
 
     }
