@@ -25,8 +25,12 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<MyProcessV1>());
 		}
 		catch (PCars_Exception & e) {
-			/// try and recover
 			e.what();
+			return 1;
+		}
+		catch (exception & e) {
+			e.what();
+			return 1;
 		}
 		catch (...) {
 			return 1;
@@ -38,8 +42,11 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<MyProcessV2>());
 		}
 		catch (PCars_Exception & e) {
-			/// try and recover
 			e.what();
+		}
+		catch (exception & e) {
+			e.what();
+			return 1;
 		}
 		catch (...) {
 			return 1;
