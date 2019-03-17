@@ -3,6 +3,8 @@
 #include "packettelemetrydatav1.h"
 #include "packettelemetrydata.h"
 #include "packetparticipantinfostrings.h"
+#include "packetparticipantinfostringsadditional.h"
+
 
 #include <iostream>
 
@@ -245,6 +247,20 @@ namespace pcars
             }
         }
 
+        if (packet->type() == "PacketParticipantInfoStringsAdditional") {
+            PacketParticipantInfoStringsAdditional * p = dynamic_cast<PacketParticipantInfoStringsAdditional *>(packet.get());
+            cout << endl << "Participant Info Strings Additional" << endl << endl;
+ 
+            cout << "Build Version             : " << p->build_version()   << endl;
+            cout << "Sequence Number           : " << p->sequence_number() << endl;
+            cout << "Packet Type               : " << p->packet_type()     << endl;
+            cout << "Offset                    : " << p->offset()          << endl;
+
+            for (size_t i = 0 ; i < p->names().size(); ++i) {
+                cout << "Name " << i << " : " << p->names().at(i) << endl;
+            }
+        }
+
         packets_.push_back(packet);
     }
 
@@ -266,6 +282,104 @@ namespace pcars
             cout << "Unfiltered Brake         : " << p->unfiltered_brake()              << endl;
             cout << "Unfiltered Steering      : " << p->unfiltered_steering()           << endl;
             cout << "Unfiltered Clutch        : " << p->unfiltered_clutch()             << endl;
+            cout << "Car Flags                : " << p->car_flags()                     << endl;
+            cout << "Oil Temp Celsius         : " << p->oil_temp_celsius()              << endl;
+            cout << "Oil Pressure KPA         : " << p->oil_pressure_kpa()              << endl;
+            cout << "Water Temp Celsius       : " << p->water_temp_celsius()            << endl;
+            cout << "Water Pressure KPA       : " << p->water_pressure_kpa()            << endl;
+            cout << "Fuel Pressure KPA        : " << p->fuel_pressure_kpa()             << endl;
+            cout << "Fuel Capacity            : " << p->fuel_capacity()                 << endl;
+            cout << "Brake                    : " << p->brake()                         << endl;
+            cout << "Throttle                 : " << p->throttle()                      << endl;
+            cout << "Clutch                   : " << p->clutch()                        << endl;
+            cout << "Fuel Level               : " << p->fuel_level()                    << endl;
+            cout << "Speed                    : " << p->speed()                         << endl;
+            cout << "RPM                      : " << p->rpm()                           << endl;
+            cout << "Max RPM                  : " << p->max_rpm()                       << endl;
+            cout << "Steering                 : " << p->steering()                      << endl;
+            cout << "Gears                    : " << p->gears()                         << endl;
+            cout << "Gear                     : " << p->gear()                          << endl;
+            cout << "Boost Amount             : " << p->boost_amount()                  << endl;
+            cout << "Crash State              : " << p->crash_state()                   << endl;
+            cout << "Odometer KM              : " << p->odometer_km()                   << endl;
+            cout << "Orientation 1            : " << p->orientation().at(0)             << endl;
+            cout << "Orientation 2            : " << p->orientation().at(1)             << endl;
+            cout << "Orientation 3            : " << p->orientation().at(2)             << endl;
+            cout << "Local Velocity 1         : " << p->local_velocity().at(0)          << endl;
+            cout << "Local Velocity 2         : " << p->local_velocity().at(1)          << endl;
+            cout << "Local Velocity 3         : " << p->local_velocity().at(2)          << endl;
+            cout << "World Velocity 1         : " << p->world_velocity().at(0)          << endl;
+            cout << "World Velocity 2         : " << p->world_velocity().at(1)          << endl;
+            cout << "World Velocity 3         : " << p->world_velocity().at(2)          << endl;
+            cout << "Angular Velocity 1       : " << p->angular_velocity().at(0)        << endl;
+            cout << "Angular Velocity 2       : " << p->angular_velocity().at(1)        << endl;
+            cout << "Angular Velocity 3       : " << p->angular_velocity().at(2)        << endl;
+            cout << "Local Acceleration 1     : " << p->local_acceleration().at(0)      << endl;
+            cout << "Local Acceleration 2     : " << p->local_acceleration().at(1)      << endl;
+            cout << "Local Acceleration 3     : " << p->local_acceleration().at(2)      << endl;
+            cout << "World Acceleration 1     : " << p->world_acceleration().at(0)      << endl;
+            cout << "World Acceleration 2     : " << p->world_acceleration().at(1)      << endl;
+            cout << "World Acceleration 3     : " << p->world_acceleration().at(2)      << endl;
+            cout << "Extends Centre 1         : " << p->extents_centre().at(0)          << endl;
+            cout << "Extends Centre 2         : " << p->extents_centre().at(1)          << endl;
+            cout << "Extends Centre 3         : " << p->extents_centre().at(2)          << endl;
+            cout << "Tyre Flags 1             : " << p->tyre_flags().at(0)              << endl;
+            cout << "Tyre Flags 2             : " << p->tyre_flags().at(1)              << endl;
+            cout << "Tyre Flags 3             : " << p->tyre_flags().at(2)              << endl;
+            cout << "Tyre Flags 4             : " << p->tyre_flags().at(3)              << endl;
+            cout << "Terrain 1                : " << p->terrain().at(0)                 << endl;
+            cout << "Terrain 2                : " << p->terrain().at(1)                 << endl;
+            cout << "Terrain 3                : " << p->terrain().at(2)                 << endl;
+            cout << "Terrain 4                : " << p->terrain().at(3)                 << endl;
+            cout << "Tyre Y 1                 : " << p->tyre_y().at(0)                  << endl;
+            cout << "Tyre Y 2                 : " << p->tyre_y().at(1)                  << endl;
+            cout << "Tyre Y 3                 : " << p->tyre_y().at(2)                  << endl;
+            cout << "Tyre Y 4                 : " << p->tyre_y().at(3)                  << endl;
+            cout << "Tyre RPS 1               : " << p->tyre_rps().at(0)                << endl;
+            cout << "Tyre RPS 2               : " << p->tyre_rps().at(1)                << endl;
+            cout << "Tyre RPS 3               : " << p->tyre_rps().at(2)                << endl;
+            cout << "Tyre RPS 4               : " << p->tyre_rps().at(3)                << endl;
+            cout << "Tyre Temp 1              : " << p->tyre_temp().at(0)               << endl;
+            cout << "Tyre Temp 2              : " << p->tyre_temp().at(1)               << endl;
+            cout << "Tyre Temp 3              : " << p->tyre_temp().at(2)               << endl;
+            cout << "Tyre Temp 4              : " << p->tyre_temp().at(3)               << endl;
+            cout << "Tyre Height Above Ground 1 : " << p->tyre_height_above_ground().at(0) << endl;
+            cout << "Tyre Height Above Ground 2 : " << p->tyre_height_above_ground().at(1) << endl; 
+            cout << "Tyre Height Above Ground 3 : " << p->tyre_height_above_ground().at(2) << endl; 
+            cout << "Tyre Height Above Ground 4 : " << p->tyre_height_above_ground().at(3) << endl; 
+            cout << "Tyre Wear 1              : " << p->tyre_wear().at(0)               << endl;
+            cout << "Tyre Wear 2              : " << p->tyre_wear().at(1)               << endl;
+            cout << "Tyre Wear 3              : " << p->tyre_wear().at(2)               << endl;
+            cout << "Tyre Wear 4              : " << p->tyre_wear().at(3)               << endl;
+            cout << "Brake Damage 1           : " << p->brake_damage().at(0)            << endl;
+            cout << "Brake Damage 2           : " << p->brake_damage().at(1)            << endl;
+            cout << "Brake Damage 3           : " << p->brake_damage().at(2)            << endl;
+            cout << "Brake Damage 4           : " << p->brake_damage().at(3)            << endl;
+            cout << "Suspension Damage 1      : " << p->suspension_damage().at(0)       << endl;
+            cout << "Suspension Damage 2      : " << p->suspension_damage().at(1)       << endl;
+            cout << "Suspension Damage 3      : " << p->suspension_damage().at(2)       << endl;
+            cout << "Suspension Damage 4      : " << p->suspension_damage().at(3)       << endl;
+            cout << "Brake Temp Celsuis 1     : " << p->brake_temp_celsius().at(0)      << endl;
+            cout << "Brake Temp Celsuis 2     : " << p->brake_temp_celsius().at(1)      << endl;
+            cout << "Brake Temp Celsuis 3     : " << p->brake_temp_celsius().at(2)      << endl;
+            cout << "Brake Temp Celsuis 4     : " << p->brake_temp_celsius().at(3)      << endl;
+            cout << "Tyre Tread Temp 1        : " << p->tyre_tread_temp().at(0)         << endl;
+            cout << "Tyre Tread Temp 2        : " << p->tyre_tread_temp().at(1)         << endl;
+            cout << "Tyre Tread Temp 3        : " << p->tyre_tread_temp().at(2)         << endl;
+            cout << "Tyre Tread Temp 4        : " << p->tyre_tread_temp().at(3)         << endl;
+            cout << "Tyre Layer Temp 1        : " << p->tyre_layer_temp().at(0)         << endl;
+            cout << "Tyre Layer Temp 2        : " << p->tyre_layer_temp().at(1)         << endl;
+            cout << "Tyre Layer Temp 3        : " << p->tyre_layer_temp().at(2)         << endl;
+            cout << "Tyre Layer Temp 4        : " << p->tyre_layer_temp().at(3)         << endl;
+            cout << "Tyre Carcass Temp 1      : " << p->tyre_carcass_temp().at(0)       << endl;
+            cout << "Tyre Carcass Temp 2      : " << p->tyre_carcass_temp().at(1)       << endl;
+            cout << "Tyre Carcass Temp 3      : " << p->tyre_carcass_temp().at(2)       << endl;
+            cout << "Tyre Carcass Temp 4      : " << p->tyre_carcass_temp().at(3)       << endl;
+            cout << "Tyre Rim Temp 1          : " << p->tyre_rim_temp().at(0)           << endl;
+            cout << "Tyre Rim Temp 2          : " << p->tyre_rim_temp().at(1)           << endl;
+            cout << "Tyre Rim Temp 3          : " << p->tyre_rim_temp().at(2)           << endl;
+            cout << "Tyre Rim Temp 4          : " << p->tyre_rim_temp().at(3)           << endl;
+
         }
 
         packets_.push_back(packet);

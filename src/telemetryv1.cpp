@@ -8,6 +8,7 @@
 #include "capture.h"
 #include "packettelemetrydatav1.h"
 #include "packetparticipantinfostrings.h"
+#include "packetparticipantinfostringsadditional.h"
 #include "gamestate.h"
 
 #include "packetgeneric.h"
@@ -45,7 +46,13 @@ namespace pcars
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
             }
-            // missing packets 1 and 2
+            if (packetBase.packet_type() == Packet_Type::PACKET_TYPE_PARTICIPANT_INFO_STRINGS_ADDITIONAL &&
+                data.size() == 1028) {
+                shared_ptr<Packet> packet = make_shared<PacketParticipantInfoStringsAdditional>();
+                pos = 0;
+                packet->decode(data, pos);
+                capture.capturePacket(packet);
+            }
         }
     }
 }
