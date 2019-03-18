@@ -13,6 +13,7 @@
 #include "packettimingdata.h"
 #include "packettimestatsdata.h"
 #include "packetgamestate.h"
+#include "packetvehicleclassnamesdata.h"
 #include "gamestate.h"
 
 
@@ -78,7 +79,12 @@ namespace pcars
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
             }
-            // missing vehicle class names
+            else if (packetBase.packet_type() == 8 && data.size() == 1452) {
+                shared_ptr<Packet> packet = make_shared<PacketVehicleClassNamesData>();
+                pos = 0;
+                packet->decode(data, pos);
+                capture.capturePacket(packet);
+            }
         }
     }
 }

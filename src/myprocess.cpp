@@ -7,6 +7,10 @@
 #include "packetracedata.h"
 #include "packetparticipantsdata.h"
 #include "packettimingdata.h"
+#include "packetgamestate.h"
+#include "packettimestatsdata.h"
+#include "packetparticipantvehiclenamesdata.h"
+#include "packetvehicleclassnamesdata.h"
 
 #include <iostream>
 
@@ -492,12 +496,97 @@ namespace pcars
             cout << "Local Participant Index             : " << p->local_participant_index()        << endl;
             cout << "Tick Count                          : " << p->tick_count()                     << endl;
 
-		// Decoder32ParticipantInfo::Vector_Participant_Info partcipants() const;
-
+            for (size_t i = 0; i < p->partcipants().size(); ++i) {
+                cout << "World Position x " << i << " " << p->partcipants().at(i).world_position().at(0) << endl;
+                cout << "World Position y " << i << " " << p->partcipants().at(i).world_position().at(1) << endl;
+                cout << "World Position z " << i << " " << p->partcipants().at(i).world_position().at(2) << endl;            
+                cout << "Orientation x " << i << " " << p->partcipants().at(i).orientation().at(0) << endl;
+                cout << "Orientation y " << i << " " << p->partcipants().at(i).orientation().at(1) << endl;
+                cout << "Orientation z " << i << " " << p->partcipants().at(i).orientation().at(2) << endl;
+                cout << "Current Lap Distance " << i << " " << p->partcipants().at(i).current_lap_distance() << endl;
+                cout << "Race Position " << i << " " << p->partcipants().at(i).race_position() << endl;
+                cout << "Is Acitve " << i << " " << p->partcipants().at(i).is_active() << endl;
+                cout << "ZX Position " << i << " " << p->partcipants().at(i).zx_position() << endl;
+                cout << "Sector " << i << " " << p->partcipants().at(i).sector() << endl;
+                cout << "Flag Colour " << i << " " << p->partcipants().at(i).flag_colour() << endl;
+                cout << "Flag Reason " << i << " " << p->partcipants().at(i).flag_reason() << endl;
+                cout << "Pit Mode " << i << " " << p->partcipants().at(i).pit_mode() << endl;
+                cout << "Pit Mode Schedule " << i << " " << p->partcipants().at(i).pit_mode_schedule() << endl;
+                cout << "Car Index " << i << " " << p->partcipants().at(i).car_index() << endl;
+                cout << "Local Player " << i << " " << p->partcipants().at(i).local_player() << endl;
+                cout << "Remote Player " << i << " " << p->partcipants().at(i).remote_player() << endl;
+                cout << "Human Player " << i << " " << p->partcipants().at(i).human_player() << endl;
+                cout << "Non Human Player " << i << " " << p->partcipants().at(i).none_human_player() << endl;
+                cout << "Race State " << i << " " << p->partcipants().at(i).race_state() << endl;
+                cout << "Invalid Lap " << i << " " << p->partcipants().at(i).invalid_lap() << endl;
+                cout << "Current Lap " << i << " " << p->partcipants().at(i).current_lap() << endl;
+                cout << "Current Time " << i << " " << p->partcipants().at(i).current_time() << endl;
+                cout << "Current Sector Time " << i << " " << p->partcipants().at(i).current_sector_time() << endl;
+                cout << "MP Participant Index " << i << " " << p->partcipants().at(i).mp_participant_index() << endl;
+            }
         }
 
-        packets_.push_back(packet);
 
+        if (packet->type() == "PacketGameState") {
+            PacketGameState * p = dynamic_cast<PacketGameState *>(packet.get());
+
+            cout << endl << "Packet Game State" << endl << endl;
+
+            cout << "Build Version             : " << p->build_version()       << endl;
+            cout << "Game State                : " << p->game_state()          << endl;
+            cout << "Session State             : " << p->sessin_state()        << endl;
+            cout << "Ambient Temp              : " << p->ambient_temperature() << endl; 
+            cout << "Track Temp                : " << p->track_temperature()   << endl;
+            cout << "Rain Density              : " << p->rain_density()        << endl;
+            cout << "Snow Density              : " << p->snow_density()        << endl;
+            cout << "Wind Speed                : " << p->wind_speed()          << endl;
+            cout << "Wind Direction X          : " << p->wind_direction_x()    << endl;
+            cout << "Wind Direction Y          : " << p->wind_direction_y()    << endl;
+        }
+
+        if (packet->type() == "PacketTimeStatsData") {
+            PacketTimeStatsData * p = dynamic_cast<PacketTimeStatsData *>(packet.get());
+
+            cout << endl << "Packet Time Stats Data" << endl << endl;
+
+            cout << "Participants Changed Timestamp   : " << p->participants_changed_timestamp() << endl;
+
+            for (size_t i = 0; i < p->stats().size(); ++i) {
+                cout << "Fastest Lap Time       " << i << " " << p->stats().at(i).fastest_lap_time() << endl;
+                cout << "Last Lap Time          " << i << " " << p->stats().at(i).last_lap_time() << endl;
+                cout << "Last Sector Time       " << i << " " << p->stats().at(i).last_sector_time() << endl;
+                cout << "Fastest Sector 1 Time  " << i << " " << p->stats().at(i).fastest_sector1_time() << endl;
+                cout << "Fastest Sector 2 Time  " << i << " " << p->stats().at(i).fastest_sector2_time() << endl;
+                cout << "Fastest Sector 3 Time  " << i << " " << p->stats().at(i).fastest_sector3_time() << endl;
+                cout << "Participant Online Rep " << i << " " << p->stats().at(i).participant_online_rep() << endl;
+                cout << "MP Participant Index   " << i << " " << p->stats().at(i).mp_participant_index() << endl;
+            }
+        }
+
+        if (packet->type() == "PacketParticipantsVehicleNamesData") {
+            PacketParticipantsVehicleNamesData * p = dynamic_cast<PacketParticipantsVehicleNamesData *>(packet.get());
+
+            cout << endl << "Packet Participants Vehicle Names Data" << endl << endl;
+
+            for (size_t i = 0; i < p->vehicle_info().size(); ++i) {
+                cout << "Index      " << i << " " << p->vehicle_info().at(i).index() << endl;
+                cout << "Class Name " << i << " " << p->vehicle_info().at(i).class_name() << endl;
+                cout << "Name       " << i << " " << p->vehicle_info().at(i).name() << endl;
+            }
+        }
+
+        if (packet->type() == "PacketVehicleClassNamesData") {
+            PacketVehicleClassNamesData * p = dynamic_cast<PacketVehicleClassNamesData *>(packet.get());
+
+            cout << endl << "Packet Vehicle Class Names Data" << endl << endl;       
+
+            for (size_t i = 0; i < p->class_info().size(); ++i) {
+                cout << "Class Index    " << i << " " << p->class_info().at(i).class_index() << endl;
+                cout << "Name           " << i << " " << p->class_info().at(i).name() << endl;
+            }
+         }
+
+        packets_.push_back(packet);
     }
 
     void MyProcessV2::menu(PacketPtr &)
