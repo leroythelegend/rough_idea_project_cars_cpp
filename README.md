@@ -130,7 +130,7 @@ No idea, use visual studio, I'll have to get around to running this on windows I
 
 ## <a name="P-Tutorial"></a> Tutorial
 
-The Classes are broken up into Process, Packet, Decode, Telemetry, GameState(Capture) and Transport
+The Classes are broken up into Process, Packet, Decode, Telemetry, GameState(Capture) and Transport (STILL WIP)
 
 ### Process
 
