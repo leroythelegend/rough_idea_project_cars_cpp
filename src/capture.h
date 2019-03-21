@@ -26,8 +26,8 @@ namespace pcars {
         using GameStatePtr = std::shared_ptr<GameState>;
         using PacketPtr    = std::shared_ptr<Packet>;
 
-        Capture();
-        ~Capture();
+        Capture() {}
+        ~Capture() {}
 
         /// Passes the packet to the current GameState.
         void capturePacket(PacketPtr &);
@@ -36,8 +36,7 @@ namespace pcars {
 
     private:
 	    
-        class Impl;
-	    std::unique_ptr<Impl> impl_;
+        GameStatePtr state_;
 
         Capture(const Capture &) = delete;
         const Capture &operator =(const Capture &) = delete;

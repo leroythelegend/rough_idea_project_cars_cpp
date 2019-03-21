@@ -9,9 +9,6 @@ Decoder1bit2bit2bit3bit::Decoder1bit2bit2bit3bit() {
 	add(&msb1bit_);
 }
 
-Decoder1bit2bit2bit3bit::~Decoder1bit2bit2bit3bit() {
-}
-
 void Decoder1bit2bit2bit3bit::decode(const PCars_Data &data, unsigned int &position) {
 	DecoderComposite::decode(data, position);
 	++position;
