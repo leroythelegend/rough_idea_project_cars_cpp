@@ -10,64 +10,25 @@
 
 namespace pcars {
 
-	/// \class Decoder1bit2bit2bit3bit
-	/// \brief Decode 1bit 2bit 2bit 3bit
 	///
-	///		Decodes sequence of bits in byte
+	///	Decodes sequence of bits in byte
+	///
 
 	class Decoder1bit2bit2bit3bit: public DecoderComposite {
 	public:
 
-		/// Constructor
 		Decoder1bit2bit2bit3bit();
-		/// Destructor
-		virtual ~Decoder1bit2bit2bit3bit();
+		virtual ~Decoder1bit2bit2bit3bit() {}
 
-		/// \brief Decode PCars Data at Position
-		///
-		///		Decodes PCars Data at position in Data
-		///
-		/// \param PCars_Data: data to be decoded
-		/// \param Postion: position in data to be decoded
-		/// \return void
-		/// \throw nothing
-
+		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data &, Position &) override;
-
-		/// \brief 3 Least Significant bits
-		///
-		///		Get the value of the 3 LSBits (00000XXX)
-		///
-		/// \return value
-		/// \throw nothing
-
+		///	Get the value of the 3 LSBits (00000XXX)
 		unsigned int lsb_3bit() const;
-		
-		/// \brief Next 2 bits in byte
-		///
-		///		Get the value of next 2 bits (000XX000)
-		///
-		/// \return value
-		/// \throw nothing
-
+		///	Get the value of next 2 bits (000XX000)
 		unsigned int bottom_2bit() const;
-
-		/// \brief Next 2 bits in byte
-		///
-		///		Get the value of next 2 bits (0XX00000)
-		///
-		/// \return value
-		/// \throw nothing
-
+		///	Get the value of next 2 bits (0XX00000)
 		unsigned int top_2bit() const;
-
-		/// \brief Most Significant Bit
-		///
-		///		Get the value of MSB (X0000000)
-		///
-		/// \return value
-		/// \throw nothing
-	
+		///	Get the value of MSB (X0000000)
 		bool msb_1bit() const;
 
 	private:
