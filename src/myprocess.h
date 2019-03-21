@@ -51,7 +51,8 @@ namespace pcars {
 	public:
 
 		/// Destructor
-		virtual ~MyProcessV2() {}
+		MyProcessV2() = default;
+		virtual ~MyProcessV2() = default;
 
 		/// \brief process playing packet
 		///

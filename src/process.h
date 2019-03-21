@@ -18,6 +18,8 @@ namespace pcars {
 
         using PacketPtr = std::shared_ptr<Packet>;
 
+        virtual ~Process() = default;
+
         /// \brief Process playing packets
         ///
         ///     Process packets when game is in state playing
