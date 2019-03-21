@@ -40,7 +40,9 @@ TransportUDP::TransportUDP(const Port port) {
     hints.ai_flags = AI_PASSIVE; // use my IP
 
     if ((rv = getaddrinfo(NULL, sport.c_str(), &hints, &servinfo)) != 0) {
-        throw PCars_Exception(__LINE__, __FILE__, rv, gai_strerror(rv));
+        string msg("getaddrinfo error ");
+        msg.append(gai_strerror(rv));
+        throw PCars_Exception(msg);
     }
 
     // loop through all the results and bind to the first we can
@@ -62,7 +64,9 @@ TransportUDP::TransportUDP(const Port port) {
     }
 
     if (p == NULL) {
-        throw PCars_Exception(__LINE__, __FILE__ , errno, "listener: failed to bind socket");
+        string msg("socket or bind ");
+        msg.append(to_string(errno));
+        throw PCars_Exception(msg);
     }
 
     freeaddrinfo(servinfo);
@@ -89,7 +93,7 @@ PCars_Data TransportUDP::read(const Amount amount) {
 #else
 	if ((numbytes = recvfrom(socketfd_, buffer.data(), amount, 0,
 		(struct sockaddr *)&their_addr, &addr_len)) == -1) {
-		throw PCars_Exception(__LINE__, __FILE__, errno, "recvfrom");
+		throw PCars_Exception("recvfrom");
 	}
 #endif
 
