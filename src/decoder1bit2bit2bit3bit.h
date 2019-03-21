@@ -18,10 +18,11 @@ namespace pcars {
 	public:
 
 		Decoder1bit2bit2bit3bit();
-		virtual ~Decoder1bit2bit2bit3bit() {}
+		virtual ~Decoder1bit2bit2bit3bit() noexcept {}
 
 		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data &, Position &) override;
+
 		///	Get the value of the 3 LSBits (00000XXX)
 		unsigned int lsb_3bit() const;
 		///	Get the value of next 2 bits (000XX000)

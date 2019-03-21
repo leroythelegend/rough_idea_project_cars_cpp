@@ -76,7 +76,10 @@ namespace pcars {
 
     private:
 
-        ProcessPtr process_; 
+        ProcessPtr process_;
+
+        GamePlayingStateV1(const GamePlayingStateV1 &) = delete;
+        const GamePlayingStateV1 &operator =(const GamePlayingStateV1 &) = delete;
     };
 
 
@@ -110,7 +113,10 @@ namespace pcars {
 
     private:
 
-        ProcessPtr process_; 
+        ProcessPtr process_;
+
+        GamePlayingStateV2(const GamePlayingStateV2 &) = delete;
+        const GamePlayingStateV2 &operator =(const GamePlayingStateV2 &) = delete;
     };
 
     /// \class GameFrontEndStateV1
@@ -143,6 +149,9 @@ namespace pcars {
     private:
 
         ProcessPtr process_;
+
+        GameFrontEndStateV1(const GameFrontEndStateV1 &) = delete;
+        const GameFrontEndStateV1 &operator =(const GameFrontEndStateV1 &) = delete;     
     };
 
 
@@ -176,6 +185,9 @@ namespace pcars {
     private:
 
         ProcessPtr process_;
+
+        GameFrontEndStateV2(const GameFrontEndStateV2 &) = delete;
+        const GameFrontEndStateV2 &operator =(const GameFrontEndStateV2 &) = delete;    
     };
 
     /// \class GameMenuStateV1
@@ -207,6 +219,9 @@ namespace pcars {
 
     private:
         ProcessPtr process_;
+
+        GameMenuStateV1(const GameMenuStateV1 &) = delete;
+        const GameMenuStateV1 &operator =(const GameMenuStateV1 &) = delete;   
     };
 
     /// \class GameMenuStateV2
@@ -238,6 +253,9 @@ namespace pcars {
 
     private:
         ProcessPtr process_;
+
+        GameMenuStateV2(const GameMenuStateV2 &) = delete;
+        const GameMenuStateV2 &operator =(const GameMenuStateV2 &) = delete;   
     };
 
 } // namespace
