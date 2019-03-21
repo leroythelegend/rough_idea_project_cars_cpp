@@ -27,7 +27,7 @@ namespace pcars {
         using PacketPtr    = std::shared_ptr<Packet>;
 
         Capture() {}
-        ~Capture() {}
+        ~Capture() noexcept {}
 
         /// Passes the packet to the current GameState.
         void capturePacket(PacketPtr &);

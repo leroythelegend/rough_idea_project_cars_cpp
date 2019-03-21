@@ -4,7 +4,6 @@ namespace pcars {
 
 Decoder3bit::Decoder3bit() {
 	add(&ls3bits_);
-
 }
 
 void Decoder3bit::decode(const PCars_Data &data, Position &position) {

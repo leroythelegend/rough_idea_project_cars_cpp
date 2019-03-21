@@ -7,21 +7,17 @@
 
 namespace pcars {
 
-	/// \class Decoder2TimesU8
-	/// \brief Decode 2 times unsigned int
 	///
-	///		Decode 2 times unsigned int
+	///	Decode 2 times unsigned int
+	///
+
 	class Decoder2TimesU8: public DecoderComposite {
 	public:
-		/// Constructor
+
 		Decoder2TimesU8();
-		/// Destructor
-		virtual ~Decoder2TimesU8();
+		virtual ~Decoder2TimesU8() noexcept {}
 
-		/// \brief Get vector of unsigned int
-		///
-		///		Get vector size 2 of unsigned int
-
+		///	Get vector size 2 of unsigned int
 		Vector_UInt times2_U8() const;
 
 	private:

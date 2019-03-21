@@ -8,45 +8,22 @@
 
 namespace pcars {
 
-	/// \class Decoder2bit3bit
-	/// \brief Decode 2bits and 3bits from byte
 	///
-	///		Decode 2 bits and 3 bits from byte
+	/// Decode 2 bits and 3 bits from byte
+	///
 
 	class Decoder2bit3bit: public DecoderComposite {
 	public:
-		/// Constructor
+
 		Decoder2bit3bit();
-		/// Destructor
-		virtual ~Decoder2bit3bit() {}
+		virtual ~Decoder2bit3bit() noexcept {}
 
-		/// \brief Decode PCars Data at Position
-		///
-		///		Decodes PCars Data at position in Data
-		///
-		/// \param PCars_Data: data to be decoded
-		/// \param Postion: position in data to be decoded
-		/// \return void
-		/// \throw nothing
-
+		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data&, Position&) override;
-
-		/// \brief 2 Most Significant bits
-		///
-		///		Get the value of the 2 MSB
-		///
-		/// \return value
-		/// \throw nothing
 	
+		///	Get the value of the 2 MSB
 		unsigned int ms2bits() const;
-
-		/// \brief 3 Least Significant bits
-		///
-		///		Get the value of the 3 LSB
-		///
-		/// \return value
-		/// \throw nothing
-
+		///	Get the value of the 3 LSB
 		unsigned int ls3bits() const;
 
 	private:

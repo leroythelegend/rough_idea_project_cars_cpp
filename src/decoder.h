@@ -11,7 +11,7 @@ namespace pcars {
 
 	class Decoder {
 	public:
-		virtual ~Decoder() {}
+		virtual ~Decoder() noexcept {}
 
 		///	Decodes PCars Data at position in Data
 		virtual void decode(const PCars_Data &, Position &) = 0;
