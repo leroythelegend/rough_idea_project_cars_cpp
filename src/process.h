@@ -28,7 +28,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void playing(PacketPtr &) = 0;
+        virtual void playing(PacketPtr &) {};
 
         /// \brief Process menu packets
         ///
@@ -38,7 +38,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void menu(PacketPtr &) = 0;
+        virtual void menu(PacketPtr &) {};
     };
 
 }
