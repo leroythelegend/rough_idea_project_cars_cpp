@@ -9,7 +9,7 @@
 namespace pcars {
 
 	///
-	/// Decode 2 bits and 3 bits from byte
+	/// Decode 00XX0000 and 00000XXX
 	///
 
 	class Decoder2bit3bit: public DecoderComposite {
@@ -18,12 +18,11 @@ namespace pcars {
 		Decoder2bit3bit();
 		virtual ~Decoder2bit3bit() noexcept {}
 
-		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data&, Position&) override;
 	
-		///	Get the value of the 2 MSB
+		///	Get the value of 00XX0000
 		unsigned int ms2bits() const;
-		///	Get the value of the 3 LSB
+		///	Get the value of 00000XXX 
 		unsigned int ls3bits() const;
 
 	private:
