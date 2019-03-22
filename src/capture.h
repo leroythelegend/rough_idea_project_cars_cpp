@@ -1,18 +1,12 @@
-///
-/// \file   capture.h
-/// \brief  Capture class used for returning different Game states
-///
-
 #ifndef PCARS_CAPTURE_H_
 #define PCARS_CAPTURE_H_
 
 #include <memory>
 
-#include "packet.h"
-
 namespace pcars { 
 
     class GameState;
+    class Packet;
 
     ///
     ///     Allows changeing to the next game state.
@@ -26,12 +20,15 @@ namespace pcars {
         using GameStatePtr = std::shared_ptr<GameState>;
         using PacketPtr    = std::shared_ptr<Packet>;
 
-        Capture() {}
-        ~Capture() noexcept {}
+        Capture() = default;
+        ~Capture() noexcept = default;
 
         /// Passes the packet to the current GameState.
+        /// \param Packet
         void capturePacket(PacketPtr &);
+        
         /// Changes the current GameState to the Next GameState
+        /// \param GameState: Change to next Game State
         void nextGameState(const GameStatePtr &);
 
     private:

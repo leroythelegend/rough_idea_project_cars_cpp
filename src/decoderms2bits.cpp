@@ -9,7 +9,7 @@ DecoderMS2bits::DecoderMS2bits()
 }
 
 void DecoderMS2bits::decode(const PCars_Data & data, Position & position) {
-	num_ = (data.at(position) >> 4) & 3;
+	num_ = data.at(position) & 48;
 }
 
 unsigned int DecoderMS2bits::ms2bits() const {
