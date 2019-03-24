@@ -16,7 +16,7 @@ namespace pcars {
 	public:
 
 		Decoder2bit3bit();
-		virtual ~Decoder2bit3bit() noexcept {}
+		virtual ~Decoder2bit3bit() noexcept = default;
 
 		void decode(const PCars_Data&, Position&) override;
 	

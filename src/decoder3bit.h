@@ -8,19 +8,20 @@
 namespace pcars {
 
 	///
-	/// Decode 3 bits from byte
+	/// Decode Just the LSB 3 bits from byte and move on
+	/// i.e. we increment the position where DecoderLSB3bits
+	/// does not increment position.
 	///
 
 	class Decoder3bit: public DecoderComposite {
 	public:
 
 		Decoder3bit();
-		virtual ~Decoder3bit() noexcept {}
+		virtual ~Decoder3bit() noexcept = default;
 
-		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data &, Position &) override;
 
-		/// Get 3 Least significant bits
+		/// Get 3 Least significant bits (00000XXX)
 		unsigned int ls3bits() const;
 
 	private:
