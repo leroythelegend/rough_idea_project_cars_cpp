@@ -15,48 +15,39 @@
 
 namespace pcars {
 
-	/// \class PacketTimingData
-	/// \brief Packet timing data format 2
+	///
+	/// Packet timing data format 2
+	///
 
 	class PacketTimingData : public Packet {
 	public:
 
-		/// Constructor
 		PacketTimingData();
-		/// Destructor
-		virtual ~PacketTimingData() {}
+		virtual ~PacketTimingData() noexcept = default;
 
-		/// \brief Get packet base
-		///
-		/// \return Packet base
-		/// \throw nothing
-		
-		PacketBase packet_base() const;		
+        /// Packet Base		
+		PacketBase packet_base() const;
+		/// Number of Participants		
 		int num_participants() const;
+		/// ?
 		unsigned int participants_changed_timestamp() const;
+		/// Event Time Remaining
 		float event_time_remaining() const;
+		/// Split Time Ahead
 		float split_time_ahead() const;
+		/// Split Time Behind
 		float split_time_behind() const;
+		/// ?
 		float split_time() const;
+		/// Returns a Vector of Participant Info
 		Decoder32ParticipantInfo::Vector_Participant_Info partcipants() const;
+		/// I thing this is the local participant index to be used with the vector of Participant Info
 		unsigned int local_participant_index() const;
+		/// Tick Count something to keep packets in order
 		unsigned int tick_count() const;
-        
-		/// \brief Get packet format
-        ///
-        ///     format 2
-        ///
-        /// \return Format
-        /// \throw nothing
-
+		/// Format version
 		Format format() const override { return 2; }
-
-		/// \brief Get packet type
-        ///
-        ///
-        /// \return Packet type
-        /// \throw nothing
-		
+		/// Type of Packet
 		Type type() const override { return "PacketTimingData";}
 
 	private:
