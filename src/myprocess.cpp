@@ -267,7 +267,8 @@ namespace pcars
             }
         }
 
-        packets_.push_back(packet);
+        // Game states dont seem to work well in format 1
+        // packets_.push_back(packet);
     }
 
     void MyProcessV1::menu(PacketPtr &)
