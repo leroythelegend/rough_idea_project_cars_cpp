@@ -1,5 +1,7 @@
 #include "gamestate.h"
 
+#include "gamestatefactory.h"
+
 #include "packetgamestate.h"
 #include "packettelemetrydata.h"
 #include "packettelemetrydatav1.h"
@@ -21,17 +23,22 @@ namespace pcars {
     {
         if (data->type() == "PacketTelemetryDataV1") {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
-                next(capture, make_shared<GameFrontEndStateV1>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
+                GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
-                next(capture, make_shared<GameMenuStateV1>(process_));
+            else {
+                if (process_.get()) {
+                    process_->playing(data);
+                }
             }
         }
-
-        if (process_.get()) {
+        else if (process_.get()) {
             process_->playing(data);
         }
+        // else do nothing
     }
 
     GamePlayingStateV2::GamePlayingStateV2(const std::shared_ptr<Process> &process) 
@@ -41,17 +48,22 @@ namespace pcars {
     {
         if (data->type() == "PacketGameState") {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
-                next(capture, make_shared<GameFrontEndStateV2>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
+                GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
-                next(capture, make_shared<GameMenuStateV2>(process_));
+            else {
+                if (process_.get()) {
+                    process_->playing(data);
+                }
             }
         }
-
-        if (process_.get()) {
+        else if (process_.get()) {
             process_->playing(data);
         }
+        // else do nothing
     }
 
 
@@ -62,13 +74,13 @@ namespace pcars {
     {
         if (data->type() == "PacketTelemetryDataV1") {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
-                next(capture, make_shared<GamePlayingStateV1>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
+                GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
-                next(capture, make_shared<GameMenuStateV1>(process_));
-            }
-        } 
+        }
     }
 
 
@@ -79,11 +91,11 @@ namespace pcars {
     {
         if (data->type() == "PacketGameState") {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
-                next(capture, make_shared<GamePlayingStateV2>(process_));
-            }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
-                next(capture, make_shared<GameMenuStateV2>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
+                GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
         }
     }
@@ -96,17 +108,22 @@ namespace pcars {
     {
         if (data->type() == "PacketTelemetryDataV1") {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
-                next(capture, make_shared<GamePlayingStateV1>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
+                GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
-                next(capture, make_shared<GameMenuStateV1>(process_));
+            else {
+                if (process_.get()) {
+                    process_->menu(data);
+                }
             }
         }
-
-        if (process_.get()) {
+        else if (process_.get()) {
             process_->menu(data);
         }
+        // else do nothing
     }
 
 
@@ -117,17 +134,22 @@ namespace pcars {
     {
         if (data->type() == "PacketGameState") {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
-            if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
-                next(capture, make_shared<GamePlayingStateV2>(process_));
+            if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
+                GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);
+                if (state) {
+                    next(capture, state);
+                }
             }
-            else if (packet->game_state() == static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
-                next(capture, make_shared<GameMenuStateV2>(process_));
+            else {
+                if (process_.get()) {
+                    process_->menu(data);
+                }
             }
         }
-
-        if (process_.get()) {
+        else if (process_.get()) {
             process_->menu(data);
         }
+        // else do nothing
     }
 
 } // namespace pcars
