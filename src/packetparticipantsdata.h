@@ -76,7 +76,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 			
-		Type type() const override { return "PacketParticipantsData"; }
+		Type type() const override { return PACKETTYPE::PACKETPARTICIPANTSDATA; }
 
 	private:
 

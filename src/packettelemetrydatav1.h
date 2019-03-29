@@ -429,7 +429,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 				
-		Type type() const override { return "PacketTelemetryDataV1";}
+		Type type() const override { return PACKETTYPE::PACKETTELEMETRYDATAV1;}
 
 	private:
 		DecoderU16 buildversion_;

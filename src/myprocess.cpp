@@ -21,7 +21,7 @@ namespace pcars
 
     void MyProcessV1::playing(PacketPtr & packet)
     {
-        if (packet->type() == "PacketTelemetryDataV1") {
+        if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATAV1) {
             PacketTelemetryDataV1 * p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
 
             participants_ = p->num_participants();
@@ -235,7 +235,7 @@ namespace pcars
 
         }
 
-        if (packet->type() == "PacketParticipantInfoStrings") {
+        if (packet->type() == PACKETTYPE::PACKETPARTICIPANTINFOSTRINGS) {
             PacketParticipantInfoStrings * p = dynamic_cast<PacketParticipantInfoStrings *>(packet.get());
             cout << endl << "Participant Info Strings " << endl << endl;
  
@@ -253,7 +253,7 @@ namespace pcars
             }
         }
 
-        if (packet->type() == "PacketParticipantInfoStringsAdditional") {
+        if (packet->type() == PACKETTYPE::PACKETPARTICIPANTINFOSTRINGSADDITIONAL) {
             PacketParticipantInfoStringsAdditional * p = dynamic_cast<PacketParticipantInfoStringsAdditional *>(packet.get());
             cout << endl << "Participant Info Strings Additional" << endl << endl;
  
@@ -281,7 +281,7 @@ namespace pcars
 
     void MyProcessV2::playing(PacketPtr & packet)
     {
-        if (packet->type() == "PacketTelemetryData") {
+        if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATA) {
             PacketTelemetryData * p = dynamic_cast<PacketTelemetryData *>(packet.get());
 
             cout << endl << "Packet Telemetry Data" << endl << endl;
@@ -448,7 +448,7 @@ namespace pcars
             cout << "Tick Count               : " << p->tick_count()                    << endl;
         
         }
-        if (packet->type() == "PacketRaceData") {
+        if (packet->type() == PACKETTYPE::PACKETRACEDATA) {
             PacketRaceData * p = dynamic_cast<PacketRaceData *>(packet.get());
  
             cout << endl << "Packet Race Data" << endl << endl;
@@ -468,7 +468,7 @@ namespace pcars
             cout << "Laps Tine in Event              : " << p->laps_time_in_event()            << endl;
             cout << "Enforced Pit Stop Lap           : " << p->enforced_pitstop_lap()          << endl; 
         }
-        if (packet->type() == "PacketParticipantsData") {
+        if (packet->type() == PACKETTYPE::PACKETPARTICIPANTSDATA) {
             PacketParticipantsData * p = dynamic_cast<PacketParticipantsData *>(packet.get());
 
             cout << endl << "Packet Participants Data" << endl << endl;
@@ -483,7 +483,7 @@ namespace pcars
 
         }
 
-        if (packet->type() == "PacketTimingData") {
+        if (packet->type() == PACKETTYPE::PACKETTIMINGDATA) {
             PacketTimingData * p = dynamic_cast<PacketTimingData *>(packet.get());
 
             cout << endl << "Packet Timing Data" << endl << endl;
@@ -528,7 +528,7 @@ namespace pcars
         }
 
 
-        if (packet->type() == "PacketGameState") {
+        if (packet->type() == PACKETTYPE::PACKETGAMESTATE) {
             PacketGameState * p = dynamic_cast<PacketGameState *>(packet.get());
 
             cout << endl << "Packet Game State" << endl << endl;
@@ -545,7 +545,7 @@ namespace pcars
             cout << "Wind Direction Y          : " << p->wind_direction_y()    << endl;
         }
 
-        if (packet->type() == "PacketTimeStatsData") {
+        if (packet->type() == PACKETTYPE::PACKETTIMESTATSDATA) {
             PacketTimeStatsData * p = dynamic_cast<PacketTimeStatsData *>(packet.get());
 
             cout << endl << "Packet Time Stats Data" << endl << endl;
@@ -564,7 +564,7 @@ namespace pcars
             }
         }
 
-        if (packet->type() == "PacketParticipantsVehicleNamesData") {
+        if (packet->type() == PACKETTYPE::PACKETPARTICIPANTSVEHICLENAMESDATA) {
             PacketParticipantsVehicleNamesData * p = dynamic_cast<PacketParticipantsVehicleNamesData *>(packet.get());
 
             cout << endl << "Packet Participants Vehicle Names Data" << endl << endl;
@@ -576,7 +576,7 @@ namespace pcars
             }
         }
 
-        if (packet->type() == "PacketVehicleClassNamesData") {
+        if (packet->type() == PACKETTYPE::PACKETVEHICLECLASSNAMESDATA) {
             PacketVehicleClassNamesData * p = dynamic_cast<PacketVehicleClassNamesData *>(packet.get());
 
             cout << endl << "Packet Vehicle Class Names Data" << endl << endl;       

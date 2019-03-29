@@ -21,7 +21,7 @@ namespace pcars {
 
     void GamePlayingStateV1::capture(Capture &capture, PacketPtr &data)
     {
-        if (data->type() == "PacketTelemetryDataV1") {
+        if (data->type() == PACKETTYPE::PACKETTELEMETRYDATAV1) {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
                 GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
@@ -46,7 +46,7 @@ namespace pcars {
 
     void GamePlayingStateV2::capture(Capture &capture, PacketPtr &data)
     {
-        if (data->type() == "PacketGameState") {
+        if (data->type() == PACKETTYPE::PACKETGAMESTATE) {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_PLAYING)) {
                 GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);
@@ -72,7 +72,7 @@ namespace pcars {
 
     void GameFrontEndStateV1::capture(Capture &capture,PacketPtr &data)
     {
-        if (data->type() == "PacketTelemetryDataV1") {
+        if (data->type() == PACKETTYPE::PACKETTELEMETRYDATAV1) {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
                 GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
@@ -89,7 +89,7 @@ namespace pcars {
 
     void GameFrontEndStateV2::capture(Capture &capture,PacketPtr &data)
     {
-        if (data->type() == "PacketGameState") {
+        if (data->type() == PACKETTYPE::PACKETGAMESTATE) {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_FRONT_END)) {
                 GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);
@@ -106,7 +106,7 @@ namespace pcars {
 
     void GameMenuStateV1::capture(Capture &capture, PacketPtr &data)
     {
-        if (data->type() == "PacketTelemetryDataV1") {
+        if (data->type() == PACKETTYPE::PACKETTELEMETRYDATAV1) {
             PacketTelemetryDataV1 * packet = dynamic_cast<PacketTelemetryDataV1 *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
                 GameStatePtr state = GameStateFactoryV1()( static_cast<Game_State>(packet->game_state()), process_);
@@ -132,7 +132,7 @@ namespace pcars {
 
     void GameMenuStateV2::capture(Capture &capture, PacketPtr &data)
     {
-        if (data->type() == "PacketGameState") {
+        if (data->type() == PACKETTYPE::PACKETGAMESTATE) {
             PacketGameState * packet = dynamic_cast<PacketGameState *>(data.get());
             if (packet->game_state() != static_cast<unsigned int>(Game_State::GAME_INGAME_INMENU_TIME_TICKING)) {
                 GameStatePtr state = GameStateFactoryV2()( static_cast<Game_State>(packet->game_state()), process_);

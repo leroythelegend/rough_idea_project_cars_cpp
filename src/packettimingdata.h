@@ -48,7 +48,7 @@ namespace pcars {
 		/// Format version
 		Format format() const override { return 2; }
 		/// Type of Packet
-		Type type() const override { return "PacketTimingData";}
+		Type type() const override { return PACKETTYPE::PACKETTIMINGDATA;}
 
 	private:
 

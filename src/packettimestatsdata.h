@@ -46,7 +46,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 
-		Type type() const override { return "PacketTimeStatsData"; }
+		Type type() const override { return PACKETTYPE::PACKETTIMESTATSDATA; }
 
 	private:
 

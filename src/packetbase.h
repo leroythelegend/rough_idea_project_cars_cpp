@@ -79,7 +79,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 
-		Type type() const override { return "Packet_Base"; }
+		Type type() const override { return PACKETTYPE::PACKETBASE; }
 		
 	private:
 

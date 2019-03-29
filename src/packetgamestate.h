@@ -115,7 +115,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 
-		Type type() const override { return "PacketGameState";}
+		Type type() const override { return PACKETTYPE::PACKETGAMESTATE;}
 
 	private:
 		PacketBase packet_base_;
