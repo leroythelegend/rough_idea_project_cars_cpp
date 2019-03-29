@@ -266,17 +266,6 @@ namespace pcars
                 cout << "Name " << i << " : " << p->names().at(i) << endl;
             }
         }
-
-        // Game states dont seem to work well in format 1
-        // packets_.push_back(packet);
-    }
-
-    void MyProcessV1::menu(PacketPtr &)
-    {
-            if (packets_.size()) {
-                cout << "Num Packets " << packets_.size() << endl;
-            }
-            packets_.clear();
     }
 
     void MyProcessV2::playing(PacketPtr & packet)
@@ -586,16 +575,12 @@ namespace pcars
                 cout << "Name           " << i << " " << p->class_info().at(i).name() << endl;
             }
          }
-
-        packets_.push_back(packet);
+         ++packets_;
     }
 
     void MyProcessV2::menu(PacketPtr &)
     {
-            if (packets_.size()) {
-                cout << "Num Packets " << packets_.size() << endl;
-            }
-            packets_.clear();
+        cout << "Num Packets " << packets_ << endl;
     }
 
 }

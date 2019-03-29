@@ -27,16 +27,7 @@ namespace pcars {
 
 		void playing(PacketPtr &) override;
 
-		/// \brief process menu packet
-		///
-		/// \param packet
-		/// \return void
-		/// \throw nothing
-
-		void menu(PacketPtr &) override;
-
 	private:
-		std::vector<PacketPtr> packets_;
 		int participants_;
 
 		MyProcessV1(const MyProcessV1 &) = delete;
@@ -71,7 +62,7 @@ namespace pcars {
 		void menu(PacketPtr &) override;
 
 	private:
-		std::vector<PacketPtr> packets_;
+		int packets_;
 
 		MyProcessV2(const MyProcessV2 &) = delete;
 		const MyProcessV2 &operator =(const MyProcessV2 &) = delete; 
