@@ -51,7 +51,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 
-		Type type() const override { return "PacketVehicleClassNamesData"; }
+		Type type() const override { return PACKETTYPE::PACKETVEHICLECLASSNAMESDATA; }
 
 	private:
 		PacketBase packet_base_;		

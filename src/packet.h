@@ -7,6 +7,22 @@
 
 namespace pcars {
 
+    enum PACKETTYPE {
+        PACKETBASE,
+        PACKETGENERIC,
+        PACKETGAMESTATE,
+        PACKETPARTICIPANTINFOSTRINGS,
+        PACKETPARTICIPANTINFOSTRINGSADDITIONAL,
+        PACKETPARTICIPANTSDATA,
+        PACKETPARTICIPANTSVEHICLENAMESDATA,
+        PACKETRACEDATA,
+        PACKETTELEMETRYDATA,
+        PACKETTELEMETRYDATAV1,
+        PACKETTIMESTATSDATA,
+        PACKETTIMINGDATA,
+        PACKETVEHICLECLASSNAMESDATA
+    };
+
     /// \class Packet
     /// \brief abstract class for known packets
 
@@ -14,7 +30,7 @@ namespace pcars {
     public:
 
         using Format = unsigned int;
-        using Type = std::string;
+        using Type = PACKETTYPE;
 
         /// destructor
         virtual ~Packet() {}

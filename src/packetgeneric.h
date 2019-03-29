@@ -54,7 +54,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 
-		Type type() const override { return "Decoder_Generic";};
+		Type type() const override { return  PACKETTYPE::PACKETGENERIC;};
 
 	private:
 		DecoderU16 buildversion_;

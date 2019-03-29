@@ -170,7 +170,7 @@ namespace pcars {
         /// \return Packet type
         /// \throw nothing
 		
-		Type type() const override { return "PacketTelemetryData";}
+		Type type() const override { return PACKETTYPE::PACKETTELEMETRYDATA;}
 
 	private:
 		PacketBase packet_base_;

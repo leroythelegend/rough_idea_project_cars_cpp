@@ -110,7 +110,7 @@ namespace pcars {
 		/// \return value
 		/// \throw nothing
 
-		Type type() const override { return "PacketParticipantInfoStrings"; } 
+		Type type() const override { return  PACKETTYPE::PACKETPARTICIPANTINFOSTRINGS; } 
 
 	private:
 		DecoderU16 buildversion_;
