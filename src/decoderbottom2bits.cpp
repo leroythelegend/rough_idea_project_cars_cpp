@@ -1,4 +1,4 @@
-#include "decoderbottom2bits.h"
+#include "../inc/decoderbottom2bits.h"
 
 namespace pcars {
 

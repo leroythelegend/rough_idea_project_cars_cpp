@@ -1,6 +1,6 @@
-#include "decoders8.h"
+#include "../inc/decoders8.h"
 
-#include "exception.h"
+#include "../inc/exception.h"
 
 namespace pcars {
 

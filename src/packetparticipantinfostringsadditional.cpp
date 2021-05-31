@@ -1,4 +1,4 @@
-#include "packetparticipantinfostringsadditional.h"
+#include "../inc/packetparticipantinfostringsadditional.h"
 
 namespace pcars {
 

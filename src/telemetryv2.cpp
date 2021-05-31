@@ -1,20 +1,20 @@
-#include "telemetryv2.h"
+#include "../inc/telemetryv2.h"
 
 #include <memory>
 #include <vector>
 
-#include "transportudp.h"
-#include "capture.h"
-#include "packetbase.h"
-#include "packetparticipantvehiclenamesdata.h"
-#include "packettelemetrydata.h"
-#include "packetracedata.h"
-#include "packetparticipantsdata.h"
-#include "packettimingdata.h"
-#include "packettimestatsdata.h"
-#include "packetgamestate.h"
-#include "packetvehicleclassnamesdata.h"
-#include "gamestate.h"
+#include "../inc/transportudp.h"
+#include "../inc/capture.h"
+#include "../inc/packetbase.h"
+#include "../inc/packetparticipantvehiclenamesdata.h"
+#include "../inc/packettelemetrydata.h"
+#include "../inc/packetracedata.h"
+#include "../inc/packetparticipantsdata.h"
+#include "../inc/packettimingdata.h"
+#include "../inc/packettimestatsdata.h"
+#include "../inc/packetgamestate.h"
+#include "../inc/packetvehicleclassnamesdata.h"
+#include "../inc/gamestate.h"
 
 
 using namespace pcars;

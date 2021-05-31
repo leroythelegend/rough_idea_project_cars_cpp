@@ -1,6 +1,6 @@
-#include "transportudp.h"
+#include "../inc/transportudp.h"
 
-#include "exception.h"
+#include "../inc/exception.h"
 
 #ifdef _WIN32
 

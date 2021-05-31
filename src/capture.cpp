@@ -1,6 +1,6 @@
-#include "capture.h"
-#include "gamestate.h"
-#include "exception.h"
+#include "../inc/capture.h"
+#include "../inc/gamestate.h"
+#include "../inc/exception.h"
 
 using namespace std;
 

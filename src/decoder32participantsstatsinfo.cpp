@@ -1,4 +1,4 @@
-#include "decoder32participantsstatsinfo.h"
+#include "../inc/decoder32participantsstatsinfo.h"
 
 namespace pcars {
 

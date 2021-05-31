@@ -1,4 +1,4 @@
-#include "packetparticipantinfostrings.h"
+#include "../inc/packetparticipantinfostrings.h"
 
 #include <string>
 

@@ -1,6 +1,6 @@
-#include "decoderstringvector.h"
-#include "decoder64char.h"
-#include "exception.h"
+#include "../inc/decoderstringvector.h"
+#include "../inc/decoder64char.h"
+#include "../inc/exception.h"
 
 namespace pcars {
 

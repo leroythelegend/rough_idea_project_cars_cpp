@@ -1,4 +1,4 @@
-#include "decoder60classinfo.h"
+#include "../inc/decoder60classinfo.h"
 
 namespace pcars {
 

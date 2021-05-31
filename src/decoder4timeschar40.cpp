@@ -1,4 +1,4 @@
-#include "decoder4timeschar40.h"
+#include "../inc/decoder4timeschar40.h"
 
 namespace pcars {
 
