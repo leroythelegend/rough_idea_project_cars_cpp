@@ -85,8 +85,14 @@ target_include_directories(rispcars PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 
 add_executable(mypcars ./app/main.cpp)
-
+target_include_directories(mypcars PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(mypcars rispcars)
+
+add_executable(pcarscsv ./app/maincsv.cpp)
+target_include_directories(pcarscsv PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+target_link_libraries(pcarscsv rispcars)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
