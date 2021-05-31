@@ -1,4 +1,4 @@
-#include "decodercomposite.h"
+#include "../inc/decodercomposite.h"
 
 namespace pcars {
 

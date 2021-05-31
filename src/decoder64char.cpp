@@ -1,6 +1,6 @@
-#include "decoder64char.h"
+#include "../inc/decoder64char.h"
 
-#include "exception.h"
+#include "../inc/exception.h"
 
 #include <iostream>
 

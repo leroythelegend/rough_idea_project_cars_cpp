@@ -1,4 +1,4 @@
-#include "decoder3bit3bit.h"
+#include "../inc/decoder3bit3bit.h"
 
 namespace pcars {
 

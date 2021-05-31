@@ -1,4 +1,4 @@
-#include "decoder3timesfloat.h"
+#include "../inc/decoder3timesfloat.h"
 
 namespace pcars {
 

@@ -1,4 +1,4 @@
-#include "packettelemetrydata.h"
+#include "../inc/packettelemetrydata.h"
 
 namespace pcars {
 

@@ -1,17 +1,17 @@
-#include "telemetryv1.h"
+#include "../inc/telemetryv1.h"
 
 #include <memory>
 #include <vector>
 #include <iostream>
 
-#include "transportudp.h"
-#include "capture.h"
-#include "packettelemetrydatav1.h"
-#include "packetparticipantinfostrings.h"
-#include "packetparticipantinfostringsadditional.h"
-#include "gamestate.h"
+#include "../inc/transportudp.h"
+#include "../inc/capture.h"
+#include "../inc/packettelemetrydatav1.h"
+#include "../inc/packetparticipantinfostrings.h"
+#include "../inc/packetparticipantinfostringsadditional.h"
+#include "../inc/gamestate.h"
 
-#include "packetgeneric.h"
+#include "../inc/packetgeneric.h"
 
 using namespace pcars;
 using namespace std;

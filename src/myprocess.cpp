@@ -1,16 +1,16 @@
-#include "myprocess.h"
+#include "../inc/myprocess.h"
 
-#include "packettelemetrydatav1.h"
-#include "packettelemetrydata.h"
-#include "packetparticipantinfostrings.h"
-#include "packetparticipantinfostringsadditional.h"
-#include "packetracedata.h"
-#include "packetparticipantsdata.h"
-#include "packettimingdata.h"
-#include "packetgamestate.h"
-#include "packettimestatsdata.h"
-#include "packetparticipantvehiclenamesdata.h"
-#include "packetvehicleclassnamesdata.h"
+#include "../inc/packettelemetrydatav1.h"
+#include "../inc/packettelemetrydata.h"
+#include "../inc/packetparticipantinfostrings.h"
+#include "../inc/packetparticipantinfostringsadditional.h"
+#include "../inc/packetracedata.h"
+#include "../inc/packetparticipantsdata.h"
+#include "../inc/packettimingdata.h"
+#include "../inc/packetgamestate.h"
+#include "../inc/packettimestatsdata.h"
+#include "../inc/packetparticipantvehiclenamesdata.h"
+#include "../inc/packetvehicleclassnamesdata.h"
 
 #include <iostream>
 

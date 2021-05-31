@@ -1,6 +1,6 @@
-#include "decoderu32.h"
+#include "../inc/decoderu32.h"
 
-#include "exception.h"
+#include "../inc/exception.h"
 
 namespace pcars {
 

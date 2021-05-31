@@ -1,10 +1,10 @@
-#include "gamestate.h"
+#include "../inc/gamestate.h"
 
-#include "gamestatefactory.h"
+#include "../inc/gamestatefactory.h"
 
-#include "packetgamestate.h"
-#include "packettelemetrydata.h"
-#include "packettelemetrydatav1.h"
+#include "../inc/packetgamestate.h"
+#include "../inc/packettelemetrydata.h"
+#include "../inc/packettelemetrydatav1.h"
 
 
 using namespace std;
