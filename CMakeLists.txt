@@ -79,6 +79,7 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/telemetryv1.cpp
                       ./src/telemetryv2.cpp
                       ./src/transportudp.cpp
+                      ./src/processv2csv.cpp
                       )
 
 target_include_directories(rispcars PUBLIC

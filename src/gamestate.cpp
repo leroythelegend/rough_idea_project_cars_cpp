@@ -6,6 +6,7 @@
 #include "../inc/packettelemetrydata.h"
 #include "../inc/packettelemetrydatav1.h"
 
+#include <iostream>
 
 using namespace std;
 
@@ -96,6 +97,10 @@ namespace pcars {
                 if (state) {
                     next(capture, state);
                 }
+            }
+            else
+            {
+                cout << "possibly reset the process here" << endl;
             }
         }
     }
