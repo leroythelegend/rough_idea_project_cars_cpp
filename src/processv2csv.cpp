@@ -1,5 +1,11 @@
 #include "../inc/processv2csv.h"
 
+#include <time.h>
+#include <iostream>
+#include <fstream>
+#include <thread>
+#include <utility>
+
 #include "../inc/packettelemetrydatav1.h"
 #include "../inc/packettelemetrydata.h"
 #include "../inc/packetparticipantinfostrings.h"
@@ -11,100 +17,197 @@
 #include "../inc/packettimestatsdata.h"
 #include "../inc/packetparticipantvehiclenamesdata.h"
 #include "../inc/packetvehicleclassnamesdata.h"
-
-#include <iostream>
+#include "../inc/csvencoder.h"
 
 using namespace std;
 
 namespace pcars
 {
+
     ProcessV2CSV::ProcessV2CSV()
-        : packets_{0},
-          currenttime{-1},
-          currentlap{0xFFFFFFFF},
-          nextlap{0xFFFFFFFF},
-          timetickcount{0},
-          rpmtickcount{0} {}
+        : data_{make_unique<TelemetryData>()}
+    {
+    }
 
     void ProcessV2CSV::playing(PacketPtr &packet)
     {
-        // get the current lap and time
+        updateCurrentLap(packet);
+        updateTimingData(packet);
+        updateRaceState(packet);
+        updateTrackName(packet);
+
+        if (isFirstOutLapFinshed())
+        {
+            if (isThisANewLap())
+            {
+                if (isThisTheFirstLap())
+                {
+                    currentlap_ = nextlap_;
+                }
+                else
+                {
+                    writeCapturedTelemetryToCSV();
+                    currentlap_ = nextlap_;
+                }
+            }
+
+            updateTelemetry(packet);
+            updateLapWithCapturedTelemetry();
+        }
+    }
+
+    void ProcessV2CSV::rest(PacketPtr &)
+    {
+        havetrackname_ = false;
+        trackname_.clear();
+        state_ = 0;
+        currentlap_ = NOTALAP;
+        nextlap_ = 0;
+        currenttime_.time = -1;
+        currenttime_.tick = 0;
+        currenttime_.distance = 0;
+        rpm_.rpm = 0;
+        rpm_.tick = 1;
+        data_->telemetry.clear();
+    }
+
+    void ProcessV2CSV::menu(PacketPtr &packet)
+    {
+        updateTrackName(packet);
+
+        // last lap jumps to menu
+        // so if there is any data
+        // left write to csv file.
+        if (!data_->telemetry.empty())
+        {
+            writeCapturedTelemetryToCSV();
+        }
+    }
+
+    void ProcessV2CSV::updateTimingData(PacketPtr &packet)
+    {
         if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
         {
             PacketTimingData *p = dynamic_cast<PacketTimingData *>(packet.get());
 
-            currenttime = p->partcipants().at(p->local_participant_index()).current_time();
-            nextlap = p->partcipants().at(p->local_participant_index()).current_lap();
-            // cout << "current lap " << lap << endl;
-            timetickcount = p->tick_count();
+            currenttime_.time = p->partcipants().at(p->local_participant_index()).current_time();
+            currenttime_.distance = p->partcipants().at(p->local_participant_index()).current_lap_distance();
+            currenttime_.tick = p->tick_count();
         }
-        if (packet->type() == PACKETTYPE::PACKETRACEDATA)
-        {
-            // todo: if i can reset the process when in the front end 
-            //       I can use a boolean to not call this once I have the
-            //       filename.
-            PacketRaceData *p = dynamic_cast<PacketRaceData *>(packet.get());
-
-            // cout << "Track Location                  : " << p->track_location() << endl;
-            // cout << "Track Variation                 : " << p->track_variation() << endl;
-            filename = p->track_location() + "-" + p->track_variation() + "-";
-        }
-
-        // if current time does not equal -1 && we have the filename start recording
-        if (currenttime != -1 && !filename.empty())
-        {
-            // cout << nextlap << " " << currentlap << " " << data.rpm.size() << endl;
-            if (nextlap != currentlap)
-            {
-                // start a thread and write data to csv file
-                if (currentlap == 0xFFFFFFFF)
-                {
-                    // cout << "update lap 1" << endl;
-                    currentlap = nextlap;
-                }
-                else // first lap don't record
-                {
-                    string csvfilname(filename);
-                    // cout << "update lap 2" << endl;
-                    currentlap = nextlap;
-                    csvfilname += to_string(currentlap);
-                    csvfilname += ".csv";
-                    cout << "WRITE TO FILE " << csvfilname << endl;
-                    
-                    // will need pass a copy of data struct to the thread
-                    data.rpm.clear();
-                    data.time.clear();
-                }
-            } 
-
-            // cout << "Current Time " << currenttime;
-            // cout << " Tick count " << timetickcount << endl;
-
-            if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATA)
-            {
-                PacketTelemetryData *p = dynamic_cast<PacketTelemetryData *>(packet.get());
-
-                
-                rpmtickcount = p->tick_count();
-                rpm = p->rpm();
-                // cout << "RPM                      : " << p->rpm() << endl;
-                // cout << " Tick count " << p->tick_count() << endl;
-            }
-
-            // if these are equal update our data struct
-            if (rpmtickcount == timetickcount && nextlap == currentlap)
-            {
-                // cout << "cl " << currentlap << endl;
-                cout << "RECORDING DATA" << endl;
-                data.time.push_back(currenttime);
-                data.rpm.push_back(rpm);
-            }
-        }
-        // ++packets_;
     }
 
-    void ProcessV2CSV::menu(PacketPtr &)
+    void ProcessV2CSV::updateCurrentLap(PacketPtr &packet)
     {
-        // cout << "Num Packets " << packets_ << endl;
+        if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
+        {
+            PacketTimingData *p = dynamic_cast<PacketTimingData *>(packet.get());
+            nextlap_ = p->partcipants().at(p->local_participant_index()).current_lap();
+        }
+    }
+
+    ProcessV2CSV::TrackName ProcessV2CSV::getTrackName(PacketPtr &packet)
+    {
+        TrackName result;
+        if (packet->type() == PACKETTYPE::PACKETRACEDATA)
+        {
+            PacketRaceData *p = dynamic_cast<PacketRaceData *>(packet.get());
+            result = p->track_location() + "-" + p->track_variation();
+        }
+        return result;
+    }
+
+    void ProcessV2CSV::updateRaceState(PacketPtr &packet)
+    {
+        if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
+        {
+            PacketTimingData *p = dynamic_cast<PacketTimingData *>(packet.get());
+
+            state_ = p->partcipants().at(p->local_participant_index()).race_state();
+        }
+    }
+
+    void ProcessV2CSV::updateTrackName(PacketPtr &packet)
+    {
+        if (!havetrackname_)
+        {
+            trackname_ = getTrackName(packet);
+            if (!trackname_.empty())
+            {
+                havetrackname_ = true;
+            }
+        }
+    }
+
+    void ProcessV2CSV::updateTelemetry(PacketPtr &packet)
+    {
+        if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATA)
+        {
+            PacketTelemetryData *p = dynamic_cast<PacketTelemetryData *>(packet.get());
+            rpm_.tick = p->tick_count();
+            rpm_.rpm = p->rpm();
+        }
+    }
+
+    void ProcessV2CSV::updateLapWithCapturedTelemetry()
+    {
+
+        if (rpm_.tick == currenttime_.tick && nextlap_ == currentlap_)
+        {
+            vector<float> row;
+            row.push_back(currenttime_.time);
+            row.push_back(currenttime_.distance);
+            row.push_back(rpm_.rpm);
+            data_->telemetry.push_back(row);
+        }
+    }
+
+    ProcessV2CSV::TimeStamp createTimeStamp()
+    {
+        time_t rawtime;
+        struct tm *timeinfo;
+        char buffer[80];
+
+        time(&rawtime);
+        timeinfo = localtime(&rawtime);
+
+        strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+        return std::string(buffer);
+    }
+
+    void createCSVFile(const ProcessV2CSV::TrackName &trackname,
+                       const ProcessV2CSV::Lap lap,
+                       const unique_ptr<TelemetryData> &data)
+    {
+        CSVEncoder encoder(trackname +
+                           " lap " +
+                           to_string(lap) +
+                           " " +
+                           createTimeStamp() +
+                           ".csv");
+        encoder.encodeRPM(data);
+    }
+
+    void ProcessV2CSV::writeCapturedTelemetryToCSV()
+    {
+        thread t([](TrackName name, Lap lap, unique_ptr<TelemetryData> data)
+                 { createCSVFile(name, lap, data); },
+                 trackname_, currentlap_, move(data_));
+        t.detach();
+        data_ = make_unique<TelemetryData>();
+    }
+
+    bool ProcessV2CSV::isFirstOutLapFinshed()
+    {
+        return state_ != 9 && !trackname_.empty();
+    }
+
+    bool ProcessV2CSV::isThisANewLap()
+    {
+        return nextlap_ != currentlap_;
+    }
+
+    bool ProcessV2CSV::isThisTheFirstLap()
+    {
+        return currentlap_ == NOTALAP;
     }
 }

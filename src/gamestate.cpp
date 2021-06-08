@@ -100,7 +100,7 @@ namespace pcars {
             }
             else
             {
-                cout << "possibly reset the process here" << endl;
+                process_->rest(data);
             }
         }
     }
