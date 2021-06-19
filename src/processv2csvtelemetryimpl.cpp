@@ -38,13 +38,18 @@ namespace pcars
         encoder.encode(data);
     }
 
-    ProcessV2CSVTelemetryImpl::ProcessV2CSVTelemetryImpl()
-        : data_{make_unique<TelemetryData>()} 
+    vector<string> getNames()
     {
-        data_->names = {"time", "distance", "unfiltered_throttle", 
-                        "unfiltered_brake", "unfiltered_steering", 
-                        "unfiltered_clutch", "throttle", 
-                        "unfiltered_brake", "steering", "clutch"};
+        return {"time", "distance", "unfiltered_throttle",
+                "unfiltered_brake", "unfiltered_steering",
+                "unfiltered_clutch", "throttle",
+                "unfiltered_brake", "steering", "clutch"};
+    }
+
+    ProcessV2CSVTelemetryImpl::ProcessV2CSVTelemetryImpl()
+        : data_{make_unique<TelemetryData>()}
+    {
+        data_->names = getNames();
     }
 
     ProcessV2CSVTelemetryImpl::TrackName ProcessV2CSVTelemetryImpl::getTrackName(Packet::Ptr &packet)
@@ -107,33 +112,32 @@ namespace pcars
         {
             PacketTelemetryData *p = dynamic_cast<PacketTelemetryData *>(packet.get());
             telemetry_.tick = p->tick_count();
-            telemetry_.unfilteredthrottle = p->unfiltered_throttle();
-            telemetry_.unfilteredbrake = p->unfiltered_brake();
-            telemetry_.unfilteredsteering = p->unfiltered_steering();
-            telemetry_.unfilteredclutch = p->unfiltered_clutch();
-            telemetry_.throttle = p->throttle();
-            telemetry_.brake = p->brake();
-            telemetry_.steering = p->steering();
-            telemetry_.clutch = p->clutch();
+
+            telemetry_.elements.clear();
+            telemetry_.elements.push_back(p->unfiltered_throttle());
+            telemetry_.elements.push_back(p->unfiltered_brake());
+            telemetry_.elements.push_back(p->unfiltered_steering());
+            telemetry_.elements.push_back(p->unfiltered_clutch());
+            telemetry_.elements.push_back(p->throttle());
+            telemetry_.elements.push_back(p->brake());
+            telemetry_.elements.push_back(p->steering());
+            telemetry_.elements.push_back(p->clutch());
         }
     }
 
-
     void ProcessV2CSVTelemetryImpl::updateLapWithCapturedTelemetry()
     {
-        if (telemetry_.tick == currenttime_.tick && nextlap_ == currentlap_)
+        if (telemetry_.tick == currenttime_.tick &&
+            nextlap_ == currentlap_ &&
+            !telemetry_.elements.empty())
         {
             vector<float> row;
             row.push_back(currenttime_.time);
             row.push_back(currenttime_.distance);
-            row.push_back(telemetry_.unfilteredthrottle);
-            row.push_back(telemetry_.unfilteredbrake);
-            row.push_back(telemetry_.unfilteredsteering);
-            row.push_back(telemetry_.unfilteredclutch);
-            row.push_back(telemetry_.throttle);
-            row.push_back(telemetry_.brake);
-            row.push_back(telemetry_.steering);
-            row.push_back(telemetry_.clutch);
+            for (auto element : telemetry_.elements)
+            {
+                row.push_back(element);
+            }
             data_->telemetry.push_back(row);
         }
     }
@@ -149,7 +153,9 @@ namespace pcars
                  { createCSVFile(name, lap, data); },
                  trackname_, currentlap_, move(data_));
         t.detach();
+
         data_ = make_unique<TelemetryData>();
+        data_->names = getNames();
     }
 
     bool ProcessV2CSVTelemetryImpl::isFirstOutLapFinshed() const
@@ -182,15 +188,7 @@ namespace pcars
         currenttime_.time = -1;
         currenttime_.tick = 0;
         currenttime_.distance = 0;
-        telemetry_.unfilteredthrottle = 0;
-        telemetry_.unfilteredbrake = 0;
-        telemetry_.unfilteredsteering = 0;
-        telemetry_.unfilteredclutch = 0;
-        telemetry_.throttle = 0;
-        telemetry_.brake = 0;
-        telemetry_.steering = 0;
-        telemetry_.clutch = 0;
-        telemetry_.tick = 1;
+        telemetry_.elements.clear();
         data_->telemetry.clear();
     }
 }
