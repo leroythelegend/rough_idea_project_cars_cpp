@@ -48,7 +48,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void rest(PacketPtr &) {};
+        virtual void reset(PacketPtr &) {};
     };
 
 }

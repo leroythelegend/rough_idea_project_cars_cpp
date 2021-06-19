@@ -100,7 +100,7 @@ namespace pcars {
             }
             else
             {
-                process_->rest(data);
+                process_->reset(data);
             }
         }
     }

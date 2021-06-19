@@ -13,7 +13,7 @@ namespace pcars
         }
     }
 
-    void CSVEncoder::encodeRPM(const std::unique_ptr<pcars::TelemetryData> &data)
+    void CSVEncoder::encode(const std::unique_ptr<pcars::TelemetryData> &data)
     {
 
         // names to comma seperated string

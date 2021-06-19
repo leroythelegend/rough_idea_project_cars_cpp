@@ -3,13 +3,15 @@
 
 #include "../inc/consts.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	///
 	///	Abstract Decodes Project Cars Data
 	///
 
-	class Decoder {
+	class Decoder
+	{
 	public:
 		virtual ~Decoder() noexcept = default;
 
@@ -22,4 +24,3 @@ namespace pcars {
 }
 
 #endif
-

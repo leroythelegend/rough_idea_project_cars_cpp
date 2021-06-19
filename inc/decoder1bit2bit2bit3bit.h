@@ -8,15 +8,16 @@
 #include "../inc/decodertop2bits.h"
 #include "../inc/decodermsbbool.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	///
 	///	Decodes sequence of bits in byte
 	///
 
-	class Decoder1bit2bit2bit3bit: public DecoderComposite {
+	class Decoder1bit2bit2bit3bit : public DecoderComposite
+	{
 	public:
-
 		Decoder1bit2bit2bit3bit();
 		virtual ~Decoder1bit2bit2bit3bit() noexcept = default;
 
@@ -36,10 +37,8 @@ namespace pcars {
 		DecoderBottom2bits b2bit_;
 		DecoderTop2bits t2bit_;
 		DecoderMSBBool msb1bit_;
-
 	};
 
 }
 
 #endif
-

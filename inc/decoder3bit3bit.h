@@ -6,15 +6,16 @@
 #include "../inc/decoderms3bits.h"
 #include "../inc/decoderls3bits.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	///
 	/// Decode 6 bits of the byte in 3 seperate bits
 	///
 
-	class Decoder3bit3bit : public DecoderComposite {
+	class Decoder3bit3bit : public DecoderComposite
+	{
 	public:
-
 		Decoder3bit3bit();
 		virtual ~Decoder3bit3bit() noexcept {}
 
@@ -34,4 +35,3 @@ namespace pcars {
 }
 
 #endif
-

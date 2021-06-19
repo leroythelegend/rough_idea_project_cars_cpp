@@ -16,7 +16,7 @@ namespace pcars
         CSVEncoder(const Filename &);
         ~CSVEncoder() = default;
 
-        void encodeRPM(const std::unique_ptr<pcars::TelemetryData> &);
+        void encode(const std::unique_ptr<pcars::TelemetryData> &);
 
     private:
         std::ofstream file_;

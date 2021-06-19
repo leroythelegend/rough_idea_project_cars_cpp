@@ -3,7 +3,8 @@
 
 #include <memory>
 
-namespace pcars { 
+namespace pcars
+{
 
     class GameState;
     class Packet;
@@ -16,9 +17,8 @@ namespace pcars {
     class Capture
     {
     public:
-
         using GameStatePtr = std::shared_ptr<GameState>;
-        using PacketPtr    = std::shared_ptr<Packet>;
+        using PacketPtr = std::shared_ptr<Packet>;
 
         Capture() = default;
         ~Capture() noexcept = default;
@@ -26,17 +26,16 @@ namespace pcars {
         /// Passes the packet to the current GameState.
         /// \param Packet
         void capturePacket(PacketPtr &);
-        
+
         /// Changes the current GameState to the Next GameState
         /// \param GameState: Change to next Game State
         void nextGameState(const GameStatePtr &);
 
     private:
-	    
         GameStatePtr state_;
 
         Capture(const Capture &) = delete;
-        const Capture &operator =(const Capture &) = delete;
+        const Capture &operator=(const Capture &) = delete;
     };
 
 } // namespace pcars

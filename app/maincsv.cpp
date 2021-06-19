@@ -3,6 +3,7 @@
 #include "../inc/myprocess.h"
 #include "../inc/exception.h"
 #include "../inc/processv2csv.h"
+#include "../inc/processv2csvtelemetryimpl.h"
 
 #include <iostream>
 #include <string>
@@ -40,7 +41,7 @@ int main(int argc, char *argv[]) {
 	else if (arg == "-v2") {
 		try {
 			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>());
+			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVTelemetryImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			e.what();
