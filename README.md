@@ -1,5 +1,16 @@
 # Rough Idea Project Cars C++
 
+# Current poject
+
+Currently in the process of producing csv files of each lap.
+
+After building, run the following to get a basic unfinshed csv file: 
+```
+cd build
+./pcarscsv -v2
+```
+Then I have been loading the csv files into plotJuggler-3.
+
 ## Description
 
 Simpler CPP Classes for capturing and processing Project Cars UDP packets.
