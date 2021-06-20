@@ -1,6 +1,6 @@
 # Rough Idea Project Cars C++
 
-# Current poject
+# Current Project
 
 Currently in the process of producing csv files of each lap.
 
