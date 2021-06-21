@@ -43,7 +43,8 @@ namespace pcars
         return {"time", "distance", "unfiltered_throttle",
                 "unfiltered_brake", "unfiltered_steering",
                 "unfiltered_clutch", "throttle",
-                "unfiltered_brake", "steering", "clutch"};
+                "unfiltered_brake", "steering", "clutch",
+                "tyre_rps_fl", "tyre_rps_fr","tyre_rps_rl","tyre_rps_rr"};
     }
 
     ProcessV2CSVTelemetryImpl::ProcessV2CSVTelemetryImpl()
@@ -122,6 +123,10 @@ namespace pcars
             telemetry_.elements.push_back(p->brake());
             telemetry_.elements.push_back(p->steering());
             telemetry_.elements.push_back(p->clutch());
+            telemetry_.elements.push_back(p->tyre_rps().at(0));
+            telemetry_.elements.push_back(p->tyre_rps().at(1));
+            telemetry_.elements.push_back(p->tyre_rps().at(2));
+            telemetry_.elements.push_back(p->tyre_rps().at(3));
         }
     }
 
