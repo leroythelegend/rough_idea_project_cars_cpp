@@ -2,6 +2,7 @@
 #define PCARS_PACKET_H_
 
 #include <string>
+#include <memory>
 
 #include "../inc/decodercomposite.h"
 
@@ -29,6 +30,7 @@ namespace pcars {
     class Packet : public DecoderComposite {
     public:
 
+        using Ptr = std::shared_ptr<Packet>;
         using Format = unsigned int;
         using Type = PACKETTYPE;
 

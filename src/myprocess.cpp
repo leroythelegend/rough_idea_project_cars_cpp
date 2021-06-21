@@ -454,7 +454,7 @@ namespace pcars
             cout << "Track Variation                 : " << p->track_variation()               << endl;
             cout << "Translated Track Location       : " << p->translated_track_location()     << endl;
             cout << "Translated Track Variation      : " << p->translated_track_variation()    << endl;
-            cout << "Laps Tine in Event              : " << p->laps_time_in_event()            << endl;
+            cout << "Laps Time in Event              : " << p->laps_time_in_event()            << endl;
             cout << "Enforced Pit Stop Lap           : " << p->enforced_pitstop_lap()          << endl; 
         }
         if (packet->type() == PACKETTYPE::PACKETPARTICIPANTSDATA) {

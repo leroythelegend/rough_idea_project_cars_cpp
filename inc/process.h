@@ -32,13 +32,23 @@ namespace pcars {
 
         /// \brief Process menu packets
         ///
-        ///     Process menu when game is in state playing
+        ///     Process menu when game is in state menu
         ///
         /// \param Packet
         /// \return void
         /// \throw nothing
 
         virtual void menu(PacketPtr &) {};
+
+        /// \brief Process reset packets
+        ///
+        ///     Process menu when game is in state front end
+        ///
+        /// \param Packet
+        /// \return void
+        /// \throw nothing
+
+        virtual void reset(PacketPtr &) {};
     };
 
 }

@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(rispcars VERSION 0.1.0)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 include(CTest)
 enable_testing()
 
@@ -79,14 +82,23 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/telemetryv1.cpp
                       ./src/telemetryv2.cpp
                       ./src/transportudp.cpp
-                      )
+                      ./src/processv2csv.cpp
+                      ./src/csvencoder.cpp
+                      ./src/processv2csvtelemetryimpl.cpp)
 
 target_include_directories(rispcars PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+target_link_libraries(rispcars Threads::Threads)
 
 add_executable(mypcars ./app/main.cpp)
-
+target_include_directories(mypcars PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(mypcars rispcars)
+
+add_executable(pcarscsv ./app/maincsv.cpp)
+target_include_directories(pcarscsv PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+target_link_libraries(pcarscsv rispcars)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

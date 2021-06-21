@@ -5,15 +5,16 @@
 
 #include "../inc/decoderu8.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	///
 	///	Decodes 2 bytes as 2 unsigned ints
 	///
 
-	class Decoder2TimesU8: public DecoderComposite {
+	class Decoder2TimesU8 : public DecoderComposite
+	{
 	public:
-
 		Decoder2TimesU8();
 		virtual ~Decoder2TimesU8() noexcept = default;
 
@@ -28,4 +29,3 @@ namespace pcars {
 }
 
 #endif
-

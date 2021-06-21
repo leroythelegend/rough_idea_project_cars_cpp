@@ -5,7 +5,8 @@
 
 #include "../inc/decoderls3bits.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	///
 	/// Decode Just the LSB 3 bits from byte and move on
@@ -13,9 +14,9 @@ namespace pcars {
 	/// does not increment position.
 	///
 
-	class Decoder3bit: public DecoderComposite {
+	class Decoder3bit : public DecoderComposite
+	{
 	public:
-
 		Decoder3bit();
 		virtual ~Decoder3bit() noexcept = default;
 
@@ -31,4 +32,3 @@ namespace pcars {
 }
 
 #endif
-
