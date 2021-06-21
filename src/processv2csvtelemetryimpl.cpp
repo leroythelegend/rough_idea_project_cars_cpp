@@ -45,7 +45,10 @@ namespace pcars
                 "unfiltered_clutch", "throttle",
                 "brake", "steering", "clutch",
                 "tyre_rps_fl", "tyre_rps_fr","tyre_rps_rl","tyre_rps_rr",
-                "tyre_y_fl", "tyre_y_fr","tyre_y_rl","tyre_y_rr"};
+                "tyre_y_fl", "tyre_y_fr","tyre_y_rl","tyre_y_rr",
+                "tyre_temp_fl", "tyre_temp_fr","tyre_temp_rl","tyre_temp_rr",
+                "tyre_height_above_ground_fl", "tyre_height_above_ground_fr","tyre_height_above_ground_rl","tyre_height_above_ground_rr",
+                "tyre_wear_fl", "tyre_wear_fr","tyre_wear_rl","tyre_wear_rr"};
     }
 
     ProcessV2CSVTelemetryImpl::ProcessV2CSVTelemetryImpl()
@@ -133,7 +136,23 @@ namespace pcars
             telemetry_.elements.push_back(p->tyre_y().at(0));
             telemetry_.elements.push_back(p->tyre_y().at(1));
             telemetry_.elements.push_back(p->tyre_y().at(2));
-            telemetry_.elements.push_back(p->tyre_y().at(3));            
+            telemetry_.elements.push_back(p->tyre_y().at(3));
+
+            telemetry_.elements.push_back(p->tyre_temp().at(0));
+            telemetry_.elements.push_back(p->tyre_temp().at(1));
+            telemetry_.elements.push_back(p->tyre_temp().at(2));
+            telemetry_.elements.push_back(p->tyre_temp().at(3));
+
+            telemetry_.elements.push_back(p->tyre_height_above_ground().at(0));
+            telemetry_.elements.push_back(p->tyre_height_above_ground().at(1));
+            telemetry_.elements.push_back(p->tyre_height_above_ground().at(2));
+            telemetry_.elements.push_back(p->tyre_height_above_ground().at(3));
+            
+            telemetry_.elements.push_back(p->tyre_wear().at(0));
+            telemetry_.elements.push_back(p->tyre_wear().at(1));
+            telemetry_.elements.push_back(p->tyre_wear().at(2));
+            telemetry_.elements.push_back(p->tyre_wear().at(3));
+
         }
     }
 
