@@ -84,7 +84,7 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/transportudp.cpp
                       ./src/processv2csv.cpp
                       ./src/csvencoder.cpp
-                      ./src/processv2csvtelemetryimpl.cpp)
+                      ./src/processv2csvtyreimpl.cpp)
 
 target_include_directories(rispcars PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)

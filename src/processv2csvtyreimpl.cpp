@@ -1,4 +1,4 @@
-#include "../inc/processv2csvtelemetryimpl.h"
+#include "../inc/processv2csvtyreimpl.h"
 #include "../inc/packetracedata.h"
 #include "../inc/packettimingdata.h"
 #include "../inc/packettelemetrydata.h"
@@ -12,7 +12,7 @@ using namespace std;
 namespace pcars
 {
 
-    ProcessV2CSVTelemetryImpl::TimeStamp createTimeStamp()
+    ProcessV2CSVTyreImpl::TimeStamp createTimeStamp()
     {
         time_t rawtime;
         struct tm *timeinfo;
@@ -25,8 +25,8 @@ namespace pcars
         return std::string(buffer);
     }
 
-    void createCSVFile(const ProcessV2CSVTelemetryImpl::TrackName &trackname,
-                       const ProcessV2CSVTelemetryImpl::Lap lap,
+    void createCSVFile(const ProcessV2CSVTyreImpl::TrackName &trackname,
+                       const ProcessV2CSVTyreImpl::Lap lap,
                        const unique_ptr<TelemetryData> &data)
     {
         CSVEncoder encoder(trackname +
@@ -62,13 +62,13 @@ namespace pcars
     
     }
 
-    ProcessV2CSVTelemetryImpl::ProcessV2CSVTelemetryImpl()
+    ProcessV2CSVTyreImpl::ProcessV2CSVTyreImpl()
         : data_{make_unique<TelemetryData>()}
     {
         data_->names = getNames();
     }
 
-    ProcessV2CSVTelemetryImpl::TrackName ProcessV2CSVTelemetryImpl::getTrackName(Packet::Ptr &packet)
+    ProcessV2CSVTyreImpl::TrackName ProcessV2CSVTyreImpl::getTrackName(Packet::Ptr &packet)
     {
         TrackName result;
         if (packet->type() == PACKETTYPE::PACKETRACEDATA)
@@ -79,7 +79,7 @@ namespace pcars
         return result;
     }
 
-    void ProcessV2CSVTelemetryImpl::updateTimingData(Packet::Ptr &packet)
+    void ProcessV2CSVTyreImpl::updateTimingData(Packet::Ptr &packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
         {
@@ -91,7 +91,7 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateNextLap(Packet::Ptr &packet)
+    void ProcessV2CSVTyreImpl::updateNextLap(Packet::Ptr &packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
         {
@@ -100,7 +100,7 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateRaceState(Packet::Ptr &packet)
+    void ProcessV2CSVTyreImpl::updateRaceState(Packet::Ptr &packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTIMINGDATA)
         {
@@ -110,7 +110,7 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateTrackName(Packet::Ptr &packet)
+    void ProcessV2CSVTyreImpl::updateTrackName(Packet::Ptr &packet)
     {
         if (!havetrackname_)
         {
@@ -122,7 +122,7 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateTelemetry(Packet::Ptr &packet)
+    void ProcessV2CSVTyreImpl::updateTelemetry(Packet::Ptr &packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATA)
         {
@@ -217,7 +217,7 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateLapWithCapturedTelemetry()
+    void ProcessV2CSVTyreImpl::updateLapWithCapturedTelemetry()
     {
         if (telemetry_.tick == currenttime_.tick &&
             nextlap_ == currentlap_ &&
@@ -234,12 +234,12 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSVTelemetryImpl::updateCurrentLap()
+    void ProcessV2CSVTyreImpl::updateCurrentLap()
     {
         currentlap_ = nextlap_;
     }
 
-    void ProcessV2CSVTelemetryImpl::writeCapturedTelemetryToCSV()
+    void ProcessV2CSVTyreImpl::writeCapturedTelemetryToCSV()
     {
         thread t([](TrackName name, Lap lap, unique_ptr<TelemetryData> data)
                  { createCSVFile(name, lap, data); },
@@ -250,27 +250,27 @@ namespace pcars
         data_->names = getNames();
     }
 
-    bool ProcessV2CSVTelemetryImpl::isFirstOutLapFinshed() const
+    bool ProcessV2CSVTyreImpl::isFirstOutLapFinshed() const
     {
         return state_ != 9 && !trackname_.empty();
     }
 
-    bool ProcessV2CSVTelemetryImpl::isThisANewLap() const
+    bool ProcessV2CSVTyreImpl::isThisANewLap() const
     {
         return nextlap_ != currentlap_;
     }
 
-    bool ProcessV2CSVTelemetryImpl::isThisTheFirstLap() const
+    bool ProcessV2CSVTyreImpl::isThisTheFirstLap() const
     {
         return currentlap_ == NOTALAP;
     }
 
-    bool ProcessV2CSVTelemetryImpl::isTelemetryEmpty() const
+    bool ProcessV2CSVTyreImpl::isTelemetryEmpty() const
     {
         return data_->telemetry.empty();
     }
 
-    void ProcessV2CSVTelemetryImpl::reset()
+    void ProcessV2CSVTyreImpl::reset()
     {
         havetrackname_ = false;
         trackname_.clear();

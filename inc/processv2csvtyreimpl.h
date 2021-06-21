@@ -5,7 +5,7 @@
 namespace pcars
 {
 
-    class ProcessV2CSVTelemetryImpl : public ProcessV2CSVImpl
+    class ProcessV2CSVTyreImpl : public ProcessV2CSVImpl
     {
     public:
         using TrackName = ProcessV2CSVImpl::TrackName;
@@ -13,8 +13,8 @@ namespace pcars
         using State = unsigned int;
         using TimeStamp = std::string;
 
-        ProcessV2CSVTelemetryImpl();
-        ~ProcessV2CSVTelemetryImpl() override = default;
+        ProcessV2CSVTyreImpl();
+        ~ProcessV2CSVTyreImpl() override = default;
 
         TrackName getTrackName(Packet::Ptr &) override;
 
