@@ -4,6 +4,8 @@
 
 Currently in the process of producing csv files of each lap.
 
+See build instructions below.
+
 After building, run the following to get a basic unfinshed csv file: 
 ```
 cd build
