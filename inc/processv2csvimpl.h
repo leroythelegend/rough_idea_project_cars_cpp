@@ -15,7 +15,7 @@ namespace pcars
     };
 
     struct Telemetery
-	{
+    {
         // unsigned int unfilteredthrottle = 0;
         // unsigned int unfilteredbrake = 0;
         // int unfilteredsteering = 0;
@@ -25,42 +25,70 @@ namespace pcars
         // int steering = 0;
         // unsigned int clutch = 0;
         std::vector<float> elements;
-		float tick = 1;
-	};
+        float tick = 1;
+    };
 
     struct TelemetryData
-	{
-		std::vector<std::string> names;
-		std::vector<std::vector<float>> telemetry;
-	};
+    {
+        using Ptr = std::unique_ptr<TelemetryData>;
+        std::vector<std::string> names;
+        std::vector<std::vector<float>> telemetry;
+    };
 
     class ProcessV2CSVImpl
     {
     public:
-        using TrackName = std::string;
         using Ptr = std::shared_ptr<ProcessV2CSVImpl>;
+        using TrackName = std::string;
+        using TimeStamp = std::string;
+        using Lap = unsigned int;
+        using Type = std::string;
+        using Names = std::vector<std::string>;
+        using State = unsigned int;
 
+        ProcessV2CSVImpl(const Type &, const Names &);
         virtual ~ProcessV2CSVImpl() = default;
 
-        virtual TrackName getTrackName(Packet::Ptr &) = 0;
-
-        virtual void updateTimingData(Packet::Ptr &) = 0;
-        virtual void updateNextLap(Packet::Ptr &) = 0;
-        virtual void updateRaceState(Packet::Ptr &) = 0;
-        virtual void updateTrackName(Packet::Ptr &) = 0;
         virtual void updateTelemetry(Packet::Ptr &) = 0;
 
-        virtual void updateCurrentLap() = 0;
+        virtual TrackName getTrackName(Packet::Ptr &);
 
-        virtual bool isFirstOutLapFinshed() const = 0;
-        virtual bool isThisANewLap() const = 0;
-        virtual bool isThisTheFirstLap() const = 0;
-        virtual bool isTelemetryEmpty() const = 0;
+        virtual void updateTimingData(Packet::Ptr &);
+        virtual void updateNextLap(Packet::Ptr &);
+        virtual void updateRaceState(Packet::Ptr &);
+        virtual void updateTrackName(Packet::Ptr &);
 
-        virtual void updateLapWithCapturedTelemetry() = 0;
-        virtual void writeCapturedTelemetryToCSV() = 0;
+        virtual void updateCurrentLap();
 
-        virtual void reset() = 0;
+        virtual bool isFirstOutLapFinshed() const;
+        virtual bool isThisANewLap() const;
+        virtual bool isThisTheFirstLap() const;
+        virtual bool isTelemetryEmpty() const;
+
+        virtual void updateLapWithCapturedTelemetry();
+        virtual void writeCapturedTelemetryToCSV();
+
+        virtual void reset();
+
+    protected:
+        static TimeStamp createTimeStamp();
+        static void createCSVFile(const TrackName &,
+                                  const Lap lap,
+                                  const TelemetryData::Ptr &data,
+                                  const Type &);
+        const Lap NOTALAP = 0xFFFFFFFF;
+
+        unsigned int currentlap_ = NOTALAP;
+        Type type_;
+        Names names_;
+        CurrentTime currenttime_;
+        Lap nextlap_ = 0;
+        State state_ = 0;
+        TrackName trackname_;
+        bool havetrackname_ = false;
+        Telemetery telemetry_;
+
+        TelemetryData::Ptr data_;
     };
 
 } // namespace pcars
