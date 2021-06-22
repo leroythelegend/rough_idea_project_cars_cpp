@@ -84,6 +84,7 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/transportudp.cpp
                       ./src/processv2csv.cpp
                       ./src/csvencoder.cpp
+                      ./src/processv2csvimpl.cpp
                       ./src/processv2csvtyreimpl.cpp
                       ./src/processv2csvsupimpl.cpp)
 
