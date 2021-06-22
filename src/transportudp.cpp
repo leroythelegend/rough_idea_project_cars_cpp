@@ -22,90 +22,99 @@
 
 #include <string>
 
-using std::to_string;
 using std::string;
+using std::to_string;
 
-namespace pcars {
+namespace pcars
+{
 
-TransportUDP::TransportUDP(const Port port) {
+    TransportUDP::TransportUDP(const Port port)
+    {
 
-    struct addrinfo hints, *servinfo, *p;
-    int rv = 0;
+        struct addrinfo hints, *servinfo, *p;
+        int rv = 0;
 
-    string sport = to_string(port);
+        string sport = to_string(port);
 
-    memset(&hints, 0, sizeof hints);
-    hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
-    hints.ai_socktype = SOCK_DGRAM;
-    hints.ai_flags = AI_PASSIVE; // use my IP
+        memset(&hints, 0, sizeof hints);
+        hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
+        hints.ai_socktype = SOCK_DGRAM;
+        hints.ai_flags = AI_PASSIVE; // use my IP
 
-    if ((rv = getaddrinfo(NULL, sport.c_str(), &hints, &servinfo)) != 0) {
-        string msg("getaddrinfo error ");
-        msg.append(gai_strerror(rv));
-        throw PCars_Exception(msg);
-    }
-
-    // loop through all the results and bind to the first we can
-
-
-
-    for(p = servinfo; p != NULL; p = p->ai_next) {
-        if ((socketfd_ = socket(p->ai_family, p->ai_socktype,
-                p->ai_protocol)) == -1) {
-            continue;
+        if ((rv = getaddrinfo(NULL, sport.c_str(), &hints, &servinfo)) != 0)
+        {
+            string msg("getaddrinfo error ");
+            msg.append(gai_strerror(rv));
+            throw PCars_Exception(msg);
         }
 
-        if (bind(socketfd_, p->ai_addr, p->ai_addrlen) == -1) {
-            ::close(socketfd_);
-            continue;
+        // loop through all the results and bind to the first we can
+
+        for (p = servinfo; p != NULL; p = p->ai_next)
+        {
+            if ((socketfd_ = socket(p->ai_family, p->ai_socktype,
+                                    p->ai_protocol)) == -1)
+            {
+                continue;
+            }
+
+            int one = 1;
+            setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &one, sizeof(one));
+
+            if (bind(socketfd_, p->ai_addr, p->ai_addrlen) == -1)
+            {
+                ::close(socketfd_);
+                continue;
+            }
+
+            break;
         }
 
-        break;
+        if (p == NULL)
+        {
+            string msg("socket or bind ");
+            msg.append(to_string(errno));
+            throw PCars_Exception(msg);
+        }
+
+        freeaddrinfo(servinfo);
     }
 
-    if (p == NULL) {
-        string msg("socket or bind ");
-        msg.append(to_string(errno));
-        throw PCars_Exception(msg);
+    TransportUDP::~TransportUDP()
+    {
+        close(socketfd_);
     }
 
-    freeaddrinfo(servinfo);
-}
+    PCars_Data TransportUDP::read(const Amount amount)
+    {
 
-TransportUDP::~TransportUDP() {
-	close(socketfd_);
-}
+        int numbytes;
+        struct sockaddr_storage their_addr;
+        socklen_t addr_len = sizeof their_addr;
 
-
-PCars_Data TransportUDP::read(const Amount amount) {
-
-    int numbytes;
-    struct sockaddr_storage their_addr;
-    socklen_t addr_len = sizeof their_addr;
-
-    PCars_Data buffer(amount);
+        PCars_Data buffer(amount);
 
 #ifdef _WIN32
-    if ((numbytes = recvfrom(socketfd_, reinterpret_cast<char *>(buffer.data()), amount , 0,
-        (struct sockaddr *)&their_addr, &addr_len)) == -1) {
-    	throw PCars_Exception(__LINE__, __FILE__, errno, "recvfrom");
-    }
+        if ((numbytes = recvfrom(socketfd_, reinterpret_cast<char *>(buffer.data()), amount, 0,
+                                 (struct sockaddr *)&their_addr, &addr_len)) == -1)
+        {
+            throw PCars_Exception(__LINE__, __FILE__, errno, "recvfrom");
+        }
 #else
-	if ((numbytes = recvfrom(socketfd_, buffer.data(), amount, 0,
-		(struct sockaddr *)&their_addr, &addr_len)) == -1) {
-		throw PCars_Exception("recvfrom");
-	}
+        if ((numbytes = recvfrom(socketfd_, buffer.data(), amount, 0,
+                                 (struct sockaddr *)&their_addr, &addr_len)) == -1)
+        {
+            throw PCars_Exception("recvfrom");
+        }
 #endif
 
-    buffer.resize(numbytes);
+        buffer.resize(numbytes);
 
-    return buffer;
+        return buffer;
+    }
+
+    void TransportUDP::write(const PCars_Data &)
+    {
+    }
+
 }
-
-void TransportUDP::write(const PCars_Data & ) {
-
-}
-
-
-}
-
