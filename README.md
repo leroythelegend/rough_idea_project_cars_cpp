@@ -7,7 +7,7 @@ Currently in the process of producing csv files of each lap.
 After building, run the following to get a basic unfinshed csv file: 
 ```
 cd build
-./pcarscsv -v2
+./pcarscsv
 ```
 Then I have been loading the csv files into plotJuggler-3.
 
