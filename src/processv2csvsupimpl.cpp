@@ -15,7 +15,10 @@ namespace pcars
                                         "unfiltered_brake", "unfiltered_steering",
                                         "unfiltered_clutch", "throttle",
                                         "brake", "steering", "clutch",
-                                        "ride_height_fl", "ride_height_fr", "ride_height_rl", "ride_heightrr"};
+                                        "ride_height_fl", "ride_height_fr", "ride_height_rl", "ride_height_rr",
+                                        "suspension_travel_fl", "suspension_travel_fr", "suspension_travel_rl", "suspension_travel_rr",
+                                        "suspension_velocity_fl", "suspension_velocity_fr", "suspension_velocity_rl", "suspension_velocity_rr",
+                                        "suspension_ride_height_fl", "suspension_ride_height_fr", "suspension_ride_height_rl", "suspension_ride_height_rr"};
 
     ProcessV2CSVSupImpl::ProcessV2CSVSupImpl()
         : ProcessV2CSVImpl("sup", supnames)
@@ -44,6 +47,21 @@ namespace pcars
             telemetry_.elements.push_back(p->ride_height().at(1));
             telemetry_.elements.push_back(p->ride_height().at(2));
             telemetry_.elements.push_back(p->ride_height().at(3));
+
+            telemetry_.elements.push_back(p->suspension_travel().at(0));
+            telemetry_.elements.push_back(p->suspension_travel().at(1));
+            telemetry_.elements.push_back(p->suspension_travel().at(2));
+            telemetry_.elements.push_back(p->suspension_travel().at(3));
+
+            telemetry_.elements.push_back(p->suspension_velocity().at(0));           
+            telemetry_.elements.push_back(p->suspension_velocity().at(1));            
+            telemetry_.elements.push_back(p->suspension_velocity().at(2));            
+            telemetry_.elements.push_back(p->suspension_velocity().at(3));
+
+            telemetry_.elements.push_back(p->suspension_ride_height().at(0));          
+            telemetry_.elements.push_back(p->suspension_ride_height().at(1));          
+            telemetry_.elements.push_back(p->suspension_ride_height().at(2));          
+            telemetry_.elements.push_back(p->suspension_ride_height().at(3));          
         }
     }
 }
