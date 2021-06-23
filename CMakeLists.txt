@@ -87,6 +87,7 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvimpl.cpp
                       ./src/processv2csvtyreimpl.cpp
                       ./src/processv2csvinputsimpl.cpp
+                      ./src/processv2csvengineimpl.cpp
                       ./src/processv2csvsupimpl.cpp)
 
 target_include_directories(rispcars PUBLIC

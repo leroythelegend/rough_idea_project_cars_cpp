@@ -8,7 +8,8 @@ namespace pcars
     ProcessV2CSVImpl::Names inputnames = {"time", "distance", "unfiltered_throttle",
                                         "unfiltered_brake", "unfiltered_steering",
                                         "unfiltered_clutch", "throttle",
-                                        "brake", "steering", "clutch", "handbrake"};
+                                        "brake", "steering", "clutch", "handbrake", 
+                                        "gears", "gear"};
 
     ProcessV2CSVInputsImpl::ProcessV2CSVInputsImpl()
         : ProcessV2CSVImpl("inputs", inputnames) {}
@@ -29,7 +30,11 @@ namespace pcars
             telemetry_.elements.push_back(p->brake());
             telemetry_.elements.push_back(p->steering());
             telemetry_.elements.push_back(p->clutch());
-            telemetry_.elements.push_back(p->handbrake());      
+            telemetry_.elements.push_back(p->handbrake());
+            telemetry_.elements.push_back(p->gears());
+            telemetry_.elements.push_back(p->gear());
+
+               
         }
     }
 }

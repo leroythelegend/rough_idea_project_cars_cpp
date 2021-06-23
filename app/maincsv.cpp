@@ -6,6 +6,7 @@
 #include "../inc/processv2csvtyreimpl.h"
 #include "../inc/processv2csvsupimpl.h"
 #include "../inc/processv2csvinputsimpl.h"
+#include "../inc/processv2csvengineimpl.h"
 
 #include <iostream>
 #include <string>
@@ -57,6 +58,24 @@ int main(int argc, char *argv[]) {
 		try {
 			TelemetryV2 telemetry;
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVInputsImpl>()));
+		}
+		catch (PCars_Exception & e) {
+			e.what();
+		}
+		catch (exception & e) {
+			e.what();
+			return 1;
+		}
+		catch (...) {
+			return 1;
+		}
+		return 0;
+	});
+
+	thread engine([](){
+		try {
+			TelemetryV2 telemetry;
+			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVEngineImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			e.what();
