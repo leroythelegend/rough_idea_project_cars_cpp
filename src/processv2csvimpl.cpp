@@ -40,7 +40,10 @@ namespace pcars
     ProcessV2CSVImpl::ProcessV2CSVImpl(const Type &type, const Names &names)
         : type_{type},
           names_{names},
-          data_{make_unique<TelemetryData>()} {}
+          data_{make_unique<TelemetryData>()} 
+    {
+        data_->names = names_;
+    }
 
     ProcessV2CSVImpl::TrackName ProcessV2CSVImpl::getTrackName(Packet::Ptr &packet)
     {

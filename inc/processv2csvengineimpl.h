@@ -5,11 +5,11 @@
 namespace pcars
 {
 
-    class ProcessV2CSVTyreImpl : public ProcessV2CSVImpl
+    class ProcessV2CSVEngineImpl : public ProcessV2CSVImpl
     {
     public:
-        ProcessV2CSVTyreImpl();
-        ~ProcessV2CSVTyreImpl() override = default;
+        ProcessV2CSVEngineImpl();
+        ~ProcessV2CSVEngineImpl() override = default;
 
         void updateTelemetry(Packet::Ptr &) override;
     };
