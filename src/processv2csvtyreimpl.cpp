@@ -1,20 +1,11 @@
 #include "../inc/processv2csvtyreimpl.h"
-#include "../inc/packetracedata.h"
-#include "../inc/packettimingdata.h"
 #include "../inc/packettelemetrydata.h"
-#include "../inc/csvencoder.h"
-
-#include <vector>
-#include <thread>
 
 using namespace std;
 
 namespace pcars
 {
-    ProcessV2CSVImpl::Names tyrenames = {"time", "distance", "unfiltered_throttle",
-                                         "unfiltered_brake", "unfiltered_steering",
-                                         "unfiltered_clutch", "throttle",
-                                         "brake", "steering", "clutch",
+    ProcessV2CSVImpl::Names tyrenames = {"time", "distance", 
                                          "tyre_rps_fl", "tyre_rps_fr", "tyre_rps_rl", "tyre_rps_rr",
                                          "tyre_y_fl", "tyre_y_fr", "tyre_y_rl", "tyre_y_rr",
                                          "tyre_temp_fl", "tyre_temp_fr", "tyre_temp_rl", "tyre_temp_rr",
@@ -32,10 +23,7 @@ namespace pcars
                                          "air_pressure_fl", "air_pressure_fr", "air_pressure_rl", "air_pressure_rr"};
 
     ProcessV2CSVTyreImpl::ProcessV2CSVTyreImpl()
-        : ProcessV2CSVImpl("tyres", tyrenames)
-    {
-        data_->names = names_;
-    }
+        : ProcessV2CSVImpl("tyres", tyrenames) {}
 
     void ProcessV2CSVTyreImpl::updateTelemetry(Packet::Ptr &packet)
     {
@@ -45,14 +33,6 @@ namespace pcars
             telemetry_.tick = p->tick_count();
 
             telemetry_.elements.clear();
-            telemetry_.elements.push_back(p->unfiltered_throttle());
-            telemetry_.elements.push_back(p->unfiltered_brake());
-            telemetry_.elements.push_back(p->unfiltered_steering());
-            telemetry_.elements.push_back(p->unfiltered_clutch());
-            telemetry_.elements.push_back(p->throttle());
-            telemetry_.elements.push_back(p->brake());
-            telemetry_.elements.push_back(p->steering());
-            telemetry_.elements.push_back(p->clutch());
 
             telemetry_.elements.push_back(p->tyre_rps().at(0));
             telemetry_.elements.push_back(p->tyre_rps().at(1));
