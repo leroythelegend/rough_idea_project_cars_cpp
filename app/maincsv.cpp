@@ -7,6 +7,7 @@
 #include "../inc/processv2csvsupimpl.h"
 #include "../inc/processv2csvinputsimpl.h"
 #include "../inc/processv2csvengineimpl.h"
+#include "../inc/processv2csvforceimpl.h"
 
 #include <iostream>
 #include <string>
@@ -90,9 +91,29 @@ int main(int argc, char *argv[]) {
 		return 0;
 	});
 
+	thread force([](){
+		try {
+			TelemetryV2 telemetry;
+			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVForceImpl>()));
+		}
+		catch (PCars_Exception & e) {
+			e.what();
+		}
+		catch (exception & e) {
+			e.what();
+			return 1;
+		}
+		catch (...) {
+			return 1;
+		}
+		return 0;
+	});
+
 	tyres.join();
 	sups.join();
 	inputs.join();
+	engine.join();
+	force.join();
 
 	return 0;
 }

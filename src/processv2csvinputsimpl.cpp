@@ -9,7 +9,7 @@ namespace pcars
                                         "unfiltered_brake", "unfiltered_steering",
                                         "unfiltered_clutch", "throttle",
                                         "brake", "steering", "clutch", "handbrake", 
-                                        "gears", "gear"};
+                                        "gears", "gear", "brake_bias"};
 
     ProcessV2CSVInputsImpl::ProcessV2CSVInputsImpl()
         : ProcessV2CSVImpl("inputs", inputnames) {}
@@ -33,7 +33,7 @@ namespace pcars
             telemetry_.elements.push_back(p->handbrake());
             telemetry_.elements.push_back(p->gears());
             telemetry_.elements.push_back(p->gear());
-
+            telemetry_.elements.push_back(p->brake_bias());
                
         }
     }
