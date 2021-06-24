@@ -20,7 +20,12 @@ namespace pcars
                                          "tyre_center_temp_fl", "tyre_center_temp_fr", "tyre_center_temp_rl", "tyre_center_temp_rr",
                                          "tyre_right_temp_fl", "tyre_right_temp_fr", "tyre_right_temp_rl", "tyre_right_temp_rr",
                                          "wheel_local_position_y_fl", "wheel_local_position_y_fr", "wheel_local_position_y_rl", "wheel_local_position_y_rr",
-                                         "air_pressure_fl", "air_pressure_fr", "air_pressure_rl", "air_pressure_rr"};
+                                         "air_pressure_fl", "air_pressure_fr", "air_pressure_rl", "air_pressure_rr",
+                                         "brake_temp_celsius_fl", "brake_temp_celsius_fr", "brake_temp_celsius_rl", "brake_temp_celsius_rr"};
+
+
+
+
 
     ProcessV2CSVTyreImpl::ProcessV2CSVTyreImpl()
         : ProcessV2CSVImpl("tyres", tyrenames) {}
@@ -108,6 +113,15 @@ namespace pcars
             telemetry_.elements.push_back(p->air_pressure().at(1));
             telemetry_.elements.push_back(p->air_pressure().at(2));
             telemetry_.elements.push_back(p->air_pressure().at(3));
+
+            telemetry_.elements.push_back(p->brake_temp_celsius().at(0));
+            telemetry_.elements.push_back(p->brake_temp_celsius().at(1));
+            telemetry_.elements.push_back(p->brake_temp_celsius().at(2));
+            telemetry_.elements.push_back(p->brake_temp_celsius().at(3));
+
+
+
+            
         }
     }
 }
