@@ -49,7 +49,7 @@ cd build
 ./pcarscsv
 ```
 
-This will produce a set of CSV files for each lap, note the very first out lap is NOT recorded.
+This will produce a set of CSV files for each lap in the current directory, note the very first out lap is NOT recorded.
 
 I use plotjuggler-3 to view the CSV files (https://github.com/facontidavide/PlotJuggler).
 
