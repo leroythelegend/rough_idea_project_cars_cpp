@@ -16,11 +16,7 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 
 ## <a name="P-Building"></a> Building
 
-### MAC
-
-Have not tried since changing to cmake
-
-### Linux
+### Linux and MAC
 
 ```
 # mkdir build; cd build
