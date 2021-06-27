@@ -135,19 +135,19 @@ int PacketTelemetryDataV1::num_participants() const {
 	return numparticipants_.s8();
 }
 
-float PacketTelemetryDataV1::unfiltered_throttle() const {
+unsigned int PacketTelemetryDataV1::unfiltered_throttle() const {
 	return unfilteredthrottle_.u8();
 }
 
-float PacketTelemetryDataV1::unfiltered_brake() const {
+unsigned int PacketTelemetryDataV1::unfiltered_brake() const {
 	return unfilteredbrake_.u8();
 }
 
-float PacketTelemetryDataV1::unfiltered_steering() const {
+int PacketTelemetryDataV1::unfiltered_steering() const {
 	return unfilteredsteering_.s8();
 }
 
-float PacketTelemetryDataV1::unfiltered_clutch() const {
+unsigned int PacketTelemetryDataV1::unfiltered_clutch() const {
 	return unfilteredclutch_.u8();
 }
 
@@ -299,7 +299,7 @@ unsigned int PacketTelemetryDataV1::throttle() const {
 	return throttle_.u8();
 }
 
-float PacketTelemetryDataV1::clutch() const {
+unsigned int PacketTelemetryDataV1::clutch() const {
 	return clutch_.u8();
 }
 
@@ -511,7 +511,7 @@ PacketTelemetryDataV1::Vector_Participant_Info PacketTelemetryDataV1::participan
 	return paricipantinfo_.participant_info();
 }
 
-unsigned int PacketTelemetryDataV1::track_length() const {
+float PacketTelemetryDataV1::track_length() const {
 	return tracklength_.f32();
 }
 

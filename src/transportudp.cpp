@@ -4,10 +4,10 @@
 
 #ifdef _WIN32
 
-#define close closesocket
+// #define close closesocket
 
-#pragma comment(lib, "Ws2_32.lib")
-#include <Ws2tcpip.h>
+// #pragma comment(lib, "Ws2_32.lib")
+// #include <Ws2tcpip.h>
 
 #else
 
@@ -21,15 +21,33 @@
 #endif
 
 #include <string>
+#include <iostream>
 
-using std::string;
-using std::to_string;
+using namespace std;
 
 namespace pcars
 {
 
     TransportUDP::TransportUDP(const Port port)
     {
+
+#ifdef _WIN32
+
+// #define close closesocket
+
+// #pragma comment(lib, "Ws2_32.lib")
+// #include <Ws2tcpip.h>
+    WORD wVersionRequested;
+    WSADATA wsaData;
+    // int err;
+
+/* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
+    wVersionRequested = MAKEWORD(2, 2);
+
+    WSAStartup(wVersionRequested, &wsaData);
+
+#endif
+
 
         struct addrinfo hints, *servinfo, *p;
         int rv = 0;
@@ -58,14 +76,26 @@ namespace pcars
                 continue;
             }
 
+            
+#ifdef _WIN32
+            BOOL bOptVal = TRUE;
+            int bOptLen = sizeof (BOOL);
+            if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR, (char *)&bOptVal, sizeof(bOptLen)) == SOCKET_ERROR)
+            {
+                cout << "setsockopt" << endl;
+                ::close(socketfd_);
+                continue;
+            }
+#else
             int one = 1;
             if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEPORT, &one, sizeof(one)))
             {
                 ::close(socketfd_);
                 continue;
             }
-
-            if (bind(socketfd_, p->ai_addr, p->ai_addrlen) == -1)
+ 
+#endif
+            if (bind(socketfd_, p->ai_addr, (int)p->ai_addrlen) == -1)
             {
                 ::close(socketfd_);
                 continue;
@@ -102,7 +132,7 @@ namespace pcars
         if ((numbytes = recvfrom(socketfd_, reinterpret_cast<char *>(buffer.data()), amount, 0,
                                  (struct sockaddr *)&their_addr, &addr_len)) == -1)
         {
-            throw PCars_Exception(__LINE__, __FILE__, errno, "recvfrom");
+            throw PCars_Exception("recvfrom");
         }
 #else
         if ((numbytes = recvfrom(socketfd_, buffer.data(), amount, 0,

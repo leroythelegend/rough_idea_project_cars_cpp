@@ -12,13 +12,21 @@ namespace pcars
     ProcessV2CSVImpl::TimeStamp ProcessV2CSVImpl::createTimeStamp()
     {
         time_t rawtime;
-        struct tm *timeinfo;
+        
         char buffer[80];
 
         time(&rawtime);
+#ifdef _WIN32
+        struct tm timeinfo;
+        localtime_s(&timeinfo, &rawtime);
+         strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", &timeinfo);
+#else
+        struct tm *timeinfo;
         timeinfo = localtime(&rawtime);
+         strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+#endif
 
-        strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+       
         return std::string(buffer);
     }
 
@@ -105,7 +113,7 @@ namespace pcars
             nextlap_ == currentlap_ &&
             !telemetry_.elements.empty())
         {
-            vector<float> row;
+            vector<double> row;
             row.push_back(currenttime_.time);
             row.push_back(currenttime_.distance);
             for (auto element : telemetry_.elements)
