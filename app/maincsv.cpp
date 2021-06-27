@@ -27,10 +27,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVTyreImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -45,10 +45,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVSupImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -63,10 +63,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVInputsImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -81,10 +81,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVEngineImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -99,10 +99,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVForceImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -117,10 +117,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVRaceLineImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {
@@ -135,10 +135,10 @@ int main(int argc, char *argv[]) {
 			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVWeatherImpl>()));
 		}
 		catch (PCars_Exception & e) {
-			e.what();
+			cout << e.what() << endl;
 		}
 		catch (exception & e) {
-			e.what();
+			cout << e.what() << endl;
 			return 1;
 		}
 		catch (...) {

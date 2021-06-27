@@ -59,7 +59,11 @@ namespace pcars
             }
 
             int one = 1;
-            setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &one, sizeof(one));
+            if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEPORT, &one, sizeof(one)))
+            {
+                ::close(socketfd_);
+                continue;
+            }
 
             if (bind(socketfd_, p->ai_addr, p->ai_addrlen) == -1)
             {
