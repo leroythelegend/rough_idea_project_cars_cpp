@@ -1,25 +1,9 @@
 # Rough Idea Project Cars C++
 
-# Current Project
-
-Currently in the process of producing csv files of each lap.
-
-See build instructions below.
-
-After building, run the following to get a basic unfinshed csv file: 
-```
-cd build
-./pcarscsv
-```
-Then I have been loading the csv files into plotJuggler-3.
-
 ## Description
 
-Simpler CPP Classes for capturing and processing Project Cars UDP packets.
+Simple CPP Classes for capturing and processing Project Cars UDP packets.
 
-Example of all the format 1 and format 2 attributes can be seen in myprocess.cpp.
-
-NOTE: I'm still updating the comments for the Packets.
 
 Also have done some classes in CSharp https://github.com/leroythelegend/rough_idea_project_cars_csharp and swift https://github.com/leroythelegend/rough_idea_project_cars_swift
 
@@ -27,6 +11,7 @@ Also have done some classes in CSharp https://github.com/leroythelegend/rough_id
 ## Contents
 
 * [Building the repo](#P-Building) Mac Linux and Windows
+* [CSV Files](#P-CSV) CSV Files
 * [Tutorial](#P-Tutorial)
 
 ## <a name="P-Building"></a> Building
@@ -54,6 +39,20 @@ This will not do anything until you go out on the track and then each of the imp
 ### Windows
 
 No idea, use visual studio, I'll have  to get around to running this on windows I'm little worried about windows does not export symbols from a dll which would be problamatic I'm sure there must be a compiler flag that flips this behaviour and you can flip it back if need be. I have added some win socket code so I'm hoping if it compiles it will work. Never Tested on win :-(
+
+## <a name="P-CSV"></a> CSV Files
+
+To capture set of CSV files run
+
+```
+cd build
+./pcarscsv
+```
+
+This will produce a set of CSV files for each lap, note the very first out lap is NOT recorded.
+
+I use plotjuggler-3 to view the CSV files (https://github.com/facontidavide/PlotJuggler).
+
 
 ## <a name="P-Tutorial"></a> Tutorial
 
