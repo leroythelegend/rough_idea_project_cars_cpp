@@ -42,7 +42,7 @@ No idea, use visual studio, I'll have  to get around to running this on windows 
 
 ## <a name="P-CSV"></a> CSV Files
 
-To capture set of CSV files run
+To capture set of CSV files run the following after building the source.
 
 ```
 cd build
