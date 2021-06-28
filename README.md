@@ -56,6 +56,8 @@ This is what I did to build on windows
 
 To capture set of CSV files run the following after building the source. (Only captures pcars version 2 packets)
 
+NOTE the following is different on Windows see windows section above. Also you can copy pcarscsv to another directory and run from there if you want to save the CSV files in a more permanent dirctory.
+
 ```
 cd build
 ./pcarscsv
