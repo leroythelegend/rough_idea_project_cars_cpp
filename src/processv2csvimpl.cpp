@@ -2,8 +2,10 @@
 #include "../inc/packetracedata.h"
 #include "../inc/packettimingdata.h"
 #include "../inc/csvencoder.h"
+#include "../inc/exception.h"
 
 #include <thread>
+#include <iostream>
 
 using namespace std;
 
@@ -130,7 +132,24 @@ namespace pcars
     void ProcessV2CSVImpl::writeCapturedTelemetryToCSV()
     {
         thread t([](TrackName name, Lap lap, unique_ptr<TelemetryData> data, const Type &type)
-                 { ProcessV2CSVImpl::createCSVFile(name, lap, data, type); },
+                 {
+                     try
+                     {
+                         ProcessV2CSVImpl::createCSVFile(name, lap, data, type);
+                     }
+                     catch (PCars_Exception &e)
+                     {
+                         cout << e.what() << endl;
+                     }
+                     catch (exception &e)
+                     {
+                         cout << e.what() << endl;
+                     }
+                     catch (...)
+                     {
+                         cout << "Unknown error creating csv file" << endl;
+                     }
+                 },
                  trackname_, currentlap_, move(data_), type_);
         t.detach();
 
