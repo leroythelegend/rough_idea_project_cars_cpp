@@ -102,11 +102,18 @@ add_executable(mypcars ./app/main.cpp)
 target_include_directories(mypcars PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(mypcars rispcars)
+install(TARGETS mypcars
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    )
+
 
 add_executable(pcarscsv ./app/maincsv.cpp)
 target_include_directories(pcarscsv PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(pcarscsv rispcars)
+install(TARGETS pcarscsv
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
