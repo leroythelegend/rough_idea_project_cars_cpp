@@ -47,18 +47,10 @@ This is what I did to build on windows
 - VSCode had a pop-up to configure to use CMake, I clicked yes
 - Then clicked the build button at the bottom of VSCode
 - This then built the executables in ./build/Debug (If you changed from debug to release it will be in Release instead of Debug)
-- I then copied the exe mypcars or pcarscsv.
+- I then copied the exe pcarscsv to a empty folder.
+- Ran pcarscsv from the empty folder (NOTE the very first out lap is not captured, CSV files are created for each lap after the very first out lap).
 - To exit I just used ctrl-c
 
-To run open command line (cmd) and run. (NOTE pcarscsv you can double click the icon but mypcars needs some arguments which you can set using the right mouse button and setting them in the menu.)
-
-```
-mypcars [-v1|-v2]
-```
-or
-```
-pcarscsv
-```
  
 ## <a name="P-CSV"></a> CSV Files
 
