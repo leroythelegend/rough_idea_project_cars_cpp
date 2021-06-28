@@ -29,16 +29,40 @@ To run cd build
 ```
 ./mypcars [-v1|-v2]
 ```
+or
+```
+./pcarscsv
+```
 
 This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
 
 ### Windows
 
-No idea, use visual studio, I'll have  to get around to running this on windows I'm little worried about windows does not export symbols from a dll which would be problamatic I'm sure there must be a compiler flag that flips this behaviour and you can flip it back if need be. I have added some win socket code so I'm hoping if it compiles it will work. Never Tested on win :-(
+This is what I did to build on windows 
 
+- Installed vscode
+- Open the repo in vscode
+- Installed the C++ intelliSense from microsoft
+- Installed the CMake Tools plugin from microsoft
+- VSCode had a pop-up to configure to use CMake, I clicked yes
+- Then clicked the build button at the bottom of VSCode
+- This then built the executables in ./build/Debug (If you changed from debug to release it will be in Release instead of Debug)
+- I then copied the exe mypcars or pcarscsv.
+- To exit I just used ctrl-c
+
+To run open command line (cmd) and run. (NOTE pcarscsv you can double click the icon but mypcars needs some arguments which you can set using the right mouse button and setting them in the menu.)
+
+```
+mypcars [-v1|-v2]
+```
+or
+```
+pcarscsv
+```
+ 
 ## <a name="P-CSV"></a> CSV Files
 
-To capture set of CSV files run the following after building the source.
+To capture set of CSV files run the following after building the source. (Only captures pcars version 2 packets)
 
 ```
 cd build
