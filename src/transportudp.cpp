@@ -35,47 +35,44 @@ namespace pcars
 
 #define close closesocket
 
-    WORD wVersionRequested;
-    WSADATA wsaData;
+        WORD wVersionRequested;
+        WSADATA wsaData;
 
-/* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
-    wVersionRequested = MAKEWORD(2, 2);
+        /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
+        wVersionRequested = MAKEWORD(2, 2);
 
-    WSAStartup(wVersionRequested, &wsaData);
-	struct sockaddr_in server, si_other;
-	int slen;
+        WSAStartup(wVersionRequested, &wsaData);
+        struct sockaddr_in server, si_other;
+        int slen;
 
-	slen = sizeof(si_other) ;
-	
-	//Create a socket
-	if((socketfd_ = socket(AF_INET , SOCK_DGRAM , 0 )) == INVALID_SOCKET)
-	{
-        throw PCars_Exception("socket " +  WSAGetLastError());
-		
-	}
-	
-            BOOL bOptVal = TRUE;
-            int bOptLen = sizeof (BOOL);
-            if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR, (char *)&bOptVal, sizeof(bOptLen)) == SOCKET_ERROR)
-            {
-                cout << "setsockopt" << endl;
-                ::close(socketfd_);
-        throw PCars_Exception("setsockopt " +  WSAGetLastError());
-                
-            }
+        slen = sizeof(si_other);
 
-	//Prepare the sockaddr_in structure
-	server.sin_family = AF_INET;
-	server.sin_addr.s_addr = INADDR_ANY;
-	server.sin_port = htons( port );
-	
-	//Bind
-	if( bind(socketfd_ ,(struct sockaddr *)&server , sizeof(server)) == SOCKET_ERROR)
-	{
-        throw PCars_Exception("bind " +  WSAGetLastError());
-	}
+        //Create a socket
+        if ((socketfd_ = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET)
+        {
+            throw PCars_Exception("socket " + WSAGetLastError());
+        }
+
+        BOOL bOptVal = TRUE;
+        int bOptLen = sizeof(BOOL);
+        if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR, (char *)&bOptVal, sizeof(bOptLen)) == SOCKET_ERROR)
+        {
+            cout << "setsockopt" << endl;
+            ::close(socketfd_);
+            throw PCars_Exception("setsockopt " + WSAGetLastError());
+        }
+
+        //Prepare the sockaddr_in structure
+        server.sin_family = AF_INET;
+        server.sin_addr.s_addr = INADDR_ANY;
+        server.sin_port = htons(port);
+
+        //Bind
+        if (bind(socketfd_, (struct sockaddr *)&server, sizeof(server)) == SOCKET_ERROR)
+        {
+            throw PCars_Exception("bind " + WSAGetLastError());
+        }
 #else
-
 
         struct addrinfo hints, *servinfo, *p;
         int rv = 0;
@@ -104,25 +101,13 @@ namespace pcars
                 continue;
             }
 
-            
-#ifdef _WIN32
-            BOOL bOptVal = TRUE;
-            int bOptLen = sizeof (BOOL);
-            if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR, (char *)&bOptVal, sizeof(bOptLen)) == SOCKET_ERROR)
-            {
-                cout << "setsockopt" << endl;
-                ::close(socketfd_);
-                continue;
-            }
-#else
             int one = 1;
             if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEPORT, &one, sizeof(one)))
             {
                 ::close(socketfd_);
                 continue;
             }
- 
-#endif
+
             if (bind(socketfd_, p->ai_addr, (int)p->ai_addrlen) == -1)
             {
                 ::close(socketfd_);
@@ -140,7 +125,7 @@ namespace pcars
         }
 
         freeaddrinfo(servinfo);
-#endif
+#endif // _WIN32
     }
 
     TransportUDP::~TransportUDP()

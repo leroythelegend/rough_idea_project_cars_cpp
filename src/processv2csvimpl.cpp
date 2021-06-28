@@ -12,21 +12,20 @@ namespace pcars
     ProcessV2CSVImpl::TimeStamp ProcessV2CSVImpl::createTimeStamp()
     {
         time_t rawtime;
-        
+
         char buffer[80];
 
         time(&rawtime);
 #ifdef _WIN32
         struct tm timeinfo;
         localtime_s(&timeinfo, &rawtime);
-         strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", &timeinfo);
+        strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", &timeinfo);
 #else
         struct tm *timeinfo;
         timeinfo = localtime(&rawtime);
-         strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+        strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", timeinfo);
 #endif
 
-       
         return std::string(buffer);
     }
 
@@ -47,7 +46,7 @@ namespace pcars
     ProcessV2CSVImpl::ProcessV2CSVImpl(const Type &type, const Names &names)
         : type_{type},
           names_{names},
-          data_{make_unique<TelemetryData>()} 
+          data_{make_unique<TelemetryData>()}
     {
         data_->names = names_;
     }
