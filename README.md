@@ -2,7 +2,7 @@
 
 ## Description
 
-Simple CPP Classes for capturing and processing Project Cars UDP packets.
+Simple CPP Classes for capturing and processing Project Cars UDP packets with a working example capturing CSV files.
 
 
 Also have done some classes in CSharp https://github.com/leroythelegend/rough_idea_project_cars_csharp and swift https://github.com/leroythelegend/rough_idea_project_cars_swift
