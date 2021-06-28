@@ -9,7 +9,7 @@ namespace pcars
     {
         if (!file_.is_open())
         {
-            throw PCars_Exception("cannot open csv file");
+            throw PCars_Exception("cannot open csv file " + filename);
         }
     }
 
