@@ -108,7 +108,7 @@ namespace pcars
                 continue;
             }
 
-            if (bind(socketfd_, p->ai_addr, p->ai_addrlen) == -1)
+            if (::bind(socketfd_, p->ai_addr, p->ai_addrlen))
             {
                 ::close(socketfd_);
                 continue;
