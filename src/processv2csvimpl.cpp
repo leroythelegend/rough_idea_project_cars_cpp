@@ -12,13 +12,20 @@ namespace pcars
     ProcessV2CSVImpl::TimeStamp ProcessV2CSVImpl::createTimeStamp()
     {
         time_t rawtime;
-        struct tm *timeinfo;
+
         char buffer[80];
 
         time(&rawtime);
+#ifdef _WIN32
+        struct tm timeinfo;
+        localtime_s(&timeinfo, &rawtime);
+        strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", &timeinfo);
+#else
+        struct tm *timeinfo;
         timeinfo = localtime(&rawtime);
+        strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", timeinfo);
+#endif
 
-        strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
         return std::string(buffer);
     }
 
@@ -28,10 +35,9 @@ namespace pcars
                                          const Type &type)
     {
         CSVEncoder encoder(trackname +
-                           " lap " +
+                           "_lap_" +
                            to_string(lap) +
-                           " " + type + " " +
-                           " " +
+                           "_" + type + "_" +
                            ProcessV2CSVImpl::createTimeStamp() +
                            ".csv");
         encoder.encode(data);
@@ -40,7 +46,7 @@ namespace pcars
     ProcessV2CSVImpl::ProcessV2CSVImpl(const Type &type, const Names &names)
         : type_{type},
           names_{names},
-          data_{make_unique<TelemetryData>()} 
+          data_{make_unique<TelemetryData>()}
     {
         data_->names = names_;
     }
@@ -105,7 +111,7 @@ namespace pcars
             nextlap_ == currentlap_ &&
             !telemetry_.elements.empty())
         {
-            vector<float> row;
+            vector<double> row;
             row.push_back(currenttime_.time);
             row.push_back(currenttime_.distance);
             for (auto element : telemetry_.elements)

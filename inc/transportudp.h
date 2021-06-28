@@ -2,6 +2,14 @@
 #define PCARS_TRANSPORT_UDP_H_
 
 #include "../inc/transport.h"
+#ifdef _WIN32
+
+#define close closesocket
+
+#pragma comment(lib, "Ws2_32.lib")
+#include <Ws2tcpip.h>
+
+#endif
 
 namespace pcars {
 
@@ -41,7 +49,11 @@ namespace pcars {
 		void write(const PCars_Data &) override;
 
 	private:
+#ifdef _WIN32
+		SOCKET socketfd_;
+#else
 		int socketfd_;
+#endif
 	};
 
 }

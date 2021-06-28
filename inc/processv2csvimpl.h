@@ -11,7 +11,7 @@ namespace pcars
     {
         float time = -1;
         unsigned int distance = 0;
-        float tick = 0;
+        double tick = 0;
     };
 
     struct Telemetery
@@ -24,15 +24,15 @@ namespace pcars
         // unsigned int brake = 0;
         // int steering = 0;
         // unsigned int clutch = 0;
-        std::vector<float> elements;
-        float tick = 1;
+        std::vector<double> elements;
+        double tick = 1;
     };
 
     struct TelemetryData
     {
         using Ptr = std::unique_ptr<TelemetryData>;
         std::vector<std::string> names;
-        std::vector<std::vector<float>> telemetry;
+        std::vector<std::vector<double>> telemetry;
     };
 
     class ProcessV2CSVImpl

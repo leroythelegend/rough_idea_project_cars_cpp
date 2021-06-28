@@ -19,7 +19,7 @@ namespace pcars
         // names to comma seperated string
         for (size_t i = 0; i < data->names.size(); i++)
         {
-            if ((i + 1) ==  data->names.size())
+            if ((i + 1) == data->names.size())
             {
                 file_ << data->names.at(i) << std::endl;
             }
@@ -28,12 +28,12 @@ namespace pcars
                 file_ << data->names.at(i) << ",";
             }
         }
-        
+
         for (auto row : data->telemetry)
         {
             for (size_t i = 0; i < row.size(); i++)
             {
-                if ((i + 1) ==  row.size())
+                if ((i + 1) == row.size())
                 {
                     file_ << row.at(i) << std::endl;
                 }
@@ -43,5 +43,7 @@ namespace pcars
                 }
             }
         }
+
+        file_.close();
     }
 }

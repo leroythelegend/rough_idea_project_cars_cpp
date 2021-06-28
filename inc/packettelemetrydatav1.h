@@ -122,7 +122,7 @@ namespace pcars {
 		///
 		/// \return Throttle
 
-		float unfiltered_throttle() const;
+		unsigned int unfiltered_throttle() const;
 
 		/// \brief Unfiltered Brake
 		///
@@ -132,7 +132,7 @@ namespace pcars {
 		///
 		/// \return brake
 
-		float unfiltered_brake() const;
+		unsigned int unfiltered_brake() const;
 
 		/// \brief Unfiltered Steering
 		///
@@ -142,7 +142,7 @@ namespace pcars {
 		///
 		/// \return steering
 
-		float unfiltered_steering() const;
+		int unfiltered_steering() const;
 
 		/// \brief Unfiltered Clutch
 		///
@@ -152,7 +152,7 @@ namespace pcars {
 		///
 		/// \return value
 
-		float unfiltered_clutch() const;
+		unsigned int unfiltered_clutch() const;
 
 		/// \brief Race State Flags
 		///
@@ -357,7 +357,7 @@ namespace pcars {
 		unsigned int fuel_capacity() const;
 		unsigned int brake() const;
 		unsigned int throttle() const;
-		float clutch() const;
+		unsigned int clutch() const;
 		int steering() const;
 		float fuel_level() const;
 		float speed() const;
@@ -410,7 +410,7 @@ namespace pcars {
 		float wind_direction_x() const;
 		float wind_direction_y() const;
 		Vector_Participant_Info participant_info() const;
-		unsigned int track_length() const;
+		float track_length() const;
 		Vector_UInt wings() const;
 		unsigned int dpad() const;
 
