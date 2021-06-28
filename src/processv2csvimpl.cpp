@@ -7,6 +7,11 @@
 #include <thread>
 #include <iostream>
 
+#ifdef _WIN32
+#include <crtdefs.h>
+#include <process.h>
+#endif
+
 using namespace std;
 
 namespace pcars
