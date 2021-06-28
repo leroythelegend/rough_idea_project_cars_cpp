@@ -93,12 +93,12 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvracelineimpl.cpp
                       ./src/processv2csvweatherimpl.cpp
                       ./src/processv2csvsupimpl.cpp)
-
+set_property(TARGET rispcars PROPERTY
+                      MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 target_include_directories(rispcars PUBLIC
                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(rispcars Threads::Threads)
-set_property(TARGET rispcars PROPERTY
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 
 add_executable(mypcars ./app/main.cpp)
 target_include_directories(mypcars PUBLIC
