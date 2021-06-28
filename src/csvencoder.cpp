@@ -43,5 +43,7 @@ namespace pcars
                 }
             }
         }
+
+        file_.close();
     }
 }

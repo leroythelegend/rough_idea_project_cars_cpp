@@ -33,20 +33,48 @@ namespace pcars
 
 #ifdef _WIN32
 
-// #define close closesocket
+#define close closesocket
 
-// #pragma comment(lib, "Ws2_32.lib")
-// #include <Ws2tcpip.h>
     WORD wVersionRequested;
     WSADATA wsaData;
-    // int err;
 
 /* Use the MAKEWORD(lowbyte, highbyte) macro declared in Windef.h */
     wVersionRequested = MAKEWORD(2, 2);
 
     WSAStartup(wVersionRequested, &wsaData);
+	struct sockaddr_in server, si_other;
+	int slen;
 
-#endif
+	slen = sizeof(si_other) ;
+	
+	//Create a socket
+	if((socketfd_ = socket(AF_INET , SOCK_DGRAM , 0 )) == INVALID_SOCKET)
+	{
+        throw PCars_Exception("socket " +  WSAGetLastError());
+		
+	}
+	
+            BOOL bOptVal = TRUE;
+            int bOptLen = sizeof (BOOL);
+            if (setsockopt(socketfd_, SOL_SOCKET, SO_REUSEADDR, (char *)&bOptVal, sizeof(bOptLen)) == SOCKET_ERROR)
+            {
+                cout << "setsockopt" << endl;
+                ::close(socketfd_);
+        throw PCars_Exception("setsockopt " +  WSAGetLastError());
+                
+            }
+
+	//Prepare the sockaddr_in structure
+	server.sin_family = AF_INET;
+	server.sin_addr.s_addr = INADDR_ANY;
+	server.sin_port = htons( port );
+	
+	//Bind
+	if( bind(socketfd_ ,(struct sockaddr *)&server , sizeof(server)) == SOCKET_ERROR)
+	{
+        throw PCars_Exception("bind " +  WSAGetLastError());
+	}
+#else
 
 
         struct addrinfo hints, *servinfo, *p;
@@ -112,6 +140,7 @@ namespace pcars
         }
 
         freeaddrinfo(servinfo);
+#endif
     }
 
     TransportUDP::~TransportUDP()

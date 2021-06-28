@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "../inc/transportudp.h"
 #include "../inc/capture.h"

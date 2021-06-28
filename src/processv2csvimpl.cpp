@@ -19,7 +19,7 @@ namespace pcars
 #ifdef _WIN32
         struct tm timeinfo;
         localtime_s(&timeinfo, &rawtime);
-         strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", &timeinfo);
+         strftime(buffer, sizeof(buffer), "%d-%m-%Y_%H-%M-%S", &timeinfo);
 #else
         struct tm *timeinfo;
         timeinfo = localtime(&rawtime);
@@ -36,10 +36,9 @@ namespace pcars
                                          const Type &type)
     {
         CSVEncoder encoder(trackname +
-                           " lap " +
+                           "_lap_" +
                            to_string(lap) +
-                           " " + type + " " +
-                           " " +
+                           "_" + type + "_" +
                            ProcessV2CSVImpl::createTimeStamp() +
                            ".csv");
         encoder.encode(data);
