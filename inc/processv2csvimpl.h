@@ -69,6 +69,7 @@ namespace pcars
         virtual void writeCapturedTelemetryToCSV();
 
         virtual void reset();
+        virtual void clearTelemetry();
 
     protected:
         static TimeStamp createTimeStamp();
@@ -76,7 +77,8 @@ namespace pcars
                                   const Lap lap,
                                   const TelemetryData::Ptr &data,
                                   const Type &);
-        const Lap NOTALAP = 0xFFFFFFFF;
+
+        const Lap NOTALAP = 0;
 
         unsigned int currentlap_ = NOTALAP;
         Type type_;

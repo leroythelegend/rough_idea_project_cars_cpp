@@ -165,7 +165,7 @@ namespace pcars
 
     bool ProcessV2CSVImpl::isThisANewLap() const
     {
-        return nextlap_ != currentlap_;
+        return nextlap_ > currentlap_;
     }
 
     bool ProcessV2CSVImpl::isThisTheFirstLap() const
@@ -190,6 +190,16 @@ namespace pcars
         currenttime_.distance = 0;
         telemetry_.elements.clear();
         data_->telemetry.clear();
+    }
+
+    void ProcessV2CSVImpl::clearTelemetry()
+    {
+        telemetry_.elements.clear();
+        data_->telemetry.clear();
+        currenttime_.time = -1;
+        currenttime_.tick = 0;
+        currenttime_.distance = 0;
+        state_ = 0;      
     }
 
 } // namespace pcars
