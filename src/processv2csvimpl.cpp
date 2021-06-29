@@ -199,7 +199,9 @@ namespace pcars
         currenttime_.time = -1;
         currenttime_.tick = 0;
         currenttime_.distance = 0;
-        state_ = 0;      
+        state_ = 0;
+        nextlap_ = 0;
+        currentlap_ = 0; 
     }
 
 } // namespace pcars
