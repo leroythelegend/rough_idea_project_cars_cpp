@@ -8,9 +8,6 @@ find_package(Threads REQUIRED)
 include(CTest)
 enable_testing()
 
-# add_executable(rispcars  ./src/testthread.cpp)
-# target_link_libraries(rispcars Threads::Threads)
-
 add_library(rispcars  ./src/capture.cpp
                       ./src/decoder16timeschar64.cpp
                       ./src/decoder16timesfloat.cpp
@@ -94,30 +91,26 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvracelineimpl.cpp
                       ./src/processv2csvweatherimpl.cpp
                       ./src/processv2csvsupimpl.cpp)
-# set_property(TARGET rispcars PROPERTY
-#                       MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-# target_include_directories(rispcars PUBLIC
-#                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(rispcars Threads::Threads)
 
 
-# add_executable(mypcars ./app/main.cpp)
-# target_include_directories(mypcars PUBLIC
-#                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
-# target_link_libraries(mypcars rispcars)
-# install(TARGETS mypcars
-#     DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
-#     )
+add_executable(mypcars ./app/main.cpp)
+target_include_directories(mypcars PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+target_link_libraries(mypcars rispcars)
+install(TARGETS mypcars
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    )
 
 
-# add_executable(pcarscsv ./app/maincsv.cpp)
-# target_include_directories(pcarscsv PUBLIC
-#                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
-# target_link_libraries(pcarscsv rispcars)
-# install(TARGETS pcarscsv
-#     DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
-#     )
+add_executable(pcarscsv ./app/maincsv.cpp)
+target_include_directories(pcarscsv PUBLIC
+                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+target_link_libraries(pcarscsv rispcars)
+install(TARGETS pcarscsv
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    )
 
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
