@@ -69,6 +69,7 @@ namespace pcars
         virtual void writeCapturedTelemetryToCSV();
 
         virtual void reset();
+        virtual void clearTelemetry();
 
     protected:
         static TimeStamp createTimeStamp();

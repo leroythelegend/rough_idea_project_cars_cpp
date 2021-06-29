@@ -65,14 +65,6 @@ namespace pcars
     void ProcessV2CSV::menu(PacketPtr &packet)
     {
         impl_->updateTrackName(packet);
-
-        // last lap jumps to menu
-        // so if there is any data
-        // left write to csv file.
-        if (!impl_->isTelemetryEmpty())
-        {
-            impl_->writeCapturedTelemetryToCSV();
-            impl_->reset();
-        }
+        impl_->clearTelemetry();
     }
 }
