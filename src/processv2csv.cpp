@@ -72,6 +72,7 @@ namespace pcars
         if (!impl_->isTelemetryEmpty())
         {
             impl_->writeCapturedTelemetryToCSV();
+            impl_->reset();
         }
     }
 }

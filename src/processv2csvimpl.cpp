@@ -165,12 +165,12 @@ namespace pcars
 
     bool ProcessV2CSVImpl::isThisANewLap() const
     {
-        return nextlap_ != currentlap_;
+        return nextlap_ > currentlap_;
     }
 
     bool ProcessV2CSVImpl::isThisTheFirstLap() const
     {
-        return currentlap_ == NOTALAP;
+        return currentlap_ == NOTALAP && nextlap_ == 1;
     }
 
     bool ProcessV2CSVImpl::isTelemetryEmpty() const

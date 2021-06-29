@@ -23,8 +23,7 @@ int main(int argc, char *argv[]) {
 
 	thread tyres([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVTyreImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVTyreImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -38,11 +37,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	tyres.detach();
 
 	thread sups([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVSupImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVSupImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -56,11 +55,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	sups.detach();
 
 	thread inputs([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVInputsImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVInputsImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -74,11 +73,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	inputs.detach();
 
 	thread engine([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVEngineImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVEngineImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -92,11 +91,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	engine.detach();
 
 	thread force([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVForceImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVForceImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -110,11 +109,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	force.detach();
 
 	thread raceline([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVRaceLineImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVRaceLineImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -128,11 +127,11 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	raceline.detach();
 
 	thread weather([](){
 		try {
-			TelemetryV2 telemetry;
-			telemetry.start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVWeatherImpl>()));
+			TelemetryV2().start(make_shared<ProcessV2CSV>(make_shared<ProcessV2CSVWeatherImpl>()));
 		}
 		catch (PCars_Exception & e) {
 			cout << e.what() << endl;
@@ -146,14 +145,22 @@ int main(int argc, char *argv[]) {
 		}
 		return 0;
 	});
+	weather.detach();
 
-	tyres.join();
-	sups.join();
-	inputs.join();
-	engine.join();
-	force.join();
-	raceline.join();
-	weather.join();
+	thread quit([](){
+		cout << "Press \'q\' then \'Enter\' to QUIT." << endl;
+		while (true)
+		{
+			char key;
+			cin >> key;
+			if (key == 'q')
+			{
+				return 0;
+			}
+		} 
+	});
+
+	quit.join();
 
 	return 0;
 }
