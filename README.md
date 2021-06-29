@@ -49,7 +49,6 @@ This is what I did to build on windows
 - This then built the executables in ./build/Debug (If you changed from debug to release it will be in Release instead of Debug)
 - I then copied the exe pcarscsv to a empty folder.
 - Ran pcarscsv from the empty folder (NOTE the very first out lap is not captured, CSV files are created for each lap after the very first out lap).
-- To exit I just used ctrl-c
 
  
 ## <a name="P-CSV"></a> CSV Files
