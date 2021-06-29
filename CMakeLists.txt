@@ -8,8 +8,6 @@ find_package(Threads REQUIRED)
 include(CTest)
 enable_testing()
 
-
-
 add_library(rispcars  ./src/capture.cpp
                       ./src/decoder16timeschar64.cpp
                       ./src/decoder16timesfloat.cpp
@@ -82,10 +80,10 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/Packetvehicleclassnamesdata.cpp
                       ./src/telemetryv1.cpp
                       ./src/telemetryv2.cpp
+                      ./src/processv2csvimpl.cpp
                       ./src/transportudp.cpp
                       ./src/processv2csv.cpp
                       ./src/csvencoder.cpp
-                      ./src/processv2csvimpl.cpp
                       ./src/processv2csvtyreimpl.cpp
                       ./src/processv2csvinputsimpl.cpp
                       ./src/processv2csvengineimpl.cpp
@@ -93,14 +91,10 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvracelineimpl.cpp
                       ./src/processv2csvweatherimpl.cpp
                       ./src/processv2csvsupimpl.cpp)
-
-target_include_directories(rispcars PUBLIC
-                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(rispcars Threads::Threads)
 
+
 add_executable(mypcars ./app/main.cpp)
-target_include_directories(mypcars PUBLIC
-                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(mypcars rispcars)
 install(TARGETS mypcars
     DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
@@ -108,8 +102,6 @@ install(TARGETS mypcars
 
 
 add_executable(pcarscsv ./app/maincsv.cpp)
-target_include_directories(pcarscsv PUBLIC
-                      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(pcarscsv rispcars)
 install(TARGETS pcarscsv
     DESTINATION ${CMAKE_INSTALL_PREFIX}/bin

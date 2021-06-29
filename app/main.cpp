@@ -9,52 +9,66 @@
 using namespace pcars;
 using namespace std;
 
-int main(int argc, char *argv[]) {
- 
-    string arg;
-    if (argc == 2) {
+int main(int argc, char *argv[])
+{
+
+	string arg;
+	if (argc == 2)
+	{
 		arg.assign(argv[1], 3);
 	}
-	else {
+	else
+	{
 		cout << "pcars [-v1 or -v2]" << endl;
 	}
 
-	if (arg == "-v1") {
-		try {
+	if (arg == "-v1")
+	{
+		try
+		{
 			TelemetryV1 telemetry;
 			telemetry.start(make_shared<MyProcessV1>());
 		}
-		catch (PCars_Exception & e) {
-			e.what();
+		catch (PCars_Exception &e)
+		{
+			cout << e.what() << endl;
 			return 1;
 		}
-		catch (exception & e) {
-			e.what();
+		catch (exception &e)
+		{
+			cout << e.what() << endl;
 			return 1;
 		}
-		catch (...) {
+		catch (...)
+		{
 			return 1;
 		}
 	}
-	else if (arg == "-v2") {
-		try {
+	else if (arg == "-v2")
+	{
+		try
+		{
 			TelemetryV2 telemetry;
 			telemetry.start(make_shared<MyProcessV2>());
 		}
-		catch (PCars_Exception & e) {
-			e.what();
-		}
-		catch (exception & e) {
-			e.what();
+		catch (PCars_Exception &e)
+		{
+			cout << e.what() << endl;
 			return 1;
 		}
-		catch (...) {
+		catch (exception &e)
+		{
+			cout << e.what() << endl;
+			return 1;
+		}
+		catch (...)
+		{
 			return 1;
 		}
 	}
-	else {
+	else
+	{
 		cout << "pcars [-v1 or -v2]" << endl;
 	}
 	return 0;
 }
-
