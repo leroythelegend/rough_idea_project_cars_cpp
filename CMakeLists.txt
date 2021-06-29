@@ -9,6 +9,8 @@ include(CTest)
 enable_testing()
 
 add_executable(rispcars  ./src/testthread.cpp)
+target_include_directories(rispcars PUBLIC
+                       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
 target_link_libraries(rispcars Threads::Threads)
 
 # add_library(rispcars  ./src/capture.cpp
