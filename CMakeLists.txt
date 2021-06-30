@@ -90,7 +90,9 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvforceimpl.cpp
                       ./src/processv2csvracelineimpl.cpp
                       ./src/processv2csvweatherimpl.cpp
-                      ./src/processv2csvsupimpl.cpp)
+                      ./src/processv2csvsupimpl.cpp
+                      ./src/processv2csvmsgimpl.cpp
+                      ./src/telemetrymsg.cpp)
 target_link_libraries(rispcars Threads::Threads)
 
 

@@ -14,8 +14,9 @@ namespace pcars {
 
 	class Telemetry {
 	public:
+		using Ptr = std::shared_ptr<Telemetry>;
 		/// Destructor
-		virtual ~Telemetry() {};
+		virtual ~Telemetry() = default;
 
 		/// \brief start 
 		///

@@ -16,7 +16,7 @@ namespace pcars
                                          "tyre_carcass_temp_fl", "tyre_carcass_temp_fr", "tyre_carcass_temp_rl", "tyre_carcass_temp_rr",
                                          "tyre_rim_temp_fl", "tyre_rim_temp_fr", "tyre_rim_temp_rl", "tyre_rim_temp_rr",
                                          "tyre_internal_air_temp_fl", "tyre_internal_air_temp_fr", "tyre_internal_air_temp_rl", "tyre_internal_air_temp_rr",
-                                         "tyre_left_fl", "tyre_left_temp_fr", "tyre_left_temp_rl", "tyre_left_temp_rr",
+                                         "tyre_left_temp_fl", "tyre_left_temp_fr", "tyre_left_temp_rl", "tyre_left_temp_rr",
                                          "tyre_center_temp_fl", "tyre_center_temp_fr", "tyre_center_temp_rl", "tyre_center_temp_rr",
                                          "tyre_right_temp_fl", "tyre_right_temp_fr", "tyre_right_temp_rl", "tyre_right_temp_rr",
                                          "wheel_local_position_y_fl", "wheel_local_position_y_fr", "wheel_local_position_y_rl", "wheel_local_position_y_rr",
