@@ -1,4 +1,5 @@
 #include "../inc/processv2csvmsgimpl.h"
+#include "../inc/packettimestatsdata.h"
 
 #include <iostream>
 
@@ -9,15 +10,21 @@ namespace pcars
     ProcessV2CSVImpl::Names messages;
 
     ProcessV2CSVMSGImpl::ProcessV2CSVMSGImpl()
-        : ProcessV2CSVImpl("inputs", messages) {}
+        : ProcessV2CSVImpl("inputs", messages),
+          lastlaptime_{0} {}
 
     void ProcessV2CSVMSGImpl::updateTelemetry(Packet::Ptr &packet)
     {
-        // do nothing
+        if (packet->type() == PACKETTYPE::PACKETTIMESTATSDATA)
+        {
+            PacketTimeStatsData *p = dynamic_cast<PacketTimeStatsData *>(packet.get());
+
+            lastlaptime_ = p->stats().at(0).last_lap_time();
+        }
     }
 
     void ProcessV2CSVMSGImpl::writeCapturedTelemetryToCSV()
     {
-        cout << "Write lap " << currentlap_ << " telemetry to CSV file." << endl;
+        cout << "Record lap: " << currentlap_ << " Time: " << lastlaptime_ << endl;
     }
 }
