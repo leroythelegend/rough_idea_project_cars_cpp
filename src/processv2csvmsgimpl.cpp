@@ -40,6 +40,7 @@ namespace pcars
                 lastlaptime_ = p->stats().at(0).last_lap_time();
                 cout << "   Time: " << timestamp(lastlaptime_) << endl;
                 needlastlaptime_ = false;
+                cout.flush();
             }
         }
     }
@@ -59,6 +60,7 @@ namespace pcars
             cout << "Record lap: " << currentlap_;
             neednextpackets_ = false;
             needlastlaptime_ = true;
+            cout.flush();
         }
         else
         {
