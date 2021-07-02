@@ -13,6 +13,14 @@ namespace pcars
 
         void updateTelemetry(Packet::Ptr &) override;
         void writeCapturedTelemetryToCSV() override;
+        void updateCurrentLap() override;
+        void reset() override;
+        void clearTelemetry() override;
+
+    private:
+        float lastlaptime_;
+        bool neednextpackets_;
+        bool needlastlaptime_;
     };
 
 } // namespace pcars

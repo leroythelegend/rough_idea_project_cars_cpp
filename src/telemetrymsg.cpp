@@ -39,23 +39,9 @@ namespace pcars
             Position pos = 0;
             packetBase.decode(data, pos);
 
-            if (packetBase.packet_type() == 0 && data.size() == 559)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketTelemetryData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 1 && data.size() == 308)
+            if (packetBase.packet_type() == 1 && data.size() == 308)
             {
                 shared_ptr<Packet> packet = make_shared<PacketRaceData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 2 && data.size() == 1136)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketParticipantsData>();
                 pos = 0;
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
@@ -77,20 +63,6 @@ namespace pcars
             else if (packetBase.packet_type() == 7 && data.size() == 1040)
             {
                 shared_ptr<Packet> packet = make_shared<PacketTimeStatsData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 8 && data.size() == 1164)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketParticipantsVehicleNamesData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 8 && data.size() == 1452)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketVehicleClassNamesData>();
                 pos = 0;
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
