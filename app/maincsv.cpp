@@ -1,6 +1,7 @@
 #include "../inc/telemetryv2.h"
 #include "../inc/telemetryv1.h"
 #include "../inc/telemetrymsg.h"
+#include "../inc/telemetrymsgv1.h"
 #include "../inc/myprocess.h"
 #include "../inc/exception.h"
 #include "../inc/processv2csv.h"
@@ -12,6 +13,14 @@
 #include "../inc/processv2csvracelineimpl.h"
 #include "../inc/processv2csvweatherimpl.h"
 #include "../inc/processv2csvmsgimpl.h"
+#include "../inc/processv1csvmsgimpl.h"
+#include "../inc/processv1csvtyreimpl.h"
+#include "../inc/processv1csvengineimpl.h"
+#include "../inc/processv1csvforceimpl.h"
+#include "../inc/processv1csvinputsimpl.h"
+#include "../inc/processv1csvweatherimpl.h"
+#include "../inc/processv1csvracelineimpl.h"
+#include "../inc/processv1csvsupimpl.h"
 
 #include <iostream>
 #include <string>
@@ -40,6 +49,15 @@ int main(int argc, char *argv[])
 	if (arg == "-v1")
 	{
 		cout << "Version 1" << endl;
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVTyreImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVEngineImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVForceImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVInputsImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVRaceLineImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVWeatherImpl>());
+		runThread(make_shared<TelemetryV1>(), make_shared<ProcessV1CSVSupImpl>());
+		runThread(make_shared<TelemetryMSGV1>(), make_shared<ProcessV1CSVMSGImpl>());
+
 	}
 	else if (arg == "-v2")
 	{
