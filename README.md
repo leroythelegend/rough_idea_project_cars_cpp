@@ -31,7 +31,7 @@ To run cd build
 ```
 or
 ```
-./pcarscsv
+./pcarscsv [-v1|-v2]
 ```
 
 This will not do anything until you go out on the track and then each of the implemented telemetry attributes will be displayed one after the other (this is just an example and it will help to understand what each attribute does, I'm still in the process of updating the attributes)
@@ -53,13 +53,13 @@ This is what I did to build on windows
  
 ## <a name="P-CSV"></a> CSV Files
 
-To capture set of CSV files run the following after building the source. (Only captures pcars version 2 packets)
+To capture set of CSV files run the following after building the source.
 
 NOTE the following is different on Windows see windows section above. Also you can copy pcarscsv to another directory and run from there if you want to save the CSV files in a more permanent dirctory.
 
 ```
 cd build
-./pcarscsv
+./pcarscsv [-v1|-v2]
 ```
 
 This will produce a set of CSV files for each lap in the current directory, note the very first out lap is NOT recorded.
