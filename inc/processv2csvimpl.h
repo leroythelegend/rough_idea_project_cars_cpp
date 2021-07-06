@@ -16,14 +16,6 @@ namespace pcars
 
     struct Telemetery
     {
-        // unsigned int unfilteredthrottle = 0;
-        // unsigned int unfilteredbrake = 0;
-        // int unfilteredsteering = 0;
-        // unsigned int unfilteredclutch = 0;
-        // unsigned int throttle = 0;
-        // unsigned int brake = 0;
-        // int steering = 0;
-        // unsigned int clutch = 0;
         std::vector<double> elements;
         double tick = 1;
     };

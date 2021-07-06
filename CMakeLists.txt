@@ -77,22 +77,32 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/packettelemetrydatav1.cpp
                       ./src/packettimestatsdata.cpp
                       ./src/packettimingdata.cpp
-                      ./src/Packetvehicleclassnamesdata.cpp
+                      ./src/packetvehicleclassnamesdata.cpp
                       ./src/telemetryv1.cpp
                       ./src/telemetryv2.cpp
                       ./src/processv2csvimpl.cpp
+                      ./src/processv1csvimpl.cpp
                       ./src/transportudp.cpp
                       ./src/processv2csv.cpp
                       ./src/csvencoder.cpp
                       ./src/processv2csvtyreimpl.cpp
+                      ./src/processv1csvtyreimpl.cpp
                       ./src/processv2csvinputsimpl.cpp
+                      ./src/processv1csvinputsimpl.cpp
                       ./src/processv2csvengineimpl.cpp
+                      ./src/processv1csvengineimpl.cpp
                       ./src/processv2csvforceimpl.cpp
+                      ./src/processv1csvforceimpl.cpp
                       ./src/processv2csvracelineimpl.cpp
+                      ./src/processv1csvracelineimpl.cpp
                       ./src/processv2csvweatherimpl.cpp
+                      ./src/processv1csvweatherimpl.cpp
                       ./src/processv2csvsupimpl.cpp
+                      ./src/processv1csvsupimpl.cpp
                       ./src/processv2csvmsgimpl.cpp
-                      ./src/telemetrymsg.cpp)
+                      ./src/processv1csvmsgimpl.cpp
+                      ./src/telemetrymsg.cpp
+                      ./src/telemetrymsgv1.cpp)
 target_link_libraries(rispcars Threads::Threads)
 
 
