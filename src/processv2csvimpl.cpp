@@ -6,7 +6,7 @@
 
 #include <thread>
 #include <iostream>
-
+#include <sstream>
 
 using namespace std;
 
@@ -30,6 +30,19 @@ namespace pcars
 #endif
 
         return std::string(buffer);
+    }
+
+    ProcessV2CSVImpl::TimeStamp ProcessV2CSVImpl::lapTimeStamp(float time)
+    {
+        stringstream ss;
+        ss << static_cast<unsigned int>(time / 60); // mins
+        ss << ':';
+        if (static_cast<unsigned int>(time) % 60 < 10)
+        {
+            ss << '0';
+        }
+        ss << static_cast<unsigned int>(time) % 60 + (time - (static_cast<unsigned int>(time)));
+        return ss.str();
     }
 
     void ProcessV2CSVImpl::createCSVFile(const TrackName &trackname,
@@ -201,7 +214,7 @@ namespace pcars
         currenttime_.distance = 0;
         state_ = 0;
         nextlap_ = 0;
-        currentlap_ = 0; 
+        currentlap_ = 0;
     }
 
 } // namespace pcars

@@ -11,18 +11,6 @@ namespace pcars
 {
     ProcessV1CSVImpl::Names messagesv1;
 
-    string timestampv1(float time)
-    {
-        stringstream ss;
-        ss << static_cast<unsigned int>(time / 60); // mins
-        ss << ':';
-        if (static_cast<unsigned int>(time) % 60 < 10)
-        {
-            ss << '0';
-        }
-        ss << static_cast<unsigned int>(time) % 60 + (time - (static_cast<unsigned int>(time)));
-        return ss.str();
-    }
 
     ProcessV1CSVMSGImpl::ProcessV1CSVMSGImpl()
         : ProcessV1CSVImpl("inputs", messagesv1),
@@ -39,7 +27,7 @@ namespace pcars
                 PacketTelemetryDataV1 *p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
 
                 lastlaptime_ = p->last_lap_time();
-                cout << "   Time: " << timestampv1(lastlaptime_) << endl;
+                cout << "   Time: " << ProcessV2CSVImpl::lapTimeStamp(lastlaptime_) << endl;
                 needlastlaptime_ = false;
                 cout.flush();
             }

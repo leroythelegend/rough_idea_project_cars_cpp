@@ -65,6 +65,7 @@ namespace pcars
 
     protected:
         static TimeStamp createTimeStamp();
+        static TimeStamp lapTimeStamp(float);
         static void createCSVFile(const TrackName &,
                                   const Lap lap,
                                   const TelemetryData::Ptr &data,
