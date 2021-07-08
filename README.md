@@ -1,4 +1,41 @@
-# Rough Idea Project Cars C++
+# Rough Idea Project Cars C++ Telemetry
+
+## Contents
+
+* [I just want telemetry](#P-JustTelemetry)
+
+
+## <a name="P-JustTelemetry"></a>I just want telemetry
+
+### Build and Install
+
+- For linux or mac
+
+```
+# cd rough_idea_project_cars_cpp-master
+# mkdir build; cd build
+# cmake ..
+# make
+# sudo make install
+```
+
+- For Windows
+
+This is what I did to build on windows (I'm no expert on windows)
+
+- Installed free version of visual studio 
+- Installed vscode
+- Open the repo in vscode
+- Installed the C++ intelliSense from microsoft
+- Installed the CMake Tools plugin from microsoft
+- VSCode had a pop-up to configure to use CMake, I clicked yes
+- Then clicked the build button at the bottom of VSCode
+- This then built the executables in ./build/Debug
+
+### Run
+
+
+
 
 ## Description
 
