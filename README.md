@@ -5,7 +5,6 @@
 - For linux or mac
 
 ```
-# cd rough_idea_project_cars_cpp-master
 # mkdir build; cd build
 # cmake ..
 # make
@@ -33,10 +32,8 @@ Create a directory to store the csv files and run the pcarscsv exe, for example 
 # cd bathurst-p1
 # pcarscsv -v2
 ```
-of for version 1 telemetry
+and for version 1 telemetry (default is version 2)
 ```
-# mkdir bathurst-p1
-# cd bathurst-p1
 # pcarscsv -v1
 ```
 I then use plotjuggler-3 to view the CSV files (https://github.com/facontidavide/PlotJuggler).
