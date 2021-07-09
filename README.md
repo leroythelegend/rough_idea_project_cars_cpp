@@ -1,7 +1,5 @@
 # Rough Idea Project Cars C++ Telemetry
 
-# Rough Idea Project Cars C++
-
 ### Build and Install
 
 - For linux or mac
@@ -42,3 +40,5 @@ of for version 1 telemetry
 # pcarscsv -v1
 ```
 I then use plotjuggler-3 to view the CSV files (https://github.com/facontidavide/PlotJuggler).
+
+![Alt text](images/plotjuggler.jpg?raw=true "PlotJuggler-3")
