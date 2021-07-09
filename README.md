@@ -1,5 +1,9 @@
 # Rough Idea Project Cars C++ Telemetry
 
+Uses the UDP output to write telemetry for either Project Cars version 1 or version 2 telemetry to a set CSV files for each lap.
+
+The CSV files include telemerty for the tyres, suspension, raceline, force, engine, weather and inputs.
+
 ### Build and Install
 
 - For linux or mac
