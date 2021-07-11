@@ -16,10 +16,13 @@ namespace pcars
         CSVEncoder(const Filename &);
         ~CSVEncoder() = default;
 
-        void encode(const std::unique_ptr<pcars::TelemetryData> &);
+        void encode(const TelemetryData::Ptr &);
 
     private:
         std::ofstream file_;
+
+        CSVEncoder(const CSVEncoder &) = delete;
+        const CSVEncoder &operator=(const CSVEncoder &) = delete;
     };
 
 } // namespace pcars

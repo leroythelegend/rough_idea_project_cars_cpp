@@ -123,6 +123,9 @@ add_executable(testcapture ./tests/testcapture.cpp)
 target_link_libraries(testcapture rispcars)
 add_test(NAME testcapture COMMAND testcapture)
 
+add_executable(testcsvencoder ./tests/testcsvencoder.cpp)
+target_link_libraries(testcsvencoder rispcars)
+add_test(NAME testcsvencoder COMMAND testcsvencoder)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

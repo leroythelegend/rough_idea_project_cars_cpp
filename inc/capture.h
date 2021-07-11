@@ -1,5 +1,4 @@
-#ifndef PCARS_CAPTURE_H_
-#define PCARS_CAPTURE_H_
+#pragma once
 
 #include <memory>
 
@@ -37,5 +36,3 @@ namespace pcars
     };
 
 } // namespace pcars
-
-#endif

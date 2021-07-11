@@ -13,8 +13,13 @@ namespace pcars
         }
     }
 
-    void CSVEncoder::encode(const std::unique_ptr<pcars::TelemetryData> &data)
+    void CSVEncoder::encode(const TelemetryData::Ptr &data)
     {
+        // if data is null don't write to file
+        if (!data)
+        {
+            return;
+        }
 
         // names to comma seperated string
         for (size_t i = 0; i < data->names.size(); i++)
