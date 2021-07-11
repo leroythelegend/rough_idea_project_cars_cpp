@@ -12,7 +12,7 @@ namespace pcars {
             state_->capture(*this, packet);
         }
         else {
-            throw runtime_error("Null state");
+            throw runtime_error("Capture::capturePacket Null state");
         }
     }
 
