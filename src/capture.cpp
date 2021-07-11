@@ -6,7 +6,7 @@ using namespace std;
 
 namespace pcars {
 
-    void Capture::capturePacket(Capture::PacketPtr &packet)
+    void Capture::capturePacket(Packet::Ptr &packet)
     {
         if (state_) {
             state_->capture(*this, packet);
@@ -16,7 +16,7 @@ namespace pcars {
         }
     }
 
-    void Capture::nextGameState(const Capture::GameStatePtr & state)
+    void Capture::nextGameState(const GameState::Ptr & state)
     {
         state_ = state;
     }

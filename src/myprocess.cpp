@@ -19,7 +19,7 @@ using namespace std;
 namespace pcars
 {
 
-    void MyProcessV1::playing(PacketPtr & packet)
+    void MyProcessV1::playing(Packet::Ptr & packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATAV1) {
             PacketTelemetryDataV1 * p = dynamic_cast<PacketTelemetryDataV1 *>(packet.get());
@@ -268,7 +268,7 @@ namespace pcars
         }
     }
 
-    void MyProcessV2::playing(PacketPtr & packet)
+    void MyProcessV2::playing(Packet::Ptr & packet)
     {
         if (packet->type() == PACKETTYPE::PACKETTELEMETRYDATA) {
             PacketTelemetryData * p = dynamic_cast<PacketTelemetryData *>(packet.get());
@@ -578,7 +578,7 @@ namespace pcars
          ++packets_;
     }
 
-    void MyProcessV2::menu(PacketPtr &)
+    void MyProcessV2::menu(Packet::Ptr &)
     {
         cout << "Num Packets " << packets_ << endl;
     }
