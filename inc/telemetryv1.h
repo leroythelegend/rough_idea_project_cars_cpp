@@ -2,6 +2,7 @@
 #define PCARS_TELEMTRY_V1_H_
 
 #include "../inc/telemetry.h"
+#include "../inc/packetfactoryv1.h"
 
 namespace pcars {
 
@@ -13,7 +14,7 @@ namespace pcars {
 	class TelemetryV1 : public Telemetry {
 	public:
 		/// Destructor
-		virtual ~TelemetryV1() {};
+		virtual ~TelemetryV1() = default;
 		
 		/// \brief start 
 		///
@@ -25,6 +26,8 @@ namespace pcars {
 		/// \throw out_of_range
 
 		void start(const std::shared_ptr<Process> &) override;
+	private:
+		PacketFactoryV1 packetfactory_;
 	};
 
 }

@@ -102,7 +102,8 @@ add_library(rispcars  ./src/capture.cpp
                       ./src/processv2csvmsgimpl.cpp
                       ./src/processv1csvmsgimpl.cpp
                       ./src/telemetrymsg.cpp
-                      ./src/telemetrymsgv1.cpp)
+                      ./src/telemetrymsgv1.cpp
+                      ./src/packetfactoryv1.cpp)
 target_link_libraries(rispcars Threads::Threads)
 
 
