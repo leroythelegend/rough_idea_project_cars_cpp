@@ -1,6 +1,7 @@
 #include "../inc/capture.h"
 #include "../inc/gamestate.h"
 
+#include <stdexcept>
 
 using namespace std;
 

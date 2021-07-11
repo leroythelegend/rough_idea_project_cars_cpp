@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
         decoder.decode(data, pos);
         pcars_assert(false);
     }
-    catch (out_of_range &e) 
+    catch (out_of_range &) 
     {
         // test pos is unchanged
         pcars_assert(!pos);

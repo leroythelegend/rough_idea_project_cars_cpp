@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
         capture.capturePacket(packet);
         pcars_assert(false);
     }
-    catch (std::runtime_error &e)
+    catch (std::runtime_error &)
     {
     }
 
