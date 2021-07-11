@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-static void assert(bool b)
+static void pcars_assert(bool b)
 {
     if (!b)
     {

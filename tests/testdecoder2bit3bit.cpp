@@ -15,28 +15,28 @@ int main(int argc, char const *argv[])
     try
     {
         decoder.decode(data, pos);
-        assert(false);
+        pcars_assert(false);
     }
     catch (out_of_range &e) 
     {
         // test pos is unchanged
-        assert(!pos);
+        pcars_assert(!pos);
     }
 
     // Test all values are 0
     data.push_back(0b11001000);
     decoder.decode(data, pos);
-    assert(pos == 1);
-    assert(decoder.ms2bits() == 0);
-    assert(decoder.ls3bits() == 0);
+    pcars_assert(pos == 1);
+    pcars_assert(decoder.ms2bits() == 0);
+    pcars_assert(decoder.ls3bits() == 0);
  
     // Test ms2 bits and ls 3bits
     data.at(0) = 0b00110111;
     pos = 0;
     decoder.decode(data, pos);
-    assert(pos == 1);
-    assert(decoder.ms2bits() == 3);
-    assert(decoder.ls3bits() == 7); 
+    pcars_assert(pos == 1);
+    pcars_assert(decoder.ms2bits() == 3);
+    pcars_assert(decoder.ls3bits() == 7); 
 
     return 0;
 }

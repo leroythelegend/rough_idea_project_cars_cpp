@@ -15,21 +15,21 @@ int main(int argc, char const *argv[])
     try
     {
         decoder.decode(data, pos);
-        assert(false);
+        pcars_assert(false);
     }
     catch (out_of_range &e) 
     {
         // test pos is unchanged
-        assert(!pos);
+        pcars_assert(!pos);
     }
 
     // Test all values are 0
     data.push_back(0b00000001);
     data.push_back(0b00000011);
     decoder.decode(data, pos);
-    assert(pos == 2);
-    assert(decoder.times2_U8().at(0) == 1);
-    assert(decoder.times2_U8().at(1) == 3);
+    pcars_assert(pos == 2);
+    pcars_assert(decoder.times2_U8().at(0) == 1);
+    pcars_assert(decoder.times2_U8().at(1) == 3);
  
     return 0;
 }
