@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../inc/telemetry.h"
+#include "../inc/packetfactoryv1.h"
 
 namespace pcars
 {
@@ -13,6 +14,9 @@ namespace pcars
     class TelemetryMSGV1 : public Telemetry
     {
     public:
+        /// Constructor
+        TelemetryMSGV1();
+
         /// Destructor
         ~TelemetryMSGV1() = default;
 
@@ -26,6 +30,9 @@ namespace pcars
         /// \throw out_of_range
 
         void start(const std::shared_ptr<Process> &) override;
+    
+	protected:
+		PacketFactory::Ptr packetfactory_;
     };
 
 }

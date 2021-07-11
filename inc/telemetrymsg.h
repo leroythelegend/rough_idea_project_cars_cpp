@@ -13,6 +13,8 @@ namespace pcars
     class TelemetryMSG : public Telemetry
     {
     public:
+        /// Constructor
+        TelemetryMSG();
         /// Destructor
         ~TelemetryMSG() = default;
 
@@ -26,6 +28,10 @@ namespace pcars
         /// \throw out_of_range
 
         void start(const std::shared_ptr<Process> &) override;
+
+
+	protected:
+		PacketFactory::Ptr packetfactory_;
     };
 
 }

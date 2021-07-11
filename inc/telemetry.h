@@ -4,8 +4,12 @@
 #include <memory>
 
 #include "../inc/process.h"
+#include "../inc/packetfactory.h"
+
 
 namespace pcars {
+
+	const unsigned int NumberOfBytes = 30000;
 
 	/// \class Telemetry
 	/// \brief Abstract telemetry
