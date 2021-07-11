@@ -14,7 +14,7 @@ namespace pcars
         using Filename = std::string;
 
         CSVEncoder(const Filename &);
-        ~CSVEncoder() = default;
+        ~CSVEncoder() noexcept = default;
 
         void encode(const TelemetryData::Ptr &);
 
