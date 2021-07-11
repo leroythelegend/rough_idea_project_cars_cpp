@@ -127,6 +127,10 @@ add_executable(testcsvencoder ./tests/testcsvencoder.cpp)
 target_link_libraries(testcsvencoder rispcars)
 add_test(NAME testcsvencoder COMMAND testcsvencoder)
 
+add_executable(testdecoder1bit2bit2bit3bit ./tests/testdecoder1bit2bit2bit3bit.cpp)
+target_link_libraries(testdecoder1bit2bit2bit3bit rispcars)
+add_test(NAME testdecoder1bit2bit2bit3bit COMMAND testdecoder1bit2bit2bit3bit)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
