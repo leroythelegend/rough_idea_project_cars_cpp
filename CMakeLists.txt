@@ -119,6 +119,11 @@ install(TARGETS pcarscsv
     DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
     )
 
+add_executable(testcapture ./tests/testcapture.cpp)
+target_link_libraries(testcapture rispcars)
+add_test(NAME testcapture COMMAND testcapture)
+
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)

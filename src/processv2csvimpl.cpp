@@ -2,7 +2,7 @@
 #include "../inc/packetracedata.h"
 #include "../inc/packettimingdata.h"
 #include "../inc/csvencoder.h"
-#include "../inc/exception.h"
+
 
 #include <thread>
 #include <iostream>
@@ -151,7 +151,7 @@ namespace pcars
                      {
                          ProcessV2CSVImpl::createCSVFile(name, lap, data, type);
                      }
-                     catch (PCars_Exception &e)
+                     catch (runtime_error &e)
                      {
                          cout << e.what() << endl;
                      }

@@ -1,5 +1,5 @@
 #include "../inc/csvencoder.h"
-#include "../inc/exception.h"
+
 
 namespace pcars
 {
@@ -9,7 +9,7 @@ namespace pcars
     {
         if (!file_.is_open())
         {
-            throw PCars_Exception("cannot open csv file " + filename);
+            throw std::runtime_error("cannot open csv file " + filename);
         }
     }
 

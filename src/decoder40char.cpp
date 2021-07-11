@@ -1,6 +1,6 @@
 #include "../inc/decoder40char.h"
 
-#include "../inc/exception.h"
+
 
 namespace pcars {
 

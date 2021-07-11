@@ -1,6 +1,6 @@
 #include "../inc/decoderu8.h"
 
-#include "../inc/exception.h"
+
 
 namespace pcars {
 
