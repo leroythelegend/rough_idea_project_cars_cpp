@@ -17,7 +17,7 @@ namespace pcars {
 		///
 		/// \param Amount of data to be read
 		/// \returns Data
-		/// \throws PCars_Exception
+		/// \throws runtime_error
 
 		virtual PCars_Data read(const Amount) = 0;
 
@@ -25,7 +25,7 @@ namespace pcars {
 		///
 		/// \param data to be written
 		/// \returns void
-		/// \throws PCars_Exception
+		/// \throws runtime_error
 
 		virtual void write(const PCars_Data &) = 0;
 	};

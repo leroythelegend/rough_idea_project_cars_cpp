@@ -1,6 +1,6 @@
 #include "../inc/transportudp.h"
 
-#include "../inc/exception.h"
+
 
 #ifdef _WIN32
 
@@ -50,7 +50,7 @@ namespace pcars
         //Create a socket
         if ((socketfd_ = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET)
         {
-            throw PCars_Exception("socket " + WSAGetLastError());
+            throw runtime_error("socket " + WSAGetLastError());
         }
 
         BOOL bOptVal = TRUE;
@@ -59,7 +59,7 @@ namespace pcars
         {
             cout << "setsockopt" << endl;
             ::close(socketfd_);
-            throw PCars_Exception("setsockopt " + WSAGetLastError());
+            throw runtime_error("setsockopt " + WSAGetLastError());
         }
 
         //Prepare the sockaddr_in structure
@@ -70,7 +70,7 @@ namespace pcars
         //Bind
         if (bind(socketfd_, (struct sockaddr *)&server, sizeof(server)) == SOCKET_ERROR)
         {
-            throw PCars_Exception("bind " + WSAGetLastError());
+            throw runtime_error("bind " + WSAGetLastError());
         }
 #else
 
@@ -88,7 +88,7 @@ namespace pcars
         {
             string msg("getaddrinfo error ");
             msg.append(gai_strerror(rv));
-            throw PCars_Exception(msg);
+            throw runtime_error(msg);
         }
 
         // loop through all the results and bind to the first we can
@@ -121,7 +121,7 @@ namespace pcars
         {
             string msg("socket or bind ");
             msg.append(to_string(errno));
-            throw PCars_Exception(msg);
+            throw runtime_error(msg);
         }
 
         freeaddrinfo(servinfo);
@@ -146,13 +146,13 @@ namespace pcars
         if ((numbytes = recvfrom(socketfd_, reinterpret_cast<char *>(buffer.data()), amount, 0,
                                  (struct sockaddr *)&their_addr, &addr_len)) == -1)
         {
-            throw PCars_Exception("recvfrom");
+            throw runtime_error("recvfrom");
         }
 #else
         if ((numbytes = recvfrom(socketfd_, buffer.data(), amount, 0,
                                  (struct sockaddr *)&their_addr, &addr_len)) == -1)
         {
-            throw PCars_Exception("recvfrom");
+            throw runtime_error("recvfrom");
         }
 #endif
 

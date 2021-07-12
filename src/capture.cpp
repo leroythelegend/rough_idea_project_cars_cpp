@@ -1,22 +1,23 @@
 #include "../inc/capture.h"
 #include "../inc/gamestate.h"
-#include "../inc/exception.h"
+
+#include <stdexcept>
 
 using namespace std;
 
 namespace pcars {
 
-    void Capture::capturePacket(Capture::PacketPtr &packet)
+    void Capture::capturePacket(Packet::Ptr &packet)
     {
         if (state_) {
             state_->capture(*this, packet);
         }
         else {
-            throw PCars_Exception("Null state");
+            throw runtime_error("Capture::capturePacket Null state");
         }
     }
 
-    void Capture::nextGameState(const Capture::GameStatePtr & state)
+    void Capture::nextGameState(const GameState::Ptr & state)
     {
         state_ = state;
     }

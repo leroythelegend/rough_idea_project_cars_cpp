@@ -1,5 +1,4 @@
-#ifndef PCARS_DECODER_1BIT_2BIT_2BIT_3BIT_H_
-#define PCARS_DECODER_1BIT_2BIT_2BIT_3BIT_H_
+#pragma once
 
 #include "../inc/decodercomposite.h"
 
@@ -41,4 +40,3 @@ namespace pcars
 
 }
 
-#endif

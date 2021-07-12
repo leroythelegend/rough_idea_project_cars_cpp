@@ -1,5 +1,4 @@
-#ifndef PCARS_DECODER_H_
-#define PCARS_DECODER_H_
+#pragma once
 
 #include "../inc/consts.h"
 
@@ -22,5 +21,3 @@ namespace pcars
 	};
 
 }
-
-#endif

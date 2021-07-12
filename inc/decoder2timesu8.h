@@ -1,5 +1,4 @@
-#ifndef PCARS_DECODER_2TIMESU8_H_
-#define PCARS_DECODER_2TIMESU8_H_
+#pragma once
 
 #include "../inc/decodercomposite.h"
 
@@ -28,4 +27,3 @@ namespace pcars
 
 }
 
-#endif

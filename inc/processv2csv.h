@@ -25,7 +25,7 @@ namespace pcars
 		/// \return void
 		/// \throw nothing
 
-		void playing(PacketPtr &) override;
+		void playing(Packet::Ptr &) override;
 
 		/// \brief process menu packet
 		///
@@ -33,9 +33,9 @@ namespace pcars
 		/// \return void
 		/// \throw nothing
 
-		void menu(PacketPtr &) override;
+		void menu(Packet::Ptr &) override;
 
-		void reset(PacketPtr &) override;
+		void reset(Packet::Ptr &) override;
 
 	private:
 		ProcessV2CSVImpl::Ptr impl_;

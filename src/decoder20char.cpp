@@ -1,6 +1,6 @@
 #include "../inc/decoder20char.h"
 
-#include "../inc/exception.h"
+
 
 #include <iostream>
 
