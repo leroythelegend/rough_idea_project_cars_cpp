@@ -50,6 +50,10 @@ namespace pcars
             {
                 cout << e.what() << endl;
             }
+            catch (out_of_range &e)
+            {
+                cout << e.what() << endl;
+            }
         }
     }
 }
