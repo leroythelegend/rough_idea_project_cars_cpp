@@ -3,19 +3,24 @@
 
 #include "../inc/telemetry.h"
 
-namespace pcars {
+namespace pcars
+{
 
 	/// \class TelemetryV2
 	/// \brief telemetry Format 2
 	///
 	///		Entry point for format 2
 
-	class TelemetryV2 : public Telemetry {
+	class TelemetryV2 : public Telemetry
+	{
 	public:
-		/// Destructor
-		virtual ~TelemetryV2() {};
+		/// Constructor
+		TelemetryV2();
 
-		/// \brief start 
+		/// Destructor
+		virtual ~TelemetryV2(){};
+
+		/// \brief start
 		///
 		///		Start processing packets with Process
 		///
@@ -25,6 +30,9 @@ namespace pcars {
 		/// \throw out_of_range
 
 		void start(const std::shared_ptr<Process> &) override;
+
+	protected:
+		PacketFactory::Ptr packetfactory_;
 	};
 
 }

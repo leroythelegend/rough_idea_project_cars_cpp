@@ -4,24 +4,20 @@
 #include <vector>
 #include <iostream>
 
+#include "../inc/telemetry.h"
 #include "../inc/transportudp.h"
 #include "../inc/capture.h"
-#include "../inc/packetbase.h"
-#include "../inc/packetparticipantvehiclenamesdata.h"
-#include "../inc/packettelemetrydata.h"
-#include "../inc/packetracedata.h"
-#include "../inc/packetparticipantsdata.h"
-#include "../inc/packettimingdata.h"
-#include "../inc/packettimestatsdata.h"
-#include "../inc/packetgamestate.h"
-#include "../inc/packetvehicleclassnamesdata.h"
 #include "../inc/gamestate.h"
+#include "../inc/packetfactoryv2.h"
 
 using namespace pcars;
 using namespace std;
 
 namespace pcars
 {
+    TelemetryV2::TelemetryV2()
+        : packetfactory_{make_shared<PacketFactoryV2>()} {}
+
     void TelemetryV2::start(const std::shared_ptr<Process> &process)
     {
 
@@ -33,66 +29,21 @@ namespace pcars
 
         while (true)
         {
-            const PCars_Data data = transport.read(30000);
-            PacketBase packetBase;
-            Position pos = 0;
-            packetBase.decode(data, pos);
-
-            if (packetBase.packet_type() == 0 && data.size() == 559)
+            try
             {
-                shared_ptr<Packet> packet = make_shared<PacketTelemetryData>();
-                pos = 0;
+                const PCars_Data data = transport.read(NumberOfBytes);
+                shared_ptr<Packet> packet = packetfactory_->create(data);
+                Position pos = 0;
                 packet->decode(data, pos);
                 capture.capturePacket(packet);
             }
-            else if (packetBase.packet_type() == 1 && data.size() == 308)
+            catch (invalid_argument &e)
             {
-                shared_ptr<Packet> packet = make_shared<PacketRaceData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
+                cout << e.what() << endl;
             }
-            else if (packetBase.packet_type() == 2 && data.size() == 1136)
+            catch (out_of_range &e)
             {
-                shared_ptr<Packet> packet = make_shared<PacketParticipantsData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 3 && data.size() == 1063)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketTimingData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 4 && data.size() == 24)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketGameState>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 7 && data.size() == 1040)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketTimeStatsData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 8 && data.size() == 1164)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketParticipantsVehicleNamesData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
-            }
-            else if (packetBase.packet_type() == 8 && data.size() == 1452)
-            {
-                shared_ptr<Packet> packet = make_shared<PacketVehicleClassNamesData>();
-                pos = 0;
-                packet->decode(data, pos);
-                capture.capturePacket(packet);
+                cout << e.what() << endl;
             }
         }
     }
