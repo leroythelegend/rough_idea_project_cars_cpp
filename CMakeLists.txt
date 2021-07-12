@@ -145,6 +145,10 @@ add_executable(testpacketfactorys ./tests/testpacketfactorys.cpp)
 target_link_libraries(testpacketfactorys rispcars)
 add_test(NAME testpacketfactorys COMMAND testpacketfactorys)
 
+add_executable(testdecoder3bit ./tests/testdecoder3bit.cpp)
+target_link_libraries(testdecoder3bit rispcars)
+add_test(NAME testdecoder3bit COMMAND testdecoder3bit)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
