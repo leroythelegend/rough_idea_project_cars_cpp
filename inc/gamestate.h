@@ -18,20 +18,19 @@ namespace pcars {
     {
     public:
 
-        using PacketPtr = std::shared_ptr<Packet>;
-        using GameStatePtr = std::shared_ptr<GameState>;
+        using Ptr = std::shared_ptr<GameState>;
 
         virtual ~GameState() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        virtual void capture(Capture &, PacketPtr &) = 0;
+		/// \param Packet::Ptr 
+        virtual void capture(Capture &, Packet::Ptr &) = 0;
 
 		/// Next state
 		/// \param Capture
 		/// \param GameState next game state 
-        void next(Capture &, const GameStatePtr &);
+        void next(Capture &, const GameState::Ptr &);
     };
 
     ///
@@ -41,22 +40,19 @@ namespace pcars {
     class GamePlayingStateV1 : public GameState
     {
     public:
-
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GamePlayingStateV1(const ProcessPtr &);
+        GamePlayingStateV1(const Process::Ptr &);
         virtual ~GamePlayingStateV1() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
 
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GamePlayingStateV1(const GamePlayingStateV1 &) = delete;
         const GamePlayingStateV1 &operator =(const GamePlayingStateV1 &) = delete;
@@ -70,22 +66,19 @@ namespace pcars {
     class GamePlayingStateV2 : public GameState
     {
     public:
-
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GamePlayingStateV2(const ProcessPtr &);
+        GamePlayingStateV2(const Process::Ptr &);
         virtual ~GamePlayingStateV2() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
 
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GamePlayingStateV2(const GamePlayingStateV2 &) = delete;
         const GamePlayingStateV2 &operator =(const GamePlayingStateV2 &) = delete;
@@ -98,22 +91,19 @@ namespace pcars {
     class GameFrontEndStateV1 : public GameState
     {
     public:
-
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GameFrontEndStateV1(const ProcessPtr &);
+        GameFrontEndStateV1(const Process::Ptr &);
         virtual ~GameFrontEndStateV1() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
 
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GameFrontEndStateV1(const GameFrontEndStateV1 &) = delete;
         const GameFrontEndStateV1 &operator =(const GameFrontEndStateV1 &) = delete;     
@@ -128,21 +118,19 @@ namespace pcars {
     {
     public:
 
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GameFrontEndStateV2(const ProcessPtr &);
+        GameFrontEndStateV2(const Process::Ptr &);
         virtual ~GameFrontEndStateV2() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
 
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GameFrontEndStateV2(const GameFrontEndStateV2 &) = delete;
         const GameFrontEndStateV2 &operator =(const GameFrontEndStateV2 &) = delete;    
@@ -155,21 +143,18 @@ namespace pcars {
     class GameMenuStateV1 : public GameState
     {
     public:
-
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GameMenuStateV1(const ProcessPtr &);
+        GameMenuStateV1(const Process::Ptr &);
         virtual ~GameMenuStateV1() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GameMenuStateV1(const GameMenuStateV1 &) = delete;
         const GameMenuStateV1 &operator =(const GameMenuStateV1 &) = delete;   
@@ -182,21 +167,18 @@ namespace pcars {
     class GameMenuStateV2 : public GameState
     {
     public:
-
-        using ProcessPtr = std::shared_ptr<Process>;
-
         /// Constructor
         /// \param process
-        GameMenuStateV2(const ProcessPtr &);
+        GameMenuStateV2(const Process::Ptr &);
         virtual ~GameMenuStateV2() noexcept = default;
 
 		/// Capture packets
 		/// \param Capture
-		/// \param PacketPtr 
-        void capture(Capture &, PacketPtr &) override;
+		/// \param Packet::Ptr 
+        void capture(Capture &, Packet::Ptr &) override;
 
     private:
-        ProcessPtr process_;
+        Process::Ptr process_;
 
         GameMenuStateV2(const GameMenuStateV2 &) = delete;
         const GameMenuStateV2 &operator =(const GameMenuStateV2 &) = delete;   

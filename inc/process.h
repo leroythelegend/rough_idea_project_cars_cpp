@@ -16,7 +16,7 @@ namespace pcars {
     class Process {
     public:
 
-        using PacketPtr = std::shared_ptr<Packet>;
+        using Ptr = std::shared_ptr<Process>;
 
         virtual ~Process() = default;
 
@@ -28,7 +28,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void playing(PacketPtr &) {};
+        virtual void playing(Packet::Ptr &) {};
 
         /// \brief Process menu packets
         ///
@@ -38,7 +38,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void menu(PacketPtr &) {};
+        virtual void menu(Packet::Ptr &) {};
 
         /// \brief Process reset packets
         ///
@@ -48,7 +48,7 @@ namespace pcars {
         /// \return void
         /// \throw nothing
 
-        virtual void reset(PacketPtr &) {};
+        virtual void reset(Packet::Ptr &) {};
     };
 
 }

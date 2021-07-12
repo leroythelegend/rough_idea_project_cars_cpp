@@ -28,7 +28,7 @@ namespace pcars {
 		///
 		/// \param Process
 		/// \return void
-		/// \throw PCars_Exception
+		/// \throw runtime_error
 		/// \throw out_of_range
 
 		virtual void start(const std::shared_ptr<Process> &) = 0;

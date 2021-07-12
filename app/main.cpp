@@ -1,7 +1,6 @@
 #include "../inc/telemetryv2.h"
 #include "../inc/telemetryv1.h"
 #include "../inc/myprocess.h"
-#include "../inc/exception.h"
 
 #include <iostream>
 #include <string>
@@ -29,7 +28,7 @@ int main(int argc, char *argv[])
 			TelemetryV1 telemetry;
 			telemetry.start(make_shared<MyProcessV1>());
 		}
-		catch (PCars_Exception &e)
+		catch (runtime_error &e)
 		{
 			cout << e.what() << endl;
 			return 1;
@@ -51,7 +50,7 @@ int main(int argc, char *argv[])
 			TelemetryV2 telemetry;
 			telemetry.start(make_shared<MyProcessV2>());
 		}
-		catch (PCars_Exception &e)
+		catch (runtime_error &e)
 		{
 			cout << e.what() << endl;
 			return 1;

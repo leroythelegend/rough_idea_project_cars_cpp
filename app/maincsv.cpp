@@ -3,7 +3,6 @@
 #include "../inc/telemetrymsg.h"
 #include "../inc/telemetrymsgv1.h"
 #include "../inc/myprocess.h"
-#include "../inc/exception.h"
 #include "../inc/processv2csv.h"
 #include "../inc/processv2csvtyreimpl.h"
 #include "../inc/processv2csvsupimpl.h"
@@ -104,7 +103,7 @@ void runThread(const Telemetry::Ptr &telemetry, const ProcessV2CSVImpl::Ptr &imp
 				 {
 					 telemetry_->start(make_shared<ProcessV2CSV>(impl_));
 				 }
-				 catch (PCars_Exception &e)
+				 catch (runtime_error &e)
 				 {
 					 cout << e.what() << endl;
 				 }

@@ -1,6 +1,6 @@
 #include "../inc/decoderls2bits.h"
 
-#include "../inc/exception.h"
+
 
 namespace pcars {
 

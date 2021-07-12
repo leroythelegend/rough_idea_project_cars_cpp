@@ -1,13 +1,13 @@
-#ifndef PCARS_CAPTURE_H_
-#define PCARS_CAPTURE_H_
+#pragma once
 
 #include <memory>
+
+#include "../inc/packet.h"
 
 namespace pcars
 {
 
     class GameState;
-    class Packet;
 
     ///
     ///     Allows changeing to the next game state.
@@ -17,27 +17,22 @@ namespace pcars
     class Capture
     {
     public:
-        using GameStatePtr = std::shared_ptr<GameState>;
-        using PacketPtr = std::shared_ptr<Packet>;
-
         Capture() = default;
         ~Capture() noexcept = default;
 
         /// Passes the packet to the current GameState.
         /// \param Packet
-        void capturePacket(PacketPtr &);
+        void capturePacket(Packet::Ptr &);
 
         /// Changes the current GameState to the Next GameState
         /// \param GameState: Change to next Game State
-        void nextGameState(const GameStatePtr &);
+        void nextGameState(const std::shared_ptr<GameState> &);
 
     private:
-        GameStatePtr state_;
+        std::shared_ptr<GameState> state_;
 
         Capture(const Capture &) = delete;
         const Capture &operator=(const Capture &) = delete;
     };
 
 } // namespace pcars
-
-#endif

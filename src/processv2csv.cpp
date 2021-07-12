@@ -29,7 +29,7 @@ namespace pcars
     {
     }
 
-    void ProcessV2CSV::playing(PacketPtr &packet)
+    void ProcessV2CSV::playing(Packet::Ptr &packet)
     {
         impl_->updateNextLap(packet);
         impl_->updateTimingData(packet);
@@ -56,13 +56,13 @@ namespace pcars
         }
     }
 
-    void ProcessV2CSV::reset(PacketPtr &)
+    void ProcessV2CSV::reset(Packet::Ptr &)
     {
         // reset when not playing
         impl_->reset();
     }
 
-    void ProcessV2CSV::menu(PacketPtr &packet)
+    void ProcessV2CSV::menu(Packet::Ptr &packet)
     {
         impl_->updateTrackName(packet);
         impl_->clearTelemetry();
