@@ -153,6 +153,10 @@ add_executable(testdecoder3bit3bit ./tests/testdecoder3bit3bit.cpp)
 target_link_libraries(testdecoder3bit3bit rispcars)
 add_test(NAME testdecoder3bit3bit COMMAND testdecoder3bit3bit)
 
+add_executable(testdecoder3timesfloat ./tests/testdecoder3timesfloat.cpp)
+target_link_libraries(testdecoder3timesfloat rispcars)
+add_test(NAME testdecoder3timesfloat COMMAND testdecoder3timesfloat)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
