@@ -129,21 +129,13 @@ add_executable(testcsvencoder ./tests/testcsvencoder.cpp)
 target_link_libraries(testcsvencoder rispcars)
 add_test(NAME testcsvencoder COMMAND testcsvencoder)
 
-add_executable(testdecoder1bit2bit2bit3bit ./tests/testdecoder1bit2bit2bit3bit.cpp)
-target_link_libraries(testdecoder1bit2bit2bit3bit rispcars)
-add_test(NAME testdecoder1bit2bit2bit3bit COMMAND testdecoder1bit2bit2bit3bit)
-
-add_executable(testdecoder2bit3bit ./tests/testdecoder2bit3bit.cpp)
-target_link_libraries(testdecoder2bit3bit rispcars)
-add_test(NAME testdecoder2bit3bit COMMAND testdecoder2bit3bit)
-
-add_executable(testdecoder2timesu8 ./tests/testdecoder2timesu8.cpp)
-target_link_libraries(testdecoder2timesu8 rispcars)
-add_test(NAME testdecoder2timesu8 COMMAND testdecoder2timesu8)
-
-add_executable(testpacketfactorys ./tests/testpacketfactorys.cpp)
+add_executable(testpacketfactorys ./tests/testpackets.cpp)
 target_link_libraries(testpacketfactorys rispcars)
 add_test(NAME testpacketfactorys COMMAND testpacketfactorys)
+
+add_executable(testdecoders ./tests/testdecoders.cpp)
+target_link_libraries(testdecoders rispcars)
+add_test(NAME testdecoders COMMAND testdecoders)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

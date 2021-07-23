@@ -26,7 +26,7 @@ namespace pcars {
 
 		void decode(const PCars_Data &, Position &) override;
 
-		/// \brief Get value of MS 3 bits
+		/// \brief Get value of MS 3 bits 0b01110000
 		///
 		///
 		/// \return value
