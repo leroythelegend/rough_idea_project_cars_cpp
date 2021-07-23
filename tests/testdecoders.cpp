@@ -6,6 +6,8 @@
 #include "../inc/decoder3bit.h"
 #include "../inc/decoder3bit3bit.h"
 #include "../inc/decoder3timesfloat.h"
+#include "../inc/decoder3timess16.h"
+#include "../inc/decoder4bit4bit.h"
 
 #include "tests.h"
 
@@ -295,5 +297,103 @@ int main(int argc, char const *argv[])
         cout << "Decoder3TimesFloat failed" << endl;
         return 1;
     }
+
+    try
+    {
+        Decoder3TimesS16 decoder;
+
+        // Test we throw out_of_range
+        PCars_Data data;
+        Position pos = 0;
+        try
+        {
+            decoder.decode(data, pos);
+            pcars_assert(false);
+        }
+        catch (out_of_range &)
+        {
+            // test pos is unchanged
+            pcars_assert(!pos);
+        }
+
+        // Test all values are 0
+        for (int i = 0; i < 3; i++)
+        {
+            data.push_back(0x00);
+            data.push_back(0x00);
+        }
+
+        decoder.decode(data, pos);
+        pcars_assert(pos == 6);
+        Vector_Int ints = decoder.times3_s16();
+        pcars_assert(ints.size() == 3);
+        for (auto v : ints)
+        {
+            pcars_assert(v == 0);
+        }
+
+        // Test all values are 0
+        pos = 0;
+        data.clear();
+        for (int i = 0; i < 3; i++)
+        {
+            data.push_back(0x12);
+            data.push_back(0x34);
+        }
+
+        decoder.decode(data, pos);
+        pcars_assert(pos == 6);
+        ints = decoder.times3_s16();
+        pcars_assert(ints.size() == 3);
+        for (auto v : ints)
+        {
+            pcars_assert(v == 13330);
+        }
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Decoder3TimesS16 failed" << endl;
+        return 1;
+    }
+
+    try
+    {
+        Decoder4bit4bit decoder;
+
+        // Test we throw out_of_range
+        PCars_Data data;
+        Position pos = 0;
+        try
+        {
+            decoder.decode(data, pos);
+            pcars_assert(false);
+        }
+        catch (out_of_range &)
+        {
+            // test pos is unchanged
+            pcars_assert(!pos);
+        }
+
+        // Test all values are 0
+        data.push_back(0b00000000);
+        decoder.decode(data, pos);
+        pcars_assert(pos == 1);
+        pcars_assert(decoder.ls4bits() == 0);
+        pcars_assert(decoder.ms4bits() == 0);
+
+        // Test all values are 1
+        pos = 0;
+        data.at(0) = 0b11111111;
+        decoder.decode(data, pos);
+        pcars_assert(pos == 1);
+        pcars_assert(decoder.ls4bits() == 15);
+        pcars_assert(decoder.ms4bits() == 15);
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Decoder4bit4bit failed" << endl;
+        return 1;
+    }
+
     return 0;
 }
