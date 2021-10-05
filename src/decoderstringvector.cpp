@@ -14,7 +14,7 @@ DecoderStringVector::~DecoderStringVector() {
 
 void DecoderStringVector::decode(const PCars_Data & data, Position & position) {
 
-	for (int8_t i = 0; i < numparticipants_; ++i) {
+	for (int i = 0; i < numparticipants_; ++i) {
 		Decoder64Char cdecoder;
 		cdecoder.decode(data, position);
 		stringvector_.push_back(cdecoder.char64());

@@ -125,8 +125,10 @@ namespace pcars
     {
         if (telemetry_.tick == currenttime_.tick &&
             nextlap_ == currentlap_ &&
+            previousdistance_ < currenttime_.distance &&
             !telemetry_.elements.empty())
         {
+            previousdistance_ = currenttime_.distance;
             vector<double> row;
             row.push_back(currenttime_.time);
             row.push_back(currenttime_.distance);
@@ -169,6 +171,7 @@ namespace pcars
 
         data_ = make_unique<TelemetryData>();
         data_->names = names_;
+        setPreviousDistanceToZero();
     }
 
     bool ProcessV2CSVImpl::isFirstOutLapFinshed() const
@@ -198,6 +201,7 @@ namespace pcars
         state_ = 0;
         currentlap_ = NOTALAP;
         nextlap_ = 0;
+        setPreviousDistanceToZero();
         currenttime_.time = -1;
         currenttime_.tick = 0;
         currenttime_.distance = 0;
@@ -212,6 +216,7 @@ namespace pcars
         currenttime_.time = -1;
         currenttime_.tick = 0;
         currenttime_.distance = 0;
+        setPreviousDistanceToZero();
         state_ = 0;
         nextlap_ = 0;
         currentlap_ = 0;
