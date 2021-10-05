@@ -70,10 +70,15 @@ namespace pcars
                                   const Lap lap,
                                   const TelemetryData::Ptr &data,
                                   const Type &);
+        void setPreviousDistanceToZero()
+        {
+            previousdistance_ = 0;
+        }
 
         const Lap NOTALAP = 0;
 
         unsigned int currentlap_ = NOTALAP;
+        unsigned int previousdistance_ = 0;
         Type type_;
         Names names_;
         CurrentTime currenttime_;

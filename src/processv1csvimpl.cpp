@@ -56,8 +56,10 @@ namespace pcars
     void ProcessV1CSVImpl::updateLapWithCapturedTelemetry()
     {
         if (nextlap_ == currentlap_ &&
+            previousdistance_ < currenttime_.distance &&
             !telemetry_.elements.empty())
         {
+            previousdistance_ = currenttime_.distance;
             vector<double> row;
             row.push_back(currenttime_.time);
             row.push_back(currenttime_.distance);
