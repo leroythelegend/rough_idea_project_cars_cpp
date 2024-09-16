@@ -1,5 +1,4 @@
-#ifndef PCARS_DECODER_3BIT_3BIT_H_
-#define PCARS_DECODER_3BIT_3BIT_H_
+#pragma once
 
 #include "../inc/decodercomposite.h"
 
@@ -11,6 +10,7 @@ namespace pcars
 
 	///
 	/// Decode 6 bits of the byte in 3 seperate bits
+	///    0b01110000 and 0b00000111
 	///
 
 	class Decoder3bit3bit : public DecoderComposite
@@ -22,9 +22,9 @@ namespace pcars
 		///	Decodes PCars Data at position in Data
 		void decode(const PCars_Data &, Position &) override;
 
-		/// Get 3 Most significant bits
+		/// Get 3 Most significant bits 0b01110000
 		unsigned int ms3bits() const;
-		/// Get 3 Least significant bits
+		/// Get 3 Least significant bits 0b00000111
 		unsigned int ls3bits() const;
 
 	private:
@@ -34,4 +34,3 @@ namespace pcars
 
 }
 
-#endif
